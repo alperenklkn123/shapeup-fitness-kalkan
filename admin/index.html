@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex,nofollow,noarchive">
   <meta name="theme-color" content="#07111d">
   <title>SHAPE Yönetim Paneli</title>
-  <link rel="stylesheet" href="admin.css?v=5">
+  <link rel="stylesheet" href="admin.css?v=6">
 </head>
 <body>
   <div class="ambient" aria-hidden="true"></div>
@@ -62,6 +62,7 @@
       <nav class="tabs" aria-label="Yönetim bölümleri">
         <button class="tab active" type="button" data-tab="membership">Üyelik</button>
         <button class="tab" type="button" data-tab="coaching">Koçluk</button>
+        <button class="tab" type="button" data-tab="group-training">Grup dersleri</button>
         <button class="tab" type="button" data-tab="menu">Menü</button>
         <button class="tab" type="button" data-tab="contact">İletişim</button>
         <button class="tab" type="button" data-tab="texts">Ana metinler</button>
@@ -78,6 +79,11 @@
         <section class="panel" data-panel="coaching" hidden>
           <div class="panel-head"><div><p class="eyebrow">KİŞİSEL KOÇLUK</p><h2>Koçluk paketleri</h2><p>Ders sayısını, haftalık sıklığı ve fiyatı yönetin.</p></div><button class="button secondary" type="button" data-action="add-coaching">+ Paket ekle</button></div>
           <div id="coachingEditor" class="editor-grid"></div>
+        </section>
+
+        <section class="panel" data-panel="group-training" hidden>
+          <div class="panel-head"><div><p class="eyebrow">GROUP CLASSES</p><h2>Grup dersleri</h2><p>Bölümü açıp kapatın; ders türlerini ve afişte görünen sabit TL / GBP fiyatlarını değiştirin.</p></div></div>
+          <div id="groupTrainingEditor" class="form-card"></div>
         </section>
 
         <section class="panel" data-panel="menu" hidden>
@@ -129,7 +135,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="../supabase-config.js"></script>
-  <script src="../site-defaults.js?v=5"></script>
-  <script src="admin.js?v=5"></script>
+  <script src="../site-defaults.js?v=6"></script>
+  <script src="admin.js?v=6"></script>
 </body>
 </html>

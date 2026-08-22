@@ -14,6 +14,8 @@ Mobil giriş alanı tek, kısa bir başlık ve doğrudan WhatsApp'a açılan ile
 
 Yönetim panelindeki **Yazı boyutları** sekmesinden mobil ve bilgisayar görünümü ayrı ayrı ayarlanabilir. Hazır Küçük, Orta ve Büyük seçeneklerinin yanında kapak başlığı, bölüm başlıkları, açıklama ve düğme yazıları için güvenli aralıklı kontroller bulunur. Uzun kapak başlıkları ekrana sığmadığında otomatik olarak küçültülür.
 
+Kapak alanının altında **Çalışma saatlerimiz**, **Menü** ve **Grup dersleri** hızlı bağlantıları bulunur. Grup dersleri bölümünde HYROX, HIIT Circuit ve Strength & Conditioning dersleri; üye ve dışarıdan katılım fiyatları; rezervasyon şartları ve hazır mesajla açılan WhatsApp kayıt düğmesi gösterilir. Yönetim panelindeki **Grup dersleri** sekmesinden bölümün görünürlüğü, ders türleri ve TL / GBP fiyatları değiştirilebilir. Dört dildeki grup dersi metinleri **Ana metinler** sekmesinden düzenlenir.
+
 ## Supabase kurulumu
 
 1. Size ayrıca verilen `supabase-setup.sql` dosyasını açın.

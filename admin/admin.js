@@ -15,6 +15,9 @@
     { key: "heroTitle", label: "Kapak başlığı", rows: 1 },
     { key: "heroIntro", label: "Kapak açıklaması", rows: 3 },
     { key: "heroWhatsappCta", label: "WhatsApp düğmesi", rows: 1 },
+    { key: "quickHours", label: "Hızlı bağlantı — Çalışma saatleri", rows: 1 },
+    { key: "quickMenu", label: "Hızlı bağlantı — Menü", rows: 1 },
+    { key: "quickGroup", label: "Hızlı bağlantı — Grup dersleri", rows: 1 },
     { key: "directions", label: "Yol tarifi düğmesi", rows: 1 },
     { key: "membershipKicker", label: "Üyelik üst etiketi", rows: 1 },
     { key: "membershipTitle", label: "Üyelik başlığı", rows: 2 },
@@ -30,6 +33,20 @@
     { key: "perWeek", label: "Haftalık sıklık etiketi", rows: 1 },
     { key: "popular", label: "Popüler paket etiketi", rows: 1 },
     { key: "features", label: "Koçluk özellikleri — her satıra bir özellik", rows: 5, array: true },
+    { key: "groupKicker", label: "Grup dersi üst etiketi", rows: 1 },
+    { key: "groupTitle", label: "Grup dersi başlığı", rows: 2 },
+    { key: "groupIntro", label: "Grup dersi açıklaması", rows: 3 },
+    { key: "groupMember", label: "Grup dersi — Üye etiketi", rows: 1 },
+    { key: "groupMemberNote", label: "Grup dersi — Üye açıklaması", rows: 1 },
+    { key: "groupNonMember", label: "Grup dersi — Dışarıdan katılım etiketi", rows: 1 },
+    { key: "groupNonMemberNote", label: "Grup dersi — Dışarıdan katılım açıklaması", rows: 1 },
+    { key: "groupDropIn", label: "Grup dersi — Tek ders etiketi", rows: 1 },
+    { key: "groupReservation", label: "Grup dersi — Rezervasyon notu", rows: 1 },
+    { key: "groupPayment", label: "Grup dersi — Ödeme notu", rows: 2 },
+    { key: "groupLevels", label: "Grup dersi — Seviye notu", rows: 1 },
+    { key: "groupBook", label: "Grup dersi WhatsApp düğmesi", rows: 1 },
+    { key: "groupSchedule", label: "Grup dersi program notu", rows: 2 },
+    { key: "groupWhatsappMessage", label: "Grup dersi hazır WhatsApp mesajı", rows: 2 },
     { key: "menuTitle", label: "Menü başlığı", rows: 2 },
     { key: "menuIntro", label: "Menü açıklaması", rows: 3 },
     { key: "visitKicker", label: "İletişim üst etiketi", rows: 1 },
@@ -80,6 +97,8 @@
     const merged = Object.assign({}, clone(base), clone(source));
     merged.membership = Array.isArray(source.membership) ? clone(source.membership) : clone(base.membership || []);
     merged.coaching = Array.isArray(source.coaching) ? clone(source.coaching) : clone(base.coaching || []);
+    merged.groupTraining = Object.assign({}, clone(base.groupTraining || {}), clone(source.groupTraining || {}));
+    merged.groupTraining.classTypes = Array.isArray((source.groupTraining || {}).classTypes) ? clone(source.groupTraining.classTypes) : clone((base.groupTraining || {}).classTypes || []);
     merged.menu = Array.isArray(source.menu) ? clone(source.menu) : clone(base.menu || []);
     merged.hero = Object.assign({}, clone(base.hero || {}), clone(source.hero || {}));
     merged.design = Object.assign({}, clone(base.design || {}), clone(source.design || {}));
@@ -167,6 +186,25 @@
           <label class="field wide"><span>Fiyat</span><input type="text" data-kind="coaching" data-index="${index}" data-field="price" value="${safe(plan.price)}" placeholder="₺0"></label>
         </div>
       </article>`).join("") || `<p>Henüz koçluk paketi yok.</p>`;
+  }
+
+  function renderGroupTraining() {
+    const group = state.groupTraining || {};
+    const classTypes = Array.isArray(group.classTypes) ? group.classTypes.join("\n") : "";
+    $("#groupTrainingEditor").innerHTML = `
+      <section class="form-section"><h3>Yayın durumu ve ders türleri</h3><div class="field-grid">
+        <label class="check wide"><input type="checkbox" data-kind="group-training" data-field="active" ${group.active !== false ? "checked" : ""}> Grup dersleri bölümü ve hızlı bağlantısı yayında</label>
+        <label class="field wide"><span>Ders türleri — her satıra bir ders</span><textarea rows="4" data-kind="group-training" data-field="classTypes" data-array="true">${safe(classTypes)}</textarea></label>
+      </div></section>
+      <section class="form-section"><h3>Üye fiyatı</h3><div class="field-grid">
+        <label class="field"><span>TL fiyatı</span><input type="text" data-kind="group-training" data-field="memberTry" value="${safe(group.memberTry)}" placeholder="₺600"></label>
+        <label class="field"><span>GBP fiyatı</span><input type="text" data-kind="group-training" data-field="memberGbp" value="${safe(group.memberGbp)}" placeholder="£10"></label>
+      </div></section>
+      <section class="form-section"><h3>Dışarıdan katılım fiyatı</h3><div class="field-grid">
+        <label class="field"><span>TL fiyatı</span><input type="text" data-kind="group-training" data-field="nonMemberTry" value="${safe(group.nonMemberTry)}" placeholder="₺1.200"></label>
+        <label class="field"><span>GBP fiyatı</span><input type="text" data-kind="group-training" data-field="nonMemberGbp" value="${safe(group.nonMemberGbp)}" placeholder="£20"></label>
+      </div></section>
+      <p class="upload-message">Bölüm başlığı, açıklamalar ve WhatsApp mesajı “Ana metinler” sekmesinden dört dil için ayrı ayrı değiştirilebilir.</p>`;
   }
 
   function renderMenu() {
@@ -263,6 +301,7 @@
   function renderAll() {
     renderMembership();
     renderCoaching();
+    renderGroupTraining();
     renderMenu();
     renderContact();
     renderTexts();
@@ -285,6 +324,9 @@
       else state.membership[index][field] = value;
     } else if (kind === "coaching" && state.coaching[index]) {
       state.coaching[index][field] = ["sessions", "perWeek"].includes(field) ? Math.max(0, Number(value) || 0) : value;
+    } else if (kind === "group-training") {
+      state.groupTraining = state.groupTraining || {};
+      state.groupTraining[field] = target.dataset.array === "true" ? String(value).split("\n").map(line => line.trim()).filter(Boolean) : value;
     } else if (kind === "menu-category" && state.menu[categoryIndex]) {
       if (["names", "subtitles"].includes(field)) state.menu[categoryIndex][field][language] = value;
       else state.menu[categoryIndex][field] = value;
