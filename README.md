@@ -8,7 +8,9 @@ GitHub Pages üzerinde çalışan, Supabase destekli çok dilli web sitesi ve g�
 - `admin/`: Yönetim paneli
 - `site-defaults.js`: İlk açılış ve bağlantı hataları için yedek içerik
 - `supabase-config.js`: Tarayıcıda kullanılabilen Supabase proje bağlantısı
-- `shape-hero.png` ve `shape-og.png`: Site görselleri
+- `shape-hero.png`, `shape-hero-mobile.webp` ve `shape-og.png`: Masaüstü, mobil ve sosyal paylaşım görselleri
+
+Mobil giriş alanı tek, kısa bir başlık; tek üyelik düğmesi ve kompakt bilgi satırı kullanır. Kapak başlığı, açıklaması ve düğme metni yönetim panelindeki **Ana sayfa metinleri** bölümünden dört dil için ayrı ayrı değiştirilebilir.
 
 ## Supabase kurulumu
 
