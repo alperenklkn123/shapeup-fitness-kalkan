@@ -14,7 +14,7 @@
     { key: "navContact", label: "Menü — İletişim", rows: 1 },
     { key: "heroTitle", label: "Kapak başlığı", rows: 1 },
     { key: "heroIntro", label: "Kapak açıklaması", rows: 3 },
-    { key: "heroCta", label: "Üyelik düğmesi", rows: 1 },
+    { key: "heroWhatsappCta", label: "WhatsApp düğmesi", rows: 1 },
     { key: "directions", label: "Yol tarifi düğmesi", rows: 1 },
     { key: "fact1", label: "Kapak bilgisi — 1", rows: 1 },
     { key: "fact2", label: "Kapak bilgisi — 2", rows: 1 },

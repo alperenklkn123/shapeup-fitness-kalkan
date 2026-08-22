@@ -10,7 +10,7 @@ GitHub Pages üzerinde çalışan, Supabase destekli çok dilli web sitesi ve g�
 - `supabase-config.js`: Tarayıcıda kullanılabilen Supabase proje bağlantısı
 - `shape-hero.png`, `shape-hero-mobile.webp` ve `shape-og.png`: Masaüstü, mobil ve sosyal paylaşım görselleri
 
-Mobil giriş alanı tek, kısa bir başlık; tek üyelik düğmesi ve kompakt bilgi satırı kullanır. Kapak başlığı, açıklaması ve düğme metni yönetim panelindeki **Ana sayfa metinleri** bölümünden dört dil için ayrı ayrı değiştirilebilir.
+Mobil giriş alanı tek, kısa bir başlık ve doğrudan WhatsApp'a açılan iletişim düğmesi kullanır. Kapak başlığı, açıklaması ve düğme metni yönetim panelindeki **Ana sayfa metinleri** bölümünden dört dil için ayrı ayrı değiştirilebilir.
 
 ## Supabase kurulumu
 
