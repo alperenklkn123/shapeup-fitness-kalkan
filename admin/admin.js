@@ -16,7 +16,7 @@
     { key: "heroIntro", label: "Kapak açıklaması", rows: 3 },
     { key: "heroWhatsappCta", label: "WhatsApp düğmesi", rows: 1 },
     { key: "quickHours", label: "Hızlı bağlantı — Çalışma saatleri", rows: 1 },
-    { key: "quickMenu", label: "Hızlı bağlantı — Menü", rows: 1 },
+    { key: "quickMenu", label: "Hızlı bağlantı — Yeme & İçme", rows: 1 },
     { key: "quickGroup", label: "Hızlı bağlantı — Grup dersleri", rows: 1 },
     { key: "directions", label: "Yol tarifi düğmesi", rows: 1 },
     { key: "membershipKicker", label: "Üyelik üst etiketi", rows: 1 },
@@ -113,6 +113,13 @@
         clone((base.translations || {})[language.code] || {}),
         clone((source.translations || {})[language.code] || {})
       );
+    });
+    const legacyQuickMenu = { en: "Menu", tr: "Menü", de: "Menü", ru: "Меню" };
+    LANGUAGES.forEach(language => {
+      const savedValue = (((source.translations || {})[language.code] || {}).quickMenu);
+      if (savedValue === legacyQuickMenu[language.code]) {
+        merged.translations[language.code].quickMenu = (((base.translations || {})[language.code] || {}).quickMenu) || savedValue;
+      }
     });
     return merged;
   }
