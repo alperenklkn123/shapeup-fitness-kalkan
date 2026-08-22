@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex,nofollow,noarchive">
   <meta name="theme-color" content="#07111d">
   <title>SHAPE Yönetim Paneli</title>
-  <link rel="stylesheet" href="admin.css">
+  <link rel="stylesheet" href="admin.css?v=5">
 </head>
 <body>
   <div class="ambient" aria-hidden="true"></div>
@@ -65,6 +65,7 @@
         <button class="tab" type="button" data-tab="menu">Menü</button>
         <button class="tab" type="button" data-tab="contact">İletişim</button>
         <button class="tab" type="button" data-tab="texts">Ana metinler</button>
+        <button class="tab" type="button" data-tab="typography">Yazı boyutları</button>
         <button class="tab" type="button" data-tab="hero">Kapak görseli</button>
       </nav>
 
@@ -94,6 +95,18 @@
           <div id="textsEditor" class="stack"></div>
         </section>
 
+        <section class="panel" data-panel="typography" hidden>
+          <div class="panel-head"><div><p class="eyebrow">TASARIM</p><h2>Yazı boyutları</h2><p>Mobil ve bilgisayar görünümünü ayrı ayrı ayarlayın. Güvenli sınırlar sayfanın taşmasını önler.</p></div></div>
+          <div class="typography-presets" aria-label="Hazır yazı boyutu seçenekleri">
+            <button class="button secondary" type="button" data-action="typography-preset" data-preset="small">Küçük</button>
+            <button class="button secondary" type="button" data-action="typography-preset" data-preset="medium">Orta</button>
+            <button class="button secondary" type="button" data-action="typography-preset" data-preset="large">Büyük</button>
+            <button class="button secondary" type="button" data-action="reset-typography">Varsayılana dön</button>
+          </div>
+          <div id="typographyEditor" class="typography-grid"></div>
+          <p class="typography-note">Değerleri değiştirdikten sonra “Değişiklikleri yayınla” düğmesine basın. Çok uzun kapak başlıkları mobilde ayrıca otomatik olarak küçültülür.</p>
+        </section>
+
         <section class="panel" data-panel="hero" hidden>
           <div class="panel-head"><div><p class="eyebrow">KAPAK</p><h2>Ana görsel</h2><p>JPG, PNG, WebP veya AVIF yükleyin. En fazla 5 MB.</p></div></div>
           <div class="hero-editor">
@@ -116,7 +129,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="../supabase-config.js"></script>
-  <script src="../site-defaults.js"></script>
-  <script src="admin.js"></script>
+  <script src="../site-defaults.js?v=5"></script>
+  <script src="admin.js?v=5"></script>
 </body>
 </html>

@@ -12,6 +12,8 @@ GitHub Pages üzerinde çalışan, Supabase destekli çok dilli web sitesi ve g�
 
 Mobil giriş alanı tek, kısa bir başlık ve doğrudan WhatsApp'a açılan iletişim düğmesi kullanır. Kapak başlığı, açıklaması ve düğme metni yönetim panelindeki **Ana sayfa metinleri** bölümünden dört dil için ayrı ayrı değiştirilebilir.
 
+Yönetim panelindeki **Yazı boyutları** sekmesinden mobil ve bilgisayar görünümü ayrı ayrı ayarlanabilir. Hazır Küçük, Orta ve Büyük seçeneklerinin yanında kapak başlığı, bölüm başlıkları, açıklama ve düğme yazıları için güvenli aralıklı kontroller bulunur. Uzun kapak başlıkları ekrana sığmadığında otomatik olarak küçültülür.
+
 ## Supabase kurulumu
 
 1. Size ayrıca verilen `supabase-setup.sql` dosyasını açın.

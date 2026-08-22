@@ -90,6 +90,18 @@
       hours: { weekdays: "07:30–22:00", saturday: "08:00–21:00", sunday: "08:00–17:00" }
     },
     hero: { imageUrl: "shape-hero.png" },
+    design: {
+      typography: {
+        heroTitleMobile: 49,
+        sectionTitleMobile: 40,
+        bodyMobile: 14,
+        buttonMobile: 12,
+        heroTitleDesktop: 96,
+        sectionTitleDesktop: 66,
+        bodyDesktop: 16,
+        buttonDesktop: 11
+      }
+    },
     translations: {
       en: {
         navMembership: "Membership",

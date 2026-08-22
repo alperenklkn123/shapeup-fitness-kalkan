@@ -16,9 +16,6 @@
     { key: "heroIntro", label: "Kapak açıklaması", rows: 3 },
     { key: "heroWhatsappCta", label: "WhatsApp düğmesi", rows: 1 },
     { key: "directions", label: "Yol tarifi düğmesi", rows: 1 },
-    { key: "fact1", label: "Kapak bilgisi — 1", rows: 1 },
-    { key: "fact2", label: "Kapak bilgisi — 2", rows: 1 },
-    { key: "fact3", label: "Kapak bilgisi — 3", rows: 1 },
     { key: "membershipKicker", label: "Üyelik üst etiketi", rows: 1 },
     { key: "membershipTitle", label: "Üyelik başlığı", rows: 2 },
     { key: "membershipIntro", label: "Üyelik açıklaması", rows: 3 },
@@ -49,6 +46,21 @@
     { key: "footer", label: "Alt bilgi sloganı", rows: 2 },
     { key: "legal", label: "Alt bilgi fiyat notu", rows: 2 }
   ];
+  const TYPOGRAPHY_FIELDS = [
+    { key: "heroTitleMobile", device: "mobile", label: "Kapak başlığı", min: 32, max: 60 },
+    { key: "sectionTitleMobile", device: "mobile", label: "Bölüm başlıkları", min: 28, max: 48 },
+    { key: "bodyMobile", device: "mobile", label: "Açıklama metinleri", min: 12, max: 18 },
+    { key: "buttonMobile", device: "mobile", label: "Düğme yazıları", min: 9, max: 16 },
+    { key: "heroTitleDesktop", device: "desktop", label: "Kapak başlığı", min: 52, max: 112 },
+    { key: "sectionTitleDesktop", device: "desktop", label: "Bölüm başlıkları", min: 36, max: 76 },
+    { key: "bodyDesktop", device: "desktop", label: "Açıklama metinleri", min: 13, max: 21 },
+    { key: "buttonDesktop", device: "desktop", label: "Düğme yazıları", min: 9, max: 16 }
+  ];
+  const TYPOGRAPHY_PRESETS = {
+    small: { heroTitleMobile: 38, sectionTitleMobile: 32, bodyMobile: 13, buttonMobile: 10, heroTitleDesktop: 64, sectionTitleDesktop: 44, bodyDesktop: 14, buttonDesktop: 10 },
+    medium: { heroTitleMobile: 49, sectionTitleMobile: 40, bodyMobile: 14, buttonMobile: 12, heroTitleDesktop: 96, sectionTitleDesktop: 66, bodyDesktop: 16, buttonDesktop: 11 },
+    large: { heroTitleMobile: 56, sectionTitleMobile: 46, bodyMobile: 17, buttonMobile: 14, heroTitleDesktop: 108, sectionTitleDesktop: 74, bodyDesktop: 20, buttonDesktop: 14 }
+  };
 
   const $ = (selector, root) => (root || document).querySelector(selector);
   const $$ = (selector, root) => Array.from((root || document).querySelectorAll(selector));
@@ -70,6 +82,8 @@
     merged.coaching = Array.isArray(source.coaching) ? clone(source.coaching) : clone(base.coaching || []);
     merged.menu = Array.isArray(source.menu) ? clone(source.menu) : clone(base.menu || []);
     merged.hero = Object.assign({}, clone(base.hero || {}), clone(source.hero || {}));
+    merged.design = Object.assign({}, clone(base.design || {}), clone(source.design || {}));
+    merged.design.typography = Object.assign({}, clone(((base.design || {}).typography) || {}), clone(((source.design || {}).typography) || {}));
     merged.contact = Object.assign({}, clone(base.contact || {}), clone(source.contact || {}));
     merged.contact.addresses = Object.assign({}, clone((base.contact || {}).addresses || {}), clone((source.contact || {}).addresses || {}));
     merged.contact.hours = Object.assign({}, clone((base.contact || {}).hours || {}), clone((source.contact || {}).hours || {}));
@@ -212,6 +226,29 @@
       </div></article>`).join("");
   }
 
+  function normaliseTypographyValue(field, value) {
+    const fallback = TYPOGRAPHY_PRESETS.medium[field.key];
+    const number = Number(value);
+    return Math.round(Math.min(field.max, Math.max(field.min, Number.isFinite(number) ? number : fallback)));
+  }
+
+  function renderTypography() {
+    const typography = ((state.design || {}).typography) || {};
+    const groups = [
+      { device: "mobile", title: "Mobil ekran", description: "Telefonlarda görünen yazı boyutları" },
+      { device: "desktop", title: "Bilgisayar ekranı", description: "Tablet ve geniş ekranlarda görünen yazı boyutları" }
+    ];
+    $("#typographyEditor").innerHTML = groups.map(group => `
+      <article class="typography-card">
+        <h3>${group.title}</h3>
+        <p>${group.description}</p>
+        <div class="size-controls">${TYPOGRAPHY_FIELDS.filter(field => field.device === group.device).map(field => {
+          const value = normaliseTypographyValue(field, typography[field.key]);
+          return `<label class="size-control"><span class="size-control-head"><span>${field.label}</span><output class="size-value" data-size-output="${field.key}">${value} px</output></span><input type="range" min="${field.min}" max="${field.max}" step="1" value="${value}" data-kind="typography" data-field="${field.key}" aria-label="${field.label}"><small>${field.min}–${field.max} px güvenli aralık</small></label>`;
+        }).join("")}</div>
+      </article>`).join("");
+  }
+
   function renderHero() {
     const url = (state.hero || {}).imageUrl || "shape-hero.png";
     $("#heroUrl").value = url;
@@ -229,6 +266,7 @@
     renderMenu();
     renderContact();
     renderTexts();
+    renderTypography();
     renderHero();
   }
 
@@ -261,6 +299,16 @@
       state.contact.hours[field] = value;
     } else if (kind === "translation") {
       state.translations[language][field] = target.dataset.array === "true" ? String(value).split("\n").map(line => line.trim()).filter(Boolean) : value;
+    } else if (kind === "typography") {
+      const definition = TYPOGRAPHY_FIELDS.find(item => item.key === field);
+      if (!definition) return;
+      state.design = state.design || {};
+      state.design.typography = state.design.typography || {};
+      const nextValue = normaliseTypographyValue(definition, value);
+      state.design.typography[field] = nextValue;
+      target.value = String(nextValue);
+      const output = $(`[data-size-output="${field}"]`);
+      if (output) output.textContent = `${nextValue} px`;
     } else if (kind === "hero") {
       state.hero.imageUrl = value;
       $("#heroPreview").src = resolveHeroUrl(value);
@@ -271,6 +319,16 @@
   function handleAction(button) {
     const action = button.dataset.action;
     if (!action) return;
+    if (action === "typography-preset" && TYPOGRAPHY_PRESETS[button.dataset.preset]) {
+      state.design = state.design || {};
+      state.design.typography = clone(TYPOGRAPHY_PRESETS[button.dataset.preset]);
+      renderTypography();
+    }
+    if (action === "reset-typography") {
+      state.design = state.design || {};
+      state.design.typography = clone(((defaults.design || {}).typography) || TYPOGRAPHY_PRESETS.medium);
+      renderTypography();
+    }
     if (action === "add-coaching") {
       state.coaching.push({ id: id("coaching"), active: true, featured: false, sessions: 8, perWeek: 2, price: "₺0" });
       renderCoaching();
