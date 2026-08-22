@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="theme-color" content="#07111d">
+  <title>SHAPE Yönetim Paneli</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <div class="ambient" aria-hidden="true"></div>
+
+  <main class="page-shell">
+    <section class="login-card" id="loginView">
+      <a class="brand" href="../" aria-label="Ana siteye dön">
+        <strong>SH<span>A</span>PE</strong>
+        <small>TRAINING CLUB · KALKAN</small>
+      </a>
+      <div class="login-copy">
+        <p class="eyebrow">GÜVENLİ YÖNETİM</p>
+        <h1>Yönetim paneli</h1>
+        <p>Üyelik fiyatlarını, menüyü, iletişim bilgilerini ve ana sayfa metinlerini buradan güncelleyin.</p>
+      </div>
+      <form id="loginForm" class="login-form">
+        <label>
+          <span>E-posta</span>
+          <input id="loginEmail" name="email" type="email" autocomplete="username" required placeholder="yonetici@ornek.com">
+        </label>
+        <label>
+          <span>Şifre</span>
+          <input id="loginPassword" name="password" type="password" autocomplete="current-password" required minlength="6" placeholder="••••••••">
+        </label>
+        <button class="button primary" id="loginButton" type="submit">Giriş yap</button>
+        <p class="form-message" id="loginMessage" role="alert" aria-live="polite"></p>
+      </form>
+      <p class="login-note">Bu sayfada üyelik oluşturulamaz. Yalnızca Supabase'te tanımlanan yönetici hesabı giriş yapabilir.</p>
+    </section>
+
+    <section class="admin" id="adminView" hidden>
+      <header class="admin-header">
+        <div>
+          <a class="brand compact" href="../" target="_blank" rel="noopener">
+            <strong>SH<span>A</span>PE</strong>
+            <small>YÖNETİM</small>
+          </a>
+          <p id="adminIdentity" class="identity"></p>
+        </div>
+        <div class="header-actions">
+          <a class="button secondary" href="../" target="_blank" rel="noopener">Siteyi aç ↗</a>
+          <button class="button secondary" id="logoutButton" type="button">Çıkış</button>
+          <button class="button primary" id="saveButton" type="button">Değişiklikleri yayınla</button>
+        </div>
+      </header>
+
+      <div class="statusbar">
+        <span class="status-dot" id="statusDot"></span>
+        <p id="statusMessage" role="status" aria-live="polite">Veriler hazırlanıyor…</p>
+        <small id="lastSaved"></small>
+      </div>
+
+      <nav class="tabs" aria-label="Yönetim bölümleri">
+        <button class="tab active" type="button" data-tab="membership">Üyelik</button>
+        <button class="tab" type="button" data-tab="coaching">Koçluk</button>
+        <button class="tab" type="button" data-tab="menu">Menü</button>
+        <button class="tab" type="button" data-tab="contact">İletişim</button>
+        <button class="tab" type="button" data-tab="texts">Ana metinler</button>
+        <button class="tab" type="button" data-tab="hero">Kapak görseli</button>
+      </nav>
+
+      <div class="workspace" id="workspace">
+        <section class="panel active" data-panel="membership">
+          <div class="panel-head"><div><p class="eyebrow">ÜYELİK</p><h2>Üyelik fiyatları</h2><p>Planları kapatabilir, öne çıkarabilir ve dört dilde adlarını düzenleyebilirsiniz.</p></div></div>
+          <div id="membershipEditor" class="editor-grid"></div>
+        </section>
+
+        <section class="panel" data-panel="coaching" hidden>
+          <div class="panel-head"><div><p class="eyebrow">KİŞİSEL KOÇLUK</p><h2>Koçluk paketleri</h2><p>Ders sayısını, haftalık sıklığı ve fiyatı yönetin.</p></div><button class="button secondary" type="button" data-action="add-coaching">+ Paket ekle</button></div>
+          <div id="coachingEditor" class="editor-grid"></div>
+        </section>
+
+        <section class="panel" data-panel="menu" hidden>
+          <div class="panel-head"><div><p class="eyebrow">KAFE MENÜSÜ</p><h2>Kategoriler ve ürünler</h2><p>Ürün adı, fiyatı ve görünürlüğü anında güncellenir.</p></div><button class="button secondary" type="button" data-action="add-category">+ Kategori ekle</button></div>
+          <div id="menuEditor" class="stack"></div>
+        </section>
+
+        <section class="panel" data-panel="contact" hidden>
+          <div class="panel-head"><div><p class="eyebrow">İLETİŞİM</p><h2>İletişim ve çalışma saatleri</h2><p>Telefon, sosyal bağlantılar, adres ve açılış saatlerini tek yerden değiştirin.</p></div></div>
+          <div id="contactEditor" class="form-card"></div>
+        </section>
+
+        <section class="panel" data-panel="texts" hidden>
+          <div class="panel-head"><div><p class="eyebrow">DÖRT DİL</p><h2>Ana sayfa metinleri</h2><p>İngilizce, Türkçe, Almanca ve Rusça başlıkları ayrı ayrı düzenleyin.</p></div></div>
+          <div id="textsEditor" class="stack"></div>
+        </section>
+
+        <section class="panel" data-panel="hero" hidden>
+          <div class="panel-head"><div><p class="eyebrow">KAPAK</p><h2>Ana görsel</h2><p>JPG, PNG, WebP veya AVIF yükleyin. En fazla 5 MB.</p></div></div>
+          <div class="hero-editor">
+            <div class="hero-preview"><img id="heroPreview" alt="Mevcut kapak görseli"></div>
+            <div class="hero-controls">
+              <label class="upload-zone" for="heroFile"><strong>Yeni görsel seç</strong><span>Yatay ve en az 1600 px genişlik önerilir.</span><input id="heroFile" type="file" accept="image/jpeg,image/png,image/webp,image/avif"></label>
+              <label class="field"><span>Görsel adresi</span><input id="heroUrl" data-kind="hero" data-field="imageUrl" type="url" placeholder="https://… veya shape-hero.png"></label>
+              <button class="button secondary" id="restoreHeroButton" type="button">Orijinal görsele dön</button>
+              <p class="upload-message" id="uploadMessage" aria-live="polite"></p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="mobile-save">
+        <button class="button primary" id="mobileSaveButton" type="button">Değişiklikleri yayınla</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../supabase-config.js"></script>
+  <script src="../site-defaults.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

@@ -1,18 +1,34 @@
 # Shape Training Club · Kalkan
 
-Official multilingual website for Shape Training Club in Kalkan, Antalya.
+GitHub Pages üzerinde çalışan, Supabase destekli çok dilli web sitesi ve güvenli yönetim paneli.
 
-## Languages
+## Dosyalar
 
-- English
-- Türkçe
-- Deutsch
-- Русский
+- `index.html`: Ziyaretçilerin gördüğü ana site
+- `admin/`: Yönetim paneli
+- `site-defaults.js`: İlk açılış ve bağlantı hataları için yedek içerik
+- `supabase-config.js`: Tarayıcıda kullanılabilen Supabase proje bağlantısı
+- `shape-hero.png` ve `shape-og.png`: Site görselleri
 
-## Contact
+## Supabase kurulumu
 
-- Phone: +90 530 378 57 08
-- Instagram: [@shape.training.club](https://www.instagram.com/shape.training.club/)
-- Email: shapetrainingclub@gmail.com
+1. Size ayrıca verilen `supabase-setup.sql` dosyasını açın.
+2. Supabase projesinde **SQL Editor → New query** yolunu izleyin.
+3. SQL dosyasının tamamını yapıştırıp **Run** düğmesine basın.
+4. **Authentication → Users → Add user** bölümünden SQL dosyasında yetkilendirilen e-posta ile bir kullanıcı oluşturun.
+5. Güçlü bir şifre belirleyin. Bu şifreyi hiçbir site dosyasına veya GitHub'a eklemeyin.
 
-The site is a static HTML page and can be hosted directly with GitHub Pages.
+`supabase-setup.sql` yalnızca kurulum içindir; web sitesinin GitHub deposuna yüklenmesi gerekmez.
+
+## GitHub Pages'e yükleme
+
+Bu klasördeki tüm site dosyalarını mevcut deponun kök dizinine yükleyin. `admin` klasörünün klasör olarak korunmasına dikkat edin. GitHub Pages dağıtımı tamamlandığında:
+
+- Ana site: mevcut GitHub Pages adresiniz
+- Yönetim paneli: mevcut adresinizin sonuna `/admin/` eklenmiş hali
+
+Yönetim panelinden yayınlanan değişiklikler Supabase'e kaydedilir ve ana sayfada yenileme yapıldığında görünür.
+
+## Güvenlik
+
+`supabase-config.js` yalnızca tarayıcı kullanımı için tasarlanmış publishable anahtarı içerir. Supabase `secret` veya `service_role` anahtarlarını, veritabanı şifresini ya da yönetici şifresini hiçbir zaman bu depoya eklemeyin.
