@@ -14,7 +14,9 @@ Mobil giriş alanı tek, kısa bir başlık ve doğrudan WhatsApp'a açılan ile
 
 Yönetim panelindeki **Yazı boyutları** sekmesinden mobil ve bilgisayar görünümü ayrı ayrı ayarlanabilir. Hazır Küçük, Orta ve Büyük seçeneklerinin yanında kapak başlığı, bölüm başlıkları, açıklama ve düğme yazıları için güvenli aralıklı kontroller bulunur. Uzun kapak başlıkları ekrana sığmadığında otomatik olarak küçültülür.
 
-Kapak alanının altında **Çalışma saatlerimiz**, **Yeme & İçme** ve **Grup dersleri** hızlı bağlantıları bulunur. Yeme & İçme kartında çatal ve bardak çizgi simgesi kullanılır ve kart doğrudan SHAPE BAR menüsüne gider. Grup dersleri bölümünde HYROX, HIIT Circuit ve Strength & Conditioning dersleri; üye ve dışarıdan katılım fiyatları; rezervasyon şartları ve hazır mesajla açılan WhatsApp kayıt düğmesi gösterilir. Yönetim panelindeki **Grup dersleri** sekmesinden bölümün görünürlüğü, ders türleri ve TL / GBP fiyatları değiştirilebilir. Dört dildeki grup dersi metinleri **Ana metinler** sekmesinden düzenlenir.
+Kapak alanının altında mobilde 2×2 düzenlenen, vurgulu bir **Hızlı Erişim** alanı bulunur: **Çalışma saatlerimiz**, **Yeme & İçme**, **Grup dersleri** ve **Online koçluk**. Yeme & İçme kartında çatal ve bardak çizgi simgesi kullanılır ve kart doğrudan SHAPE BAR menüsüne gider. Grup dersleri bölümünde HYROX, HIIT Circuit ve Strength & Conditioning dersleri; üye ve dışarıdan katılım fiyatları; rezervasyon şartları ve hazır mesajla açılan WhatsApp kayıt düğmesi gösterilir. Yönetim panelindeki **Grup dersleri** sekmesinden bölümün görünürlüğü, ders türleri ve TL / GBP fiyatları değiştirilebilir.
+
+**Online koçluk** bölümü kişiye özel antrenman programı, beslenme desteği, haftalık kontrol ve WhatsApp desteğini ayrı bir tanıtım alanında gösterir. Koçluk sekmesinden bölüm açılıp kapatılabilir; dört dildeki hızlı erişim, grup dersi ve online koçluk metinleri **Ana metinler** sekmesinden düzenlenir.
 
 ## Supabase kurulumu
 

@@ -18,6 +18,9 @@
     { key: "quickHours", label: "Hızlı bağlantı — Çalışma saatleri", rows: 1 },
     { key: "quickMenu", label: "Hızlı bağlantı — Yeme & İçme", rows: 1 },
     { key: "quickGroup", label: "Hızlı bağlantı — Grup dersleri", rows: 1 },
+    { key: "quickKicker", label: "Hızlı erişim — Üst etiket", rows: 1 },
+    { key: "quickIntro", label: "Hızlı erişim — Açıklama", rows: 2 },
+    { key: "quickOnline", label: "Hızlı bağlantı — Online koçluk", rows: 1 },
     { key: "directions", label: "Yol tarifi düğmesi", rows: 1 },
     { key: "membershipKicker", label: "Üyelik üst etiketi", rows: 1 },
     { key: "membershipTitle", label: "Üyelik başlığı", rows: 2 },
@@ -33,6 +36,12 @@
     { key: "perWeek", label: "Haftalık sıklık etiketi", rows: 1 },
     { key: "popular", label: "Popüler paket etiketi", rows: 1 },
     { key: "features", label: "Koçluk özellikleri — her satıra bir özellik", rows: 5, array: true },
+    { key: "onlineKicker", label: "Online koçluk — Üst etiket", rows: 1 },
+    { key: "onlineTitle", label: "Online koçluk — Başlık", rows: 2 },
+    { key: "onlineIntro", label: "Online koçluk — Açıklama", rows: 3 },
+    { key: "onlineFeatures", label: "Online koçluk — Özellikler, her satıra bir özellik", rows: 5, array: true },
+    { key: "onlineCta", label: "Online koçluk — WhatsApp düğmesi", rows: 1 },
+    { key: "onlineWhatsappMessage", label: "Online koçluk — Hazır WhatsApp mesajı", rows: 2 },
     { key: "groupKicker", label: "Grup dersi üst etiketi", rows: 1 },
     { key: "groupTitle", label: "Grup dersi başlığı", rows: 2 },
     { key: "groupIntro", label: "Grup dersi açıklaması", rows: 3 },
@@ -97,6 +106,7 @@
     const merged = Object.assign({}, clone(base), clone(source));
     merged.membership = Array.isArray(source.membership) ? clone(source.membership) : clone(base.membership || []);
     merged.coaching = Array.isArray(source.coaching) ? clone(source.coaching) : clone(base.coaching || []);
+    merged.onlineCoaching = Object.assign({}, clone(base.onlineCoaching || {}), clone(source.onlineCoaching || {}));
     merged.groupTraining = Object.assign({}, clone(base.groupTraining || {}), clone(source.groupTraining || {}));
     merged.groupTraining.classTypes = Array.isArray((source.groupTraining || {}).classTypes) ? clone(source.groupTraining.classTypes) : clone((base.groupTraining || {}).classTypes || []);
     merged.menu = Array.isArray(source.menu) ? clone(source.menu) : clone(base.menu || []);
@@ -193,6 +203,15 @@
           <label class="field wide"><span>Fiyat</span><input type="text" data-kind="coaching" data-index="${index}" data-field="price" value="${safe(plan.price)}" placeholder="₺0"></label>
         </div>
       </article>`).join("") || `<p>Henüz koçluk paketi yok.</p>`;
+  }
+
+  function renderOnlineCoaching() {
+    const online = state.onlineCoaching || {};
+    $("#onlineCoachingEditor").innerHTML = `
+      <section class="form-section"><h3>Online koçluk bölümü</h3><div class="field-grid">
+        <label class="check wide"><input type="checkbox" data-kind="online-coaching" data-field="active" ${online.active !== false ? "checked" : ""}> Online koçluk bölümü ve hızlı bağlantısı yayında</label>
+      </div></section>
+      <p class="upload-message">Başlık, açıklama, özellikler, düğme ve hazır WhatsApp mesajı “Ana metinler” sekmesinden dört dil için ayrı ayrı değiştirilebilir.</p>`;
   }
 
   function renderGroupTraining() {
@@ -308,6 +327,7 @@
   function renderAll() {
     renderMembership();
     renderCoaching();
+    renderOnlineCoaching();
     renderGroupTraining();
     renderMenu();
     renderContact();
@@ -331,6 +351,9 @@
       else state.membership[index][field] = value;
     } else if (kind === "coaching" && state.coaching[index]) {
       state.coaching[index][field] = ["sessions", "perWeek"].includes(field) ? Math.max(0, Number(value) || 0) : value;
+    } else if (kind === "online-coaching") {
+      state.onlineCoaching = state.onlineCoaching || {};
+      state.onlineCoaching[field] = value;
     } else if (kind === "group-training") {
       state.groupTraining = state.groupTraining || {};
       state.groupTraining[field] = target.dataset.array === "true" ? String(value).split("\n").map(line => line.trim()).filter(Boolean) : value;
