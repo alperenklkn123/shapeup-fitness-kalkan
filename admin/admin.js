@@ -506,15 +506,27 @@
       message.textContent = "Lütfen JPG, PNG, WebP veya AVIF seçin.";
       return;
     }
-    if (file.size > 5 * 1024 * 1024) {
-      message.textContent = "Görsel 5 MB'dan büyük olamaz.";
+    if (file.size > 15 * 1024 * 1024) {
+      message.textContent = "Görsel 15 MB'dan büyük olamaz.";
       return;
     }
     message.style.color = "var(--muted)";
+    message.textContent = "Siyah kenarlar temizleniyor ve görsel mobil için hazırlanıyor…";
+    let uploadFile = file;
+    try {
+      uploadFile = await optimiseBackgroundImage(file);
+    } catch (error) {
+      console.warn("Kapak görseli optimizasyonu uygulanamadı; orijinal dosya yüklenecek.", error);
+    }
+    if (uploadFile.size > 5 * 1024 * 1024) {
+      message.style.color = "var(--bad)";
+      message.textContent = "Görsel optimize edildikten sonra hâlâ çok büyük. Daha küçük bir görsel seçin.";
+      return;
+    }
     message.textContent = "Görsel yükleniyor…";
-    const extension = (file.name.split(".").pop() || "jpg").toLowerCase().replace(/[^a-z0-9]/g, "");
+    const extension = (uploadFile.name.split(".").pop() || "webp").toLowerCase().replace(/[^a-z0-9]/g, "");
     const path = `hero/shape-${Date.now()}.${extension}`;
-    const { error } = await client.storage.from("site-assets").upload(path, file, { cacheControl: "3600", upsert: false, contentType: file.type });
+    const { error } = await client.storage.from("site-assets").upload(path, uploadFile, { cacheControl: "31536000", upsert: false, contentType: uploadFile.type });
     if (error) {
       console.error(error);
       message.style.color = "var(--bad)";
@@ -541,15 +553,59 @@
   async function optimiseBackgroundImage(file) {
     if (!("createImageBitmap" in window)) return file;
     const bitmap = await createImageBitmap(file);
+    const sampleMaximum = 520;
+    const sampleScale = Math.min(1, sampleMaximum / Math.max(bitmap.width, bitmap.height));
+    const sampleWidth = Math.max(1, Math.round(bitmap.width * sampleScale));
+    const sampleHeight = Math.max(1, Math.round(bitmap.height * sampleScale));
+    const sampleCanvas = document.createElement("canvas");
+    sampleCanvas.width = sampleWidth;
+    sampleCanvas.height = sampleHeight;
+    const sampleContext = sampleCanvas.getContext("2d", { alpha: false, willReadFrequently: true });
+    sampleContext.drawImage(bitmap, 0, 0, sampleWidth, sampleHeight);
+    const pixels = sampleContext.getImageData(0, 0, sampleWidth, sampleHeight).data;
+    const rowHasImage = y => {
+      let visible = 0;
+      for (let x = 0; x < sampleWidth; x += 2) {
+        const offset = (y * sampleWidth + x) * 4;
+        if (Math.max(pixels[offset], pixels[offset + 1], pixels[offset + 2]) > 26) visible++;
+      }
+      return visible / Math.ceil(sampleWidth / 2) > 0.08;
+    };
+    const columnHasImage = x => {
+      let visible = 0;
+      for (let y = 0; y < sampleHeight; y += 2) {
+        const offset = (y * sampleWidth + x) * 4;
+        if (Math.max(pixels[offset], pixels[offset + 1], pixels[offset + 2]) > 26) visible++;
+      }
+      return visible / Math.ceil(sampleHeight / 2) > 0.08;
+    };
+    let sampleTop = 0;
+    let sampleBottom = sampleHeight;
+    let sampleLeft = 0;
+    let sampleRight = sampleWidth;
+    while (sampleTop < sampleBottom && !rowHasImage(sampleTop)) sampleTop++;
+    while (sampleBottom > sampleTop && !rowHasImage(sampleBottom - 1)) sampleBottom--;
+    while (sampleLeft < sampleRight && !columnHasImage(sampleLeft)) sampleLeft++;
+    while (sampleRight > sampleLeft && !columnHasImage(sampleRight - 1)) sampleRight--;
+    const topRatio = sampleTop / sampleHeight;
+    const bottomRatio = (sampleHeight - sampleBottom) / sampleHeight;
+    const leftRatio = sampleLeft / sampleWidth;
+    const rightRatio = (sampleWidth - sampleRight) / sampleWidth;
+    const cropTop = topRatio > 0.08 ? Math.max(0, Math.floor(sampleTop / sampleScale)) : 0;
+    const cropBottom = bottomRatio > 0.08 ? Math.min(bitmap.height, Math.ceil(sampleBottom / sampleScale)) : bitmap.height;
+    const cropLeft = leftRatio > 0.08 ? Math.max(0, Math.floor(sampleLeft / sampleScale)) : 0;
+    const cropRight = rightRatio > 0.08 ? Math.min(bitmap.width, Math.ceil(sampleRight / sampleScale)) : bitmap.width;
+    const sourceWidth = Math.max(1, cropRight - cropLeft);
+    const sourceHeight = Math.max(1, cropBottom - cropTop);
     const maximumSide = 1800;
-    const scale = Math.min(1, maximumSide / Math.max(bitmap.width, bitmap.height));
-    const width = Math.max(1, Math.round(bitmap.width * scale));
-    const height = Math.max(1, Math.round(bitmap.height * scale));
+    const scale = Math.min(1, maximumSide / Math.max(sourceWidth, sourceHeight));
+    const width = Math.max(1, Math.round(sourceWidth * scale));
+    const height = Math.max(1, Math.round(sourceHeight * scale));
     const canvas = document.createElement("canvas");
     canvas.width = width;
     canvas.height = height;
     const context = canvas.getContext("2d", { alpha: false });
-    context.drawImage(bitmap, 0, 0, width, height);
+    context.drawImage(bitmap, cropLeft, cropTop, sourceWidth, sourceHeight, 0, 0, width, height);
     if (typeof bitmap.close === "function") bitmap.close();
     const blob = await new Promise(resolve => canvas.toBlob(resolve, "image/webp", 0.84));
     if (!blob) return file;
