@@ -60,7 +60,9 @@
     @media(max-width:680px){.hero:before{background-size:cover;background-position:var(--hero-crop-x,50%) var(--hero-crop-y,50%);transform:scale(var(--hero-crop-scale,1));transform-origin:center}.hero:after{background:linear-gradient(90deg,rgba(2,7,12,.7),rgba(2,7,12,.34)),linear-gradient(180deg,rgba(2,7,12,.12),rgba(2,7,12,.13) 40%,rgba(2,7,12,.7))}section.content{isolation:isolate;overflow:hidden;background-image:none}section.content:before{content:"";position:absolute;inset:0;z-index:-2;background-image:var(--mobile-section-photo);background-size:cover;background-repeat:no-repeat;background-position:var(--mobile-crop-x,50%) var(--mobile-crop-y,50%);transform:scale(var(--mobile-crop-scale,1));transform-origin:center;will-change:transform}section.content:after{content:"";position:absolute;inset:0;z-index:-1;background:var(--mobile-section-overlay)}#membership{--mobile-crop-x:var(--crop-membership-x,50%);--mobile-crop-y:var(--crop-membership-y,50%);--mobile-crop-scale:var(--crop-membership-scale,1);--mobile-section-photo:var(--bg-membership,var(--shape-hero-mobile,var(--shape-hero,url("shape-hero-mobile.webp"))));--mobile-section-overlay:linear-gradient(rgba(3,9,15,.36),rgba(4,13,22,.4))}#coaching{--mobile-crop-x:var(--crop-coaching-x,50%);--mobile-crop-y:var(--crop-coaching-y,50%);--mobile-crop-scale:var(--crop-coaching-scale,1);--mobile-section-photo:var(--bg-coaching,var(--shape-hero-mobile,var(--shape-hero,url("shape-hero-mobile.webp"))));--mobile-section-overlay:linear-gradient(rgba(3,10,17,.34),rgba(4,13,22,.38))}#online-coaching{--mobile-crop-x:var(--crop-online-x,50%);--mobile-crop-y:var(--crop-online-y,50%);--mobile-crop-scale:var(--crop-online-scale,1);--mobile-section-photo:var(--bg-online,var(--shape-hero-mobile,var(--shape-hero,url("shape-hero-mobile.webp"))));--mobile-section-overlay:linear-gradient(rgba(3,10,17,.34),rgba(4,13,22,.38))}#group-classes{--mobile-crop-x:var(--crop-group-x,50%);--mobile-crop-y:var(--crop-group-y,50%);--mobile-crop-scale:var(--crop-group-scale,1);--mobile-section-photo:var(--bg-group,var(--shape-hero-mobile,var(--shape-hero,url("shape-hero-mobile.webp"))));--mobile-section-overlay:linear-gradient(rgba(3,10,17,.35),rgba(4,13,22,.39))}#menu{--mobile-crop-x:var(--crop-menu-x,50%);--mobile-crop-y:var(--crop-menu-y,50%);--mobile-crop-scale:var(--crop-menu-scale,1);--mobile-section-photo:var(--bg-menu,var(--shape-hero-mobile,var(--shape-hero,url("shape-hero-mobile.webp"))));--mobile-section-overlay:linear-gradient(rgba(3,10,17,.36),rgba(4,13,22,.4))}#contact{--mobile-crop-x:var(--crop-contact-x,50%);--mobile-crop-y:var(--crop-contact-y,50%);--mobile-crop-scale:var(--crop-contact-scale,1);--mobile-section-photo:var(--bg-contact,var(--shape-hero-mobile,var(--shape-hero,url("shape-hero-mobile.webp"))));--mobile-section-overlay:linear-gradient(rgba(3,10,17,.36),rgba(4,13,22,.4))}footer{background-size:cover,var(--bg-fit-contact-mobile,cover)}}
     @media(max-width:370px){.brand small{display:none}.plans,.coach-cards{grid-template-columns:1fr}.plan{min-height:auto}.facts{grid-template-columns:repeat(3,minmax(0,1fr))}.facts span{min-height:34px;padding-inline:4px;font-size:7px}}
     @media(hover:none){.btn:hover,.plan:hover,.quick-link:hover{transform:none}}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+    .rules-ticker{position:absolute;z-index:4;top:76px;left:0;right:0;height:42px;display:flex;align-items:center;overflow:hidden;border-block:1px solid rgba(101,180,255,.32);background:linear-gradient(90deg,rgba(6,22,37,.96),rgba(18,75,125,.94),rgba(6,22,37,.96));box-shadow:0 10px 30px rgba(0,0,0,.28),inset 0 1px rgba(255,255,255,.05);backdrop-filter:blur(12px)}.rules-ticker:before,.rules-ticker:after{content:"";position:absolute;z-index:2;top:0;bottom:0;width:44px;pointer-events:none}.rules-ticker:before{left:0;background:linear-gradient(90deg,#061625,transparent)}.rules-ticker:after{right:0;background:linear-gradient(270deg,#061625,transparent)}.rules-ticker-track{width:max-content;display:flex;align-items:center;animation:rulesTicker 19s linear infinite;will-change:transform}.rules-ticker-set{display:flex;align-items:center;gap:34px;flex:none;padding:0 17px}.rules-ticker-item{display:flex;align-items:center;gap:9px;white-space:nowrap;color:#f4f8fc;font-size:10px;font-weight:900;letter-spacing:.12em}.rules-ticker-item i{width:22px;height:22px;border-radius:7px;display:grid;place-items:center;background:#2489ff;color:#fff;box-shadow:0 0 18px rgba(36,137,255,.52);font-style:normal;font-size:11px}.rules-ticker:hover .rules-ticker-track{animation-play-state:paused}@keyframes rulesTicker{to{transform:translateX(-50%)}}.hero .shell{padding-top:160px}
+    @media(max-width:680px){.rules-ticker{top:calc(65px + env(safe-area-inset-top));height:40px}.rules-ticker-track{animation-duration:16s}.rules-ticker-set{gap:26px;padding:0 13px}.rules-ticker-item{gap:7px;font-size:9px;letter-spacing:.09em}.rules-ticker-item i{width:20px;height:20px;border-radius:6px;font-size:10px}.hero .shell{padding-top:calc(140px + env(safe-area-inset-top))}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}.rules-ticker-track{animation:none!important;transform:none!important}}
   </style>
 </head>
 <body>
@@ -76,7 +78,20 @@
   </header>
 
   <main>
-    <section class="hero" id="top"><div class="shell">
+    <section class="hero" id="top">
+      <div class="rules-ticker" role="region" aria-label="Important gym rules">
+        <div class="rules-ticker-track">
+          <div class="rules-ticker-set">
+            <span class="rules-ticker-item"><i aria-hidden="true">!</i><b data-i18n="ruleTowel">TOWEL USE IS REQUIRED</b></span>
+            <span class="rules-ticker-item"><i aria-hidden="true">!</i><b data-i18n="ruleShoes">CLEAN INDOOR SHOES ARE REQUIRED</b></span>
+          </div>
+          <div class="rules-ticker-set" aria-hidden="true">
+            <span class="rules-ticker-item"><i aria-hidden="true">!</i><b data-i18n="ruleTowel">TOWEL USE IS REQUIRED</b></span>
+            <span class="rules-ticker-item"><i aria-hidden="true">!</i><b data-i18n="ruleShoes">CLEAN INDOOR SHOES ARE REQUIRED</b></span>
+          </div>
+        </div>
+      </div>
+      <div class="shell">
       <p class="eyebrow">SHAPE TRAINING CLUB · KALKAN</p>
       <h1><span data-i18n="heroTitle">STRONGER STARTS HERE.</span></h1>
       <p class="hero-copy" data-i18n="heroIntro">Premium training, personal coaching and a welcoming community in central Kalkan.</p>
@@ -121,7 +136,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase-config.js"></script>
-  <script src="site-defaults.js?v=14"></script>
+  <script src="site-defaults.js?v=15"></script>
   <script>
     (()=>{
       "use strict";
