@@ -27,6 +27,14 @@
       menu: "",
       contact: ""
     },
+    backgroundPositions: {
+      membership: "center center",
+      coaching: "center center",
+      onlineCoaching: "center center",
+      groupClasses: "center center",
+      menu: "center center",
+      contact: "center center"
+    },
     groupTraining: {
       active: true,
       classTypes: ["HYROX", "HIIT CIRCUIT", "STRENGTH & CONDITIONING"],

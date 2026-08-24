@@ -15,6 +15,13 @@
     { key: "menu", label: "Yeme & İçme" },
     { key: "contact", label: "İletişim" }
   ];
+  const BACKGROUND_POSITIONS = [
+    { value: "center top", label: "En üst" },
+    { value: "center 25%", label: "Üste yakın" },
+    { value: "center center", label: "Orta — önerilen" },
+    { value: "center 75%", label: "Alta yakın" },
+    { value: "center bottom", label: "En alt" }
+  ];
   const TEXT_FIELDS = [
     { key: "navMembership", label: "Menü — Üyelik", rows: 1 },
     { key: "navCoaching", label: "Menü — Koçluk", rows: 1 },
@@ -116,6 +123,7 @@
     merged.coaching = Array.isArray(source.coaching) ? clone(source.coaching) : clone(base.coaching || []);
     merged.onlineCoaching = Object.assign({}, clone(base.onlineCoaching || {}), clone(source.onlineCoaching || {}));
     merged.backgrounds = Object.assign({}, clone(base.backgrounds || {}), clone(source.backgrounds || {}));
+    merged.backgroundPositions = Object.assign({}, clone(base.backgroundPositions || {}), clone(source.backgroundPositions || {}));
     merged.groupTraining = Object.assign({}, clone(base.groupTraining || {}), clone(source.groupTraining || {}));
     merged.groupTraining.classTypes = Array.isArray((source.groupTraining || {}).classTypes) ? clone(source.groupTraining.classTypes) : clone((base.groupTraining || {}).classTypes || []);
     merged.menu = Array.isArray(source.menu) ? clone(source.menu) : clone(base.menu || []);
@@ -334,12 +342,16 @@
 
   function renderBackgrounds() {
     const backgrounds = state.backgrounds || {};
+    const positions = state.backgroundPositions || {};
     $("#backgroundsEditor").innerHTML = BACKGROUND_SECTIONS.map(section => {
       const customImage = String(backgrounds[section.key] || "").trim();
+      const requestedPosition = String(positions[section.key] || "center center");
+      const position = BACKGROUND_POSITIONS.some(option => option.value === requestedPosition) ? requestedPosition : "center center";
       return `<article class="background-edit-card">
-        <div class="background-preview"><img src="${safe(resolveBackgroundUrl(customImage))}" alt="${safe(section.label)} arka plan önizlemesi"></div>
+        <div class="background-preview"><img src="${safe(resolveBackgroundUrl(customImage))}" style="object-position:${safe(position)}" alt="${safe(section.label)} arka plan önizlemesi"></div>
         <div class="background-edit-body">
           <div><p class="eyebrow">BÖLÜM FOTOĞRAFI</p><h3>${safe(section.label)}</h3><small>${customImage ? "Bu bölüm için özel fotoğraf kullanılıyor." : "Kapak fotoğrafı kullanılıyor."}</small></div>
+          <label class="field background-position-field"><span>Fotoğraf konumu</span><select data-kind="background-position" data-section="${section.key}">${BACKGROUND_POSITIONS.map(option => `<option value="${option.value}" ${option.value === position ? "selected" : ""}>${option.label}</option>`).join("")}</select></label>
           <label class="button primary background-upload">Fotoğraf seç<input type="file" accept="image/jpeg,image/png,image/webp,image/avif" data-background-file data-section="${section.key}"></label>
           <button class="button secondary" type="button" data-action="reset-background" data-section="${section.key}" ${customImage ? "" : "disabled"}>Kapak fotoğrafını kullan</button>
           <p class="upload-message" data-background-message="${section.key}" aria-live="polite"></p>
@@ -414,6 +426,13 @@
     } else if (kind === "hero") {
       state.hero.imageUrl = value;
       $("#heroPreview").src = resolveHeroUrl(value);
+    } else if (kind === "background-position") {
+      const section = target.dataset.section;
+      if (!BACKGROUND_SECTIONS.some(item => item.key === section)) return;
+      state.backgroundPositions = state.backgroundPositions || {};
+      state.backgroundPositions[section] = BACKGROUND_POSITIONS.some(option => option.value === value) ? value : "center center";
+      const preview = target.closest(".background-edit-card") && target.closest(".background-edit-card").querySelector(".background-preview img");
+      if (preview) preview.style.objectPosition = state.backgroundPositions[section];
     } else return;
     markDirty();
   }
@@ -519,20 +538,50 @@
     element.style.color = type === "success" ? "var(--good)" : type === "error" ? "var(--bad)" : "var(--muted)";
   }
 
+  async function optimiseBackgroundImage(file) {
+    if (!("createImageBitmap" in window)) return file;
+    const bitmap = await createImageBitmap(file);
+    const maximumSide = 1800;
+    const scale = Math.min(1, maximumSide / Math.max(bitmap.width, bitmap.height));
+    const width = Math.max(1, Math.round(bitmap.width * scale));
+    const height = Math.max(1, Math.round(bitmap.height * scale));
+    const canvas = document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+    const context = canvas.getContext("2d", { alpha: false });
+    context.drawImage(bitmap, 0, 0, width, height);
+    if (typeof bitmap.close === "function") bitmap.close();
+    const blob = await new Promise(resolve => canvas.toBlob(resolve, "image/webp", 0.84));
+    if (!blob) return file;
+    const baseName = String(file.name || "section-photo").replace(/\.[^.]+$/, "").replace(/[^a-z0-9_-]+/gi, "-");
+    return new File([blob], `${baseName || "section-photo"}.webp`, { type: "image/webp", lastModified: Date.now() });
+  }
+
   async function uploadBackground(file, section) {
     if (!file || !BACKGROUND_SECTIONS.some(item => item.key === section)) return;
     if (!/^image\/(jpeg|png|webp|avif)$/.test(file.type)) {
       setBackgroundMessage(section, "Lütfen JPG, PNG, WebP veya AVIF seçin.", "error");
       return;
     }
-    if (file.size > 5 * 1024 * 1024) {
-      setBackgroundMessage(section, "Görsel 5 MB'dan büyük olamaz.", "error");
+    if (file.size > 15 * 1024 * 1024) {
+      setBackgroundMessage(section, "Görsel 15 MB'dan büyük olamaz.", "error");
+      return;
+    }
+    setBackgroundMessage(section, "Fotoğraf mobil için hazırlanıyor…");
+    let uploadFile = file;
+    try {
+      uploadFile = await optimiseBackgroundImage(file);
+    } catch (error) {
+      console.warn("Fotoğraf optimizasyonu uygulanamadı; orijinal dosya yüklenecek.", error);
+    }
+    if (uploadFile.size > 5 * 1024 * 1024) {
+      setBackgroundMessage(section, "Fotoğraf optimize edildikten sonra hâlâ çok büyük. Daha küçük bir görsel seçin.", "error");
       return;
     }
     setBackgroundMessage(section, "Fotoğraf yükleniyor…");
-    const extension = (file.name.split(".").pop() || "jpg").toLowerCase().replace(/[^a-z0-9]/g, "");
+    const extension = (uploadFile.name.split(".").pop() || "webp").toLowerCase().replace(/[^a-z0-9]/g, "");
     const path = `backgrounds/${section}-${Date.now()}.${extension}`;
-    const { error } = await client.storage.from("site-assets").upload(path, file, { cacheControl: "3600", upsert: false, contentType: file.type });
+    const { error } = await client.storage.from("site-assets").upload(path, uploadFile, { cacheControl: "31536000", upsert: false, contentType: uploadFile.type });
     if (error) {
       console.error(error);
       setBackgroundMessage(section, `Yükleme başarısız: ${error.message}`, "error");

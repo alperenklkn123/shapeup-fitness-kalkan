@@ -18,7 +18,7 @@ Kapak alanının altında mobilde 2×2 düzenlenen, vurgulu bir **Hızlı Erişi
 
 **Online koçluk** bölümü kişiye özel antrenman programı, beslenme desteği, haftalık kontrol ve WhatsApp desteğini ayrı bir tanıtım alanında gösterir. Koçluk sekmesinden bölüm açılıp kapatılabilir; dört dildeki hızlı erişim, grup dersi ve online koçluk metinleri **Ana metinler** sekmesinden düzenlenir.
 
-Üyelik, kişisel koçluk, online koçluk, grup dersleri, SHAPE BAR ve iletişim bölümlerinin tamamı fotoğraflı arka plan kullanır. Yönetim panelindeki **Bölüm fotoğrafları** sekmesinden her alan için ayrı JPG, PNG, WebP veya AVIF yüklenebilir. Fotoğraf belirlenmeyen bölüm kapak görselini kullanır; “Kapak fotoğrafını kullan” düğmesiyle bölüm yeniden bu varsayılana döndürülebilir. Hafif koyu filtre metinleri ve fiyatları okunur tutarken düz siyah bölüm oluşmasını engeller.
+Üyelik, kişisel koçluk, online koçluk, grup dersleri, SHAPE BAR ve iletişim bölümlerinin tamamı fotoğraflı arka plan kullanır. Yönetim panelindeki **Bölüm fotoğrafları** sekmesinden her alan için ayrı JPG, PNG, WebP veya AVIF yüklenebilir. Görseller yükleme sırasında mobil için otomatik olarak WebP'ye dönüştürülüp en fazla 1800 piksele küçültülür. Her fotoğraf bölümü tamamen doldurur, tekrar etmez ve karttaki **Fotoğraf konumu** seçeneğiyle yukarı/orta/aşağı taşınabilir. Fotoğraf belirlenmeyen bölüm kapak görselini kullanır; “Kapak fotoğrafını kullan” düğmesiyle bölüm yeniden bu varsayılana döndürülebilir. Hafif koyu filtre metinleri ve fiyatları okunur tutarken düz siyah bölüm oluşmasını engeller.
 
 ## Supabase kurulumu
 
