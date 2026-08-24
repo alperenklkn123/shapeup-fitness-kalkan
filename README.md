@@ -1,4 +1,4 @@
-# Shape Training Club · Kalkan — V15
+# Shape Training Club · Kalkan — V16
 
 `https://shapetrainingclub.net/` için hazırlanmış, GitHub Pages üzerinde çalışan ve Supabase destekli çok dilli web sitesi.
 
@@ -10,6 +10,9 @@
 
 ## Bu sürümde tamamlananlar
 
+- Üst logoya küçük “TRAINING CLUB” ibaresi eklendi; mobil başlık düzeni korunuyor.
+- Fotoğraf üzerindeki küçük açıklamalar, kur bilgileri ve ikincil metinler boyutları değiştirilmeden daha okunaklı hâle getirildi.
+- Hızlı Erişim bölümüne dört dilde çalışan, yönetim panelindeki Google yorum bağlantısını kullanan tam genişlikte Google Reviews düğmesi eklendi.
 - Üst bölüme, seçilen dile göre değişen ve mobilde kesintisiz kayan salon kuralları şeridi eklendi; iki uyarı yönetim panelinden istenildiği zaman değiştirilebilir.
 - Resmî alan adı tüm sosyal paylaşım ve arama motoru bilgilerinde kullanıldı.
 - `CNAME` dosyası eklendi; GitHub Pages alan adı ayarı depoda korunuyor.
