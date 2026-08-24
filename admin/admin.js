@@ -7,6 +7,14 @@
     { code: "de", name: "Almanca" },
     { code: "ru", name: "Rusça" }
   ];
+  const BACKGROUND_SECTIONS = [
+    { key: "membership", label: "Üyelik" },
+    { key: "coaching", label: "Kişisel Koçluk" },
+    { key: "onlineCoaching", label: "Online Koçluk" },
+    { key: "groupClasses", label: "Grup Dersleri" },
+    { key: "menu", label: "Yeme & İçme" },
+    { key: "contact", label: "İletişim" }
+  ];
   const TEXT_FIELDS = [
     { key: "navMembership", label: "Menü — Üyelik", rows: 1 },
     { key: "navCoaching", label: "Menü — Koçluk", rows: 1 },
@@ -107,6 +115,7 @@
     merged.membership = Array.isArray(source.membership) ? clone(source.membership) : clone(base.membership || []);
     merged.coaching = Array.isArray(source.coaching) ? clone(source.coaching) : clone(base.coaching || []);
     merged.onlineCoaching = Object.assign({}, clone(base.onlineCoaching || {}), clone(source.onlineCoaching || {}));
+    merged.backgrounds = Object.assign({}, clone(base.backgrounds || {}), clone(source.backgrounds || {}));
     merged.groupTraining = Object.assign({}, clone(base.groupTraining || {}), clone(source.groupTraining || {}));
     merged.groupTraining.classTypes = Array.isArray((source.groupTraining || {}).classTypes) ? clone(source.groupTraining.classTypes) : clone((base.groupTraining || {}).classTypes || []);
     merged.menu = Array.isArray(source.menu) ? clone(source.menu) : clone(base.menu || []);
@@ -319,6 +328,26 @@
     $("#heroPreview").src = resolveHeroUrl(url);
   }
 
+  function resolveBackgroundUrl(value) {
+    return resolveHeroUrl(value || (state.hero || {}).imageUrl || "shape-hero.png");
+  }
+
+  function renderBackgrounds() {
+    const backgrounds = state.backgrounds || {};
+    $("#backgroundsEditor").innerHTML = BACKGROUND_SECTIONS.map(section => {
+      const customImage = String(backgrounds[section.key] || "").trim();
+      return `<article class="background-edit-card">
+        <div class="background-preview"><img src="${safe(resolveBackgroundUrl(customImage))}" alt="${safe(section.label)} arka plan önizlemesi"></div>
+        <div class="background-edit-body">
+          <div><p class="eyebrow">BÖLÜM FOTOĞRAFI</p><h3>${safe(section.label)}</h3><small>${customImage ? "Bu bölüm için özel fotoğraf kullanılıyor." : "Kapak fotoğrafı kullanılıyor."}</small></div>
+          <label class="button primary background-upload">Fotoğraf seç<input type="file" accept="image/jpeg,image/png,image/webp,image/avif" data-background-file data-section="${section.key}"></label>
+          <button class="button secondary" type="button" data-action="reset-background" data-section="${section.key}" ${customImage ? "" : "disabled"}>Kapak fotoğrafını kullan</button>
+          <p class="upload-message" data-background-message="${section.key}" aria-live="polite"></p>
+        </div>
+      </article>`;
+    }).join("");
+  }
+
   function resolveHeroUrl(url) {
     if (/^https?:\/\//i.test(url || "")) return url;
     return new URL(`../${String(url || "shape-hero.png").replace(/^\.\//, "")}`, window.location.href).href;
@@ -334,6 +363,7 @@
     renderTexts();
     renderTypography();
     renderHero();
+    renderBackgrounds();
   }
 
   function setNestedInput(target) {
@@ -426,6 +456,11 @@
       state.menu[Number(button.dataset.category)].items.splice(Number(button.dataset.item), 1);
       renderMenu();
     }
+    if (action === "reset-background") {
+      state.backgrounds = state.backgrounds || {};
+      state.backgrounds[button.dataset.section] = "";
+      renderBackgrounds();
+    }
     markDirty();
   }
 
@@ -475,6 +510,42 @@
     message.textContent = "Görsel yüklendi. Değişiklikler yayınlanıyor…";
     await saveConfig();
     message.textContent = dirty ? "Görsel yüklendi; yayınlama sırasında hata oluştu." : "Yeni kapak görseli yayında.";
+  }
+
+  function setBackgroundMessage(section, message, type) {
+    const element = $(`[data-background-message="${section}"]`);
+    if (!element) return;
+    element.textContent = message || "";
+    element.style.color = type === "success" ? "var(--good)" : type === "error" ? "var(--bad)" : "var(--muted)";
+  }
+
+  async function uploadBackground(file, section) {
+    if (!file || !BACKGROUND_SECTIONS.some(item => item.key === section)) return;
+    if (!/^image\/(jpeg|png|webp|avif)$/.test(file.type)) {
+      setBackgroundMessage(section, "Lütfen JPG, PNG, WebP veya AVIF seçin.", "error");
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      setBackgroundMessage(section, "Görsel 5 MB'dan büyük olamaz.", "error");
+      return;
+    }
+    setBackgroundMessage(section, "Fotoğraf yükleniyor…");
+    const extension = (file.name.split(".").pop() || "jpg").toLowerCase().replace(/[^a-z0-9]/g, "");
+    const path = `backgrounds/${section}-${Date.now()}.${extension}`;
+    const { error } = await client.storage.from("site-assets").upload(path, file, { cacheControl: "3600", upsert: false, contentType: file.type });
+    if (error) {
+      console.error(error);
+      setBackgroundMessage(section, `Yükleme başarısız: ${error.message}`, "error");
+      return;
+    }
+    const result = client.storage.from("site-assets").getPublicUrl(path);
+    state.backgrounds = state.backgrounds || {};
+    state.backgrounds[section] = result.data.publicUrl;
+    renderBackgrounds();
+    markDirty();
+    setBackgroundMessage(section, "Fotoğraf yüklendi. Değişiklikler yayınlanıyor…");
+    await saveConfig();
+    setBackgroundMessage(section, dirty ? "Fotoğraf yüklendi; yayınlama sırasında hata oluştu." : "Yeni bölüm fotoğrafı yayında.", dirty ? "error" : "success");
   }
 
   async function loadAdmin(user) {
@@ -556,6 +627,10 @@
     $("#workspace").addEventListener("click", event => {
       const button = event.target.closest("[data-action]");
       if (button) handleAction(button);
+    });
+    $("#workspace").addEventListener("change", event => {
+      const input = event.target.closest("[data-background-file]");
+      if (input) uploadBackground(input.files[0], input.dataset.section);
     });
     $$(".tab").forEach(tab => tab.addEventListener("click", () => activateTab(tab.dataset.tab)));
     $("#heroFile").addEventListener("change", event => uploadHero(event.target.files[0]));

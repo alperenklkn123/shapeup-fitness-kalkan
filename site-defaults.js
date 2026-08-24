@@ -19,6 +19,14 @@
     onlineCoaching: {
       active: true
     },
+    backgrounds: {
+      membership: "",
+      coaching: "",
+      onlineCoaching: "",
+      groupClasses: "",
+      menu: "",
+      contact: ""
+    },
     groupTraining: {
       active: true,
       classTypes: ["HYROX", "HIIT CIRCUIT", "STRENGTH & CONDITIONING"],

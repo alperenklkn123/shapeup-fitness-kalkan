@@ -68,6 +68,7 @@
         <button class="tab" type="button" data-tab="texts">Ana metinler</button>
         <button class="tab" type="button" data-tab="typography">Yazı boyutları</button>
         <button class="tab" type="button" data-tab="hero">Kapak görseli</button>
+        <button class="tab" type="button" data-tab="backgrounds">Bölüm fotoğrafları</button>
       </nav>
 
       <div class="workspace" id="workspace">
@@ -127,6 +128,12 @@
             </div>
           </div>
         </section>
+
+        <section class="panel" data-panel="backgrounds" hidden>
+          <div class="panel-head"><div><p class="eyebrow">BÖLÜM FOTOĞRAFLARI</p><h2>Her alana ayrı salon fotoğrafı</h2><p>Üyelikten iletişime kadar her bölümün arka planını ayrı ayrı yükleyin. JPG, PNG, WebP veya AVIF; en fazla 5 MB.</p></div></div>
+          <div id="backgroundsEditor" class="background-editor-grid"></div>
+          <p class="typography-note">Dikey veya kare fotoğraflar mobil ekranda daha iyi görünür. Fotoğraf yüklenmeyen bölümlerde kapak görseli kullanılır.</p>
+        </section>
       </div>
 
       <div class="mobile-save">
@@ -137,7 +144,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="../supabase-config.js"></script>
-  <script src="../site-defaults.js?v=8"></script>
-  <script src="admin.js?v=8"></script>
+  <script src="../site-defaults.js?v=9"></script>
+  <script src="admin.js?v=9"></script>
 </body>
 </html>
