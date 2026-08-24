@@ -48,9 +48,7 @@
       active: true,
       classTypes: ["HYROX", "HIIT CIRCUIT", "STRENGTH & CONDITIONING"],
       memberTry: "₺600",
-      memberGbp: "£10",
-      nonMemberTry: "₺1.200",
-      nonMemberGbp: "£20"
+      nonMemberTry: "₺1.200"
     },
     menu: [
       {
@@ -142,13 +140,14 @@
       en: {
         navMembership: "Membership",
         navCoaching: "Coaching",
-        navMenu: "Menu",
+        navMenu: "Shape Bar",
         navContact: "Contact",
         heroTitle: "STRONGER STARTS HERE.",
         heroIntro: "Premium training, personal coaching and a welcoming community in central Kalkan.",
         heroWhatsappCta: "Contact us on WhatsApp",
+        quickMembership: "Membership prices",
         quickHours: "Opening hours",
-        quickMenu: "Food & Drinks",
+        quickMenu: "Shape Bar",
         quickGroup: "Group classes",
         quickKicker: "QUICK ACCESS",
         quickIntro: "Everything you need, one tap away.",
@@ -193,6 +192,7 @@
         groupWhatsappMessage: "Hello, I would like information about group classes.",
         menuTitle: "Fuel the work. Enjoy the ritual.",
         menuIntro: "Coffee, protein and performance drinks prepared for before, during or after your session.",
+        paymentPolicy: "Payments are accepted in TRY, EUR, USD and GBP. Foreign-currency amounts are calculated using the current rate at the time of payment.",
         visitKicker: "VISIT SHAPE",
         visitTitle: "Your next session starts here.",
         visitIntro: "Drop in, call us or send a message. We will help you choose the right plan.",
@@ -205,18 +205,19 @@
         contactLabel: "CONTACT",
         reviews: "Google Reviews",
         footer: "More than a gym. A community in motion.",
-        legal: "All prices are in Turkish lira."
+        legal: "Payments accepted in TRY, EUR, USD and GBP."
       },
       tr: {
         navMembership: "Üyelik",
         navCoaching: "Koçluk",
-        navMenu: "Menü",
+        navMenu: "Shape Bar",
         navContact: "İletişim",
         heroTitle: "GÜÇLENMEK BURADA BAŞLAR.",
         heroIntro: "Kalkan merkezde premium antrenman, kişisel koçluk ve güçlü bir topluluk.",
         heroWhatsappCta: "WhatsApp’tan bize ulaşın",
+        quickMembership: "Üyelik fiyatları",
         quickHours: "Çalışma saatlerimiz",
-        quickMenu: "Yeme & İçme",
+        quickMenu: "Shape Bar",
         quickGroup: "Grup dersleri",
         quickKicker: "HIZLI ERİŞİM",
         quickIntro: "İhtiyacın olan bilgiye tek dokunuşla ulaş.",
@@ -261,6 +262,7 @@
         groupWhatsappMessage: "Merhaba, grup dersleri hakkında bilgi almak istiyorum.",
         menuTitle: "Antrenmanını destekle. Ritüelin keyfini çıkar.",
         menuIntro: "Antrenman öncesi, sırası veya sonrası için hazırlanan kahve, protein ve performans içecekleri.",
+        paymentPolicy: "TL, EUR, USD ve GBP ile ödeme kabul edilir. Döviz tutarı ödeme anındaki güncel kur üzerinden hesaplanır.",
         visitKicker: "SHAPE’İ ZİYARET ET",
         visitTitle: "Sıradaki antrenmanın burada başlıyor.",
         visitIntro: "Bize uğra, ara veya mesaj gönder. Sana uygun planı birlikte seçelim.",
@@ -273,18 +275,19 @@
         contactLabel: "İLETİŞİM",
         reviews: "Google Yorumları",
         footer: "Bir spor salonundan fazlası. Hareket eden bir topluluk.",
-        legal: "Tüm fiyatlar Türk lirasıdır."
+        legal: "TL, EUR, USD ve GBP ile ödeme kabul edilir."
       },
       de: {
         navMembership: "Mitgliedschaft",
         navCoaching: "Coaching",
-        navMenu: "Menü",
+        navMenu: "Shape Bar",
         navContact: "Kontakt",
         heroTitle: "STÄRKE BEGINNT HIER.",
         heroIntro: "Premium-Training, Personal Coaching und eine starke Community im Zentrum von Kalkan.",
         heroWhatsappCta: "Über WhatsApp kontaktieren",
+        quickMembership: "Mitgliedspreise",
         quickHours: "Öffnungszeiten",
-        quickMenu: "Essen & Getränke",
+        quickMenu: "Shape Bar",
         quickGroup: "Gruppenkurse",
         quickKicker: "SCHNELLZUGRIFF",
         quickIntro: "Alle wichtigen Infos mit nur einem Tippen.",
@@ -329,6 +332,7 @@
         groupWhatsappMessage: "Hallo, ich möchte Informationen zu den Gruppenkursen.",
         menuTitle: "Energie fürs Training. Genuss für dich.",
         menuIntro: "Kaffee, Protein- und Performance-Drinks für vor, während oder nach deinem Training.",
+        paymentPolicy: "Zahlungen werden in TRY, EUR, USD und GBP akzeptiert. Fremdwährungsbeträge werden zum aktuellen Kurs zum Zahlungszeitpunkt berechnet.",
         visitKicker: "BESUCHE SHAPE",
         visitTitle: "Dein nächstes Training beginnt hier.",
         visitIntro: "Komm vorbei, ruf uns an oder sende eine Nachricht. Wir finden gemeinsam den richtigen Plan.",
@@ -341,18 +345,19 @@
         contactLabel: "KONTAKT",
         reviews: "Google-Bewertungen",
         footer: "Mehr als ein Fitnessstudio. Eine Community in Bewegung.",
-        legal: "Alle Preise sind in Türkischer Lira."
+        legal: "Zahlungen in TRY, EUR, USD und GBP werden akzeptiert."
       },
       ru: {
         navMembership: "Абонементы",
         navCoaching: "Тренер",
-        navMenu: "Меню",
+        navMenu: "Shape Bar",
         navContact: "Контакты",
         heroTitle: "СИЛА НАЧИНАЕТСЯ ЗДЕСЬ.",
         heroIntro: "Премиальный зал, персональные тренировки и сильное сообщество в центре Калкана.",
         heroWhatsappCta: "Связаться с нами в WhatsApp",
+        quickMembership: "Цены на абонементы",
         quickHours: "Часы работы",
-        quickMenu: "Еда и напитки",
+        quickMenu: "Shape Bar",
         quickGroup: "Групповые занятия",
         quickKicker: "БЫСТРЫЙ ДОСТУП",
         quickIntro: "Вся важная информация в одно касание.",
@@ -397,6 +402,7 @@
         groupWhatsappMessage: "Здравствуйте! Я хотел(а) бы узнать подробнее о групповых занятиях.",
         menuTitle: "Энергия для работы. Удовольствие от ритуала.",
         menuIntro: "Кофе, протеиновые и спортивные напитки до, во время или после тренировки.",
+        paymentPolicy: "Оплата принимается в TRY, EUR, USD и GBP. Сумма в иностранной валюте рассчитывается по актуальному курсу на момент оплаты.",
         visitKicker: "ПОСЕТИТЕ SHAPE",
         visitTitle: "Ваша следующая тренировка начинается здесь.",
         visitIntro: "Зайдите, позвоните или напишите нам. Мы поможем выбрать подходящий план.",
@@ -409,7 +415,7 @@
         contactLabel: "КОНТАКТЫ",
         reviews: "Отзывы Google",
         footer: "Больше, чем зал. Сообщество в движении.",
-        legal: "Все цены указаны в турецких лирах."
+        legal: "Оплата принимается в TRY, EUR, USD и GBP."
       }
     }
   };

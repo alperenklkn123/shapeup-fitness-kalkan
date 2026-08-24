@@ -12,7 +12,7 @@
     { key: "coaching", label: "Kişisel Koçluk" },
     { key: "onlineCoaching", label: "Online Koçluk" },
     { key: "groupClasses", label: "Grup Dersleri" },
-    { key: "menu", label: "Yeme & İçme" },
+    { key: "menu", label: "Shape Bar" },
     { key: "contact", label: "İletişim" }
   ];
   const BACKGROUND_POSITIONS = [
@@ -29,17 +29,17 @@
   const TEXT_FIELDS = [
     { key: "navMembership", label: "Menü — Üyelik", rows: 1 },
     { key: "navCoaching", label: "Menü — Koçluk", rows: 1 },
-    { key: "navMenu", label: "Menü — Menü", rows: 1 },
+    { key: "navMenu", label: "Menü — Shape Bar", rows: 1 },
     { key: "navContact", label: "Menü — İletişim", rows: 1 },
     { key: "heroTitle", label: "Kapak başlığı", rows: 1 },
     { key: "heroIntro", label: "Kapak açıklaması", rows: 3 },
     { key: "heroWhatsappCta", label: "WhatsApp düğmesi", rows: 1 },
+    { key: "quickMembership", label: "Hızlı bağlantı — Üyelik fiyatları", rows: 1 },
     { key: "quickHours", label: "Hızlı bağlantı — Çalışma saatleri", rows: 1 },
-    { key: "quickMenu", label: "Hızlı bağlantı — Yeme & İçme", rows: 1 },
+    { key: "quickMenu", label: "Hızlı bağlantı — Shape Bar", rows: 1 },
     { key: "quickGroup", label: "Hızlı bağlantı — Grup dersleri", rows: 1 },
     { key: "quickKicker", label: "Hızlı erişim — Üst etiket", rows: 1 },
     { key: "quickIntro", label: "Hızlı erişim — Açıklama", rows: 2 },
-    { key: "quickOnline", label: "Hızlı bağlantı — Online koçluk", rows: 1 },
     { key: "directions", label: "Yol tarifi düğmesi", rows: 1 },
     { key: "membershipKicker", label: "Üyelik üst etiketi", rows: 1 },
     { key: "membershipTitle", label: "Üyelik başlığı", rows: 2 },
@@ -77,6 +77,7 @@
     { key: "groupWhatsappMessage", label: "Grup dersi hazır WhatsApp mesajı", rows: 2 },
     { key: "menuTitle", label: "Menü başlığı", rows: 2 },
     { key: "menuIntro", label: "Menü açıklaması", rows: 3 },
+    { key: "paymentPolicy", label: "Döviz ve ödeme açıklaması", rows: 3 },
     { key: "visitKicker", label: "İletişim üst etiketi", rows: 1 },
     { key: "visitTitle", label: "İletişim başlığı", rows: 2 },
     { key: "visitIntro", label: "İletişim açıklaması", rows: 3 },
@@ -152,11 +153,35 @@
         clone((source.translations || {})[language.code] || {})
       );
     });
-    const legacyQuickMenu = { en: "Menu", tr: "Menü", de: "Menü", ru: "Меню" };
+    const legacyQuickMenu = {
+      en: new Set(["Menu", "Food & Drinks"]),
+      tr: new Set(["Menü", "Yeme & İçme"]),
+      de: new Set(["Menü", "Essen & Getränke"]),
+      ru: new Set(["Меню", "Еда и напитки"])
+    };
+    const legacyNavMenu = {
+      en: new Set(["Menu", "Food & Drinks"]),
+      tr: new Set(["Menü", "Yeme & İçme"]),
+      de: new Set(["Menü", "Essen & Getränke"]),
+      ru: new Set(["Меню", "Еда и напитки"])
+    };
+    const legacyLegal = {
+      en: "All prices are in Turkish lira.",
+      tr: "Tüm fiyatlar Türk lirasıdır.",
+      de: "Alle Preise sind in Türkischer Lira.",
+      ru: "Все цены указаны в турецких лирах."
+    };
     LANGUAGES.forEach(language => {
-      const savedValue = (((source.translations || {})[language.code] || {}).quickMenu);
-      if (savedValue === legacyQuickMenu[language.code]) {
+      const savedTranslations = ((source.translations || {})[language.code] || {});
+      const savedValue = savedTranslations.quickMenu;
+      if (legacyQuickMenu[language.code].has(savedValue)) {
         merged.translations[language.code].quickMenu = (((base.translations || {})[language.code] || {}).quickMenu) || savedValue;
+      }
+      if (legacyNavMenu[language.code].has(savedTranslations.navMenu)) {
+        merged.translations[language.code].navMenu = (((base.translations || {})[language.code] || {}).navMenu) || savedTranslations.navMenu;
+      }
+      if (savedTranslations.legal === legacyLegal[language.code]) {
+        merged.translations[language.code].legal = (((base.translations || {})[language.code] || {}).legal) || savedTranslations.legal;
       }
     });
     return merged;
@@ -237,7 +262,7 @@
     const online = state.onlineCoaching || {};
     $("#onlineCoachingEditor").innerHTML = `
       <section class="form-section"><h3>Online koçluk bölümü</h3><div class="field-grid">
-        <label class="check wide"><input type="checkbox" data-kind="online-coaching" data-field="active" ${online.active !== false ? "checked" : ""}> Online koçluk bölümü ve hızlı bağlantısı yayında</label>
+        <label class="check wide"><input type="checkbox" data-kind="online-coaching" data-field="active" ${online.active !== false ? "checked" : ""}> Online koçluk bölümü yayında</label>
       </div></section>
       <p class="upload-message">Başlık, açıklama, özellikler, düğme ve hazır WhatsApp mesajı “Ana metinler” sekmesinden dört dil için ayrı ayrı değiştirilebilir.</p>`;
   }
@@ -251,14 +276,12 @@
         <label class="field wide"><span>Ders türleri — her satıra bir ders</span><textarea rows="4" data-kind="group-training" data-field="classTypes" data-array="true">${safe(classTypes)}</textarea></label>
       </div></section>
       <section class="form-section"><h3>Üye fiyatı</h3><div class="field-grid">
-        <label class="field"><span>TL fiyatı</span><input type="text" data-kind="group-training" data-field="memberTry" value="${safe(group.memberTry)}" placeholder="₺600"></label>
-        <label class="field"><span>GBP fiyatı</span><input type="text" data-kind="group-training" data-field="memberGbp" value="${safe(group.memberGbp)}" placeholder="£10"></label>
+        <label class="field wide"><span>TL baz fiyatı</span><input type="text" data-kind="group-training" data-field="memberTry" value="${safe(group.memberTry)}" placeholder="₺600"></label>
       </div></section>
       <section class="form-section"><h3>Dışarıdan katılım fiyatı</h3><div class="field-grid">
-        <label class="field"><span>TL fiyatı</span><input type="text" data-kind="group-training" data-field="nonMemberTry" value="${safe(group.nonMemberTry)}" placeholder="₺1.200"></label>
-        <label class="field"><span>GBP fiyatı</span><input type="text" data-kind="group-training" data-field="nonMemberGbp" value="${safe(group.nonMemberGbp)}" placeholder="£20"></label>
+        <label class="field wide"><span>TL baz fiyatı</span><input type="text" data-kind="group-training" data-field="nonMemberTry" value="${safe(group.nonMemberTry)}" placeholder="₺1.200"></label>
       </div></section>
-      <p class="upload-message">Bölüm başlığı, açıklamalar ve WhatsApp mesajı “Ana metinler” sekmesinden dört dil için ayrı ayrı değiştirilebilir.</p>`;
+      <p class="upload-message">Sitede TL baz fiyatları seçilen para birimine otomatik çevrilir. Başlıklar ve ödeme açıklaması “Ana metinler” sekmesinden düzenlenebilir.</p>`;
   }
 
   function renderMenu() {
@@ -637,9 +660,9 @@
     } catch (error) {
       console.warn("Kapak görseli optimizasyonu uygulanamadı; orijinal dosya yüklenecek.", error);
     }
-    if (uploadFile.size > 5 * 1024 * 1024) {
+    if (uploadFile.size > 1.5 * 1024 * 1024) {
       message.style.color = "var(--bad)";
-      message.textContent = "Görsel optimize edildikten sonra hâlâ çok büyük. Daha küçük bir görsel seçin.";
+      message.textContent = "Görsel optimize edildikten sonra hâlâ çok büyük. Daha küçük veya daha sade bir görsel seçin.";
       return;
     }
     message.textContent = "Görsel yükleniyor…";
@@ -716,7 +739,7 @@
     const cropRight = rightRatio > 0.08 ? Math.min(bitmap.width, Math.ceil(sampleRight / sampleScale)) : bitmap.width;
     const sourceWidth = Math.max(1, cropRight - cropLeft);
     const sourceHeight = Math.max(1, cropBottom - cropTop);
-    const maximumSide = 1800;
+    const maximumSide = 1400;
     const scale = Math.min(1, maximumSide / Math.max(sourceWidth, sourceHeight));
     const width = Math.max(1, Math.round(sourceWidth * scale));
     const height = Math.max(1, Math.round(sourceHeight * scale));
@@ -726,7 +749,22 @@
     const context = canvas.getContext("2d", { alpha: false });
     context.drawImage(bitmap, cropLeft, cropTop, sourceWidth, sourceHeight, 0, 0, width, height);
     if (typeof bitmap.close === "function") bitmap.close();
-    const blob = await new Promise(resolve => canvas.toBlob(resolve, "image/webp", 0.84));
+    const targetBytes = 850 * 1024;
+    let outputCanvas = canvas;
+    let blob = null;
+    for (const quality of [0.76, 0.66, 0.56]) {
+      blob = await new Promise(resolve => outputCanvas.toBlob(resolve, "image/webp", quality));
+      if (!blob || blob.size <= targetBytes) break;
+    }
+    if (blob && blob.size > targetBytes && Math.max(outputCanvas.width, outputCanvas.height) > 1100) {
+      const compactScale = 1100 / Math.max(outputCanvas.width, outputCanvas.height);
+      const compactCanvas = document.createElement("canvas");
+      compactCanvas.width = Math.max(1, Math.round(outputCanvas.width * compactScale));
+      compactCanvas.height = Math.max(1, Math.round(outputCanvas.height * compactScale));
+      compactCanvas.getContext("2d", { alpha: false }).drawImage(outputCanvas, 0, 0, compactCanvas.width, compactCanvas.height);
+      outputCanvas = compactCanvas;
+      blob = await new Promise(resolve => outputCanvas.toBlob(resolve, "image/webp", 0.62));
+    }
     if (!blob) return file;
     const baseName = String(file.name || "section-photo").replace(/\.[^.]+$/, "").replace(/[^a-z0-9_-]+/gi, "-");
     return new File([blob], `${baseName || "section-photo"}.webp`, { type: "image/webp", lastModified: Date.now() });
@@ -749,8 +787,8 @@
     } catch (error) {
       console.warn("Fotoğraf optimizasyonu uygulanamadı; orijinal dosya yüklenecek.", error);
     }
-    if (uploadFile.size > 5 * 1024 * 1024) {
-      setBackgroundMessage(section, "Fotoğraf optimize edildikten sonra hâlâ çok büyük. Daha küçük bir görsel seçin.", "error");
+    if (uploadFile.size > 1.5 * 1024 * 1024) {
+      setBackgroundMessage(section, "Fotoğraf optimize edildikten sonra hâlâ çok büyük. Daha küçük veya daha sade bir görsel seçin.", "error");
       return;
     }
     setBackgroundMessage(section, "Fotoğraf yükleniyor…");

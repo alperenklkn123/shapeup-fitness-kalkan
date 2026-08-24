@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex,nofollow,noarchive">
   <meta name="theme-color" content="#07111d">
   <title>SHAPE Yönetim Paneli</title>
-  <link rel="stylesheet" href="admin.css?v=12">
+  <link rel="stylesheet" href="admin.css?v=13">
 </head>
 <body>
   <div class="ambient" aria-hidden="true"></div>
@@ -63,7 +63,7 @@
         <button class="tab active" type="button" data-tab="membership">Üyelik</button>
         <button class="tab" type="button" data-tab="coaching">Koçluk</button>
         <button class="tab" type="button" data-tab="group-training">Grup dersleri</button>
-        <button class="tab" type="button" data-tab="menu">Menü</button>
+        <button class="tab" type="button" data-tab="menu">Shape Bar</button>
         <button class="tab" type="button" data-tab="contact">İletişim</button>
         <button class="tab" type="button" data-tab="texts">Ana metinler</button>
         <button class="tab" type="button" data-tab="typography">Yazı boyutları</button>
@@ -80,17 +80,17 @@
         <section class="panel" data-panel="coaching" hidden>
           <div class="panel-head"><div><p class="eyebrow">KİŞİSEL KOÇLUK</p><h2>Koçluk paketleri</h2><p>Ders sayısını, haftalık sıklığı ve fiyatı yönetin.</p></div><button class="button secondary" type="button" data-action="add-coaching">+ Paket ekle</button></div>
           <div id="coachingEditor" class="editor-grid"></div>
-          <div class="panel-head online-admin-head"><div><p class="eyebrow">ONLINE KOÇLUK</p><h2>Uzaktan koçluk</h2><p>Online koçluk bölümünü ve ana sayfadaki hızlı bağlantıyı yönetin.</p></div></div>
+          <div class="panel-head online-admin-head"><div><p class="eyebrow">ONLINE KOÇLUK</p><h2>Uzaktan koçluk</h2><p>Online koçluk bölümünün yayın durumunu ve içeriğini yönetin.</p></div></div>
           <div id="onlineCoachingEditor" class="form-card"></div>
         </section>
 
         <section class="panel" data-panel="group-training" hidden>
-          <div class="panel-head"><div><p class="eyebrow">GROUP CLASSES</p><h2>Grup dersleri</h2><p>Bölümü açıp kapatın; ders türlerini ve afişte görünen sabit TL / GBP fiyatlarını değiştirin.</p></div></div>
+          <div class="panel-head"><div><p class="eyebrow">GROUP CLASSES</p><h2>Grup dersleri</h2><p>Ders türlerini ve TL baz fiyatlarını yönetin; sitedeki döviz karşılıkları otomatik hesaplanır.</p></div></div>
           <div id="groupTrainingEditor" class="form-card"></div>
         </section>
 
         <section class="panel" data-panel="menu" hidden>
-          <div class="panel-head"><div><p class="eyebrow">KAFE MENÜSÜ</p><h2>Kategoriler ve ürünler</h2><p>Ürün adı, fiyatı ve görünürlüğü anında güncellenir.</p></div><button class="button secondary" type="button" data-action="add-category">+ Kategori ekle</button></div>
+          <div class="panel-head"><div><p class="eyebrow">SHAPE BAR</p><h2>Kategoriler ve ürünler</h2><p>TL baz fiyatlarını girin; sitedeki döviz karşılıkları otomatik hesaplanır.</p></div><button class="button secondary" type="button" data-action="add-category">+ Kategori ekle</button></div>
           <div id="menuEditor" class="stack"></div>
         </section>
 
@@ -180,7 +180,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="../supabase-config.js"></script>
-  <script src="../site-defaults.js?v=12"></script>
-  <script src="admin.js?v=12"></script>
+  <script src="../site-defaults.js?v=13"></script>
+  <script src="admin.js?v=13"></script>
 </body>
 </html>
