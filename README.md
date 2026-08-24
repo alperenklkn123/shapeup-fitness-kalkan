@@ -10,7 +10,7 @@
 
 ## Bu sürümde tamamlananlar
 
-- Üst bölüme, seçilen dile göre değişen ve mobilde kesintisiz kayan salon kuralları şeridi eklendi.
+- Üst bölüme, seçilen dile göre değişen ve mobilde kesintisiz kayan salon kuralları şeridi eklendi; iki uyarı yönetim panelinden istenildiği zaman değiştirilebilir.
 - Resmî alan adı tüm sosyal paylaşım ve arama motoru bilgilerinde kullanıldı.
 - `CNAME` dosyası eklendi; GitHub Pages alan adı ayarı depoda korunuyor.
 - `robots.txt` ve `sitemap.xml` eklendi.
