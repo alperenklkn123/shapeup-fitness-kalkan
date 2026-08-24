@@ -35,6 +35,15 @@
       menu: "center center",
       contact: "center center"
     },
+    mobileCrops: {
+      hero: { x: 50, y: 50, zoom: 1 },
+      membership: { x: 50, y: 50, zoom: 1 },
+      coaching: { x: 50, y: 50, zoom: 1 },
+      onlineCoaching: { x: 50, y: 50, zoom: 1 },
+      groupClasses: { x: 50, y: 50, zoom: 1 },
+      menu: { x: 50, y: 50, zoom: 1 },
+      contact: { x: 50, y: 50, zoom: 1 }
+    },
     groupTraining: {
       active: true,
       classTypes: ["HYROX", "HIIT CIRCUIT", "STRENGTH & CONDITIONING"],

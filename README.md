@@ -20,6 +20,8 @@ Kapak alanının altında mobilde 2×2 düzenlenen, vurgulu bir **Hızlı Erişi
 
 Üyelik, kişisel koçluk, online koçluk, grup dersleri, SHAPE BAR ve iletişim bölümlerinin tamamı fotoğraflı arka plan kullanır. Yönetim panelindeki **Bölüm fotoğrafları** sekmesinden her alan için ayrı JPG, PNG, WebP veya AVIF yüklenebilir. Görseller yükleme sırasında üst/alt veya yanlardaki büyük siyah çerçevelerden otomatik arındırılır, WebP'ye dönüştürülür ve en fazla 1800 piksele küçültülür. Her fotoğraf bölümü tamamen doldurur, tekrar etmez ve karttaki **Fotoğraf konumu** seçeneğiyle yukarı/orta/aşağı taşınabilir. Fotoğraf belirlenmeyen bölüm kapak görselini kullanır; “Kapak fotoğrafını kullan” düğmesiyle bölüm yeniden bu varsayılana döndürülebilir. Eski siyah çerçeveli iki görsel mobilde otomatik yakınlaştırılarak masaüstü görünümü değiştirmeden şeritler gizlenir. Hafif koyu filtre metinleri ve fiyatları okunur tutarken düz siyah bölüm oluşmasını engeller.
 
+Her fotoğraf kartındaki **Telefon kadrajını ayarla** düğmesi, 9:19 oranında telefon önizlemesi açar. Fotoğraf fareyle veya parmakla sürüklenebilir, 1×–2,5× arasında yakınlaştırılabilir ve üst/orta/alt hazır konumları kullanılabilir. Kaydedilen `x`, `y` ve `zoom` değerleri yalnızca 680 piksel ve altındaki mobil görünümde uygulanır; masaüstü kadrajı değişmez. Ana kapak görseli için aynı düzenleyici **Ana görsel** sekmesinde bulunur.
+
 ## Supabase kurulumu
 
 1. Size ayrıca verilen `supabase-setup.sql` dosyasını açın.

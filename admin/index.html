@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex,nofollow,noarchive">
   <meta name="theme-color" content="#07111d">
   <title>SHAPE Yönetim Paneli</title>
-  <link rel="stylesheet" href="admin.css?v=11">
+  <link rel="stylesheet" href="admin.css?v=12">
 </head>
 <body>
   <div class="ambient" aria-hidden="true"></div>
@@ -123,6 +123,7 @@
             <div class="hero-controls">
               <label class="upload-zone" for="heroFile"><strong>Yeni görsel seç</strong><span>Yatay ve en az 1600 px genişlik önerilir.</span><input id="heroFile" type="file" accept="image/jpeg,image/png,image/webp,image/avif"></label>
               <label class="field"><span>Görsel adresi</span><input id="heroUrl" data-kind="hero" data-field="imageUrl" type="url" placeholder="https://… veya shape-hero.png"></label>
+              <button class="button primary" type="button" data-open-mobile-crop="hero">Telefon kadrajını ayarla</button>
               <button class="button secondary" id="restoreHeroButton" type="button">Orijinal görsele dön</button>
               <p class="upload-message" id="uploadMessage" aria-live="polite"></p>
             </div>
@@ -142,9 +143,44 @@
     </section>
   </main>
 
+  <div class="crop-modal" id="mobileCropModal" hidden>
+    <div class="crop-dialog" role="dialog" aria-modal="true" aria-labelledby="cropDialogTitle">
+      <div class="crop-dialog-head">
+        <div><p class="eyebrow">MOBİL KADRAJ</p><h2 id="cropDialogTitle">Telefon görünümünü ayarla</h2><p id="cropTargetLabel"></p></div>
+        <button class="crop-close" id="cropCloseButton" type="button" aria-label="Kadraj düzenleyicisini kapat">×</button>
+      </div>
+      <div class="crop-workspace">
+        <div class="phone-preview" aria-label="Telefon önizlemesi">
+          <div class="phone-speaker"></div>
+          <div class="crop-viewport" id="cropViewport">
+            <img id="cropPreviewImage" alt="Mobil fotoğraf kadrajı önizlemesi" draggable="false">
+            <div class="crop-shade"></div>
+            <div class="crop-guides" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+            <span class="crop-preview-label">TELEFON ÖNİZLEMESİ</span>
+          </div>
+        </div>
+        <div class="crop-controls">
+          <div class="crop-help"><strong>Fotoğrafı parmağınla sürükle</strong><span>Önemli alanı çerçevenin içine getir. Yakınlaştırma çubuğuyla boyutunu ayarla.</span></div>
+          <label class="crop-range"><span><b>Yakınlaştırma</b><output id="cropZoomOutput">1.00×</output></span><input id="cropZoomInput" type="range" min="1" max="2.5" step="0.05" value="1"></label>
+          <div class="crop-values"><span>Yatay: <b id="cropXOutput">50%</b></span><span>Dikey: <b id="cropYOutput">50%</b></span></div>
+          <div class="crop-presets">
+            <button class="button secondary" type="button" data-crop-preset="top">Üstü göster</button>
+            <button class="button secondary" type="button" data-crop-preset="center">Ortala</button>
+            <button class="button secondary" type="button" data-crop-preset="bottom">Altı göster</button>
+          </div>
+          <div class="crop-actions">
+            <button class="button secondary" id="cropCancelButton" type="button">Vazgeç</button>
+            <button class="button primary" id="cropApplyButton" type="button">Kadrajı uygula</button>
+          </div>
+          <p class="crop-note">Bu ayar yalnızca telefon görünümünü değiştirir; bilgisayar görünümü aynı kalır.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="../supabase-config.js"></script>
-  <script src="../site-defaults.js?v=11"></script>
-  <script src="admin.js?v=11"></script>
+  <script src="../site-defaults.js?v=12"></script>
+  <script src="admin.js?v=12"></script>
 </body>
 </html>

@@ -22,6 +22,10 @@
     { value: "center 75%", label: "Alta yakın" },
     { value: "center bottom", label: "En alt" }
   ];
+  const CROP_TARGETS = [
+    { key: "hero", label: "Ana kapak" },
+    ...BACKGROUND_SECTIONS
+  ];
   const TEXT_FIELDS = [
     { key: "navMembership", label: "Menü — Üyelik", rows: 1 },
     { key: "navCoaching", label: "Menü — Koçluk", rows: 1 },
@@ -115,6 +119,9 @@
   let currentUser = null;
   let dirty = false;
   let saving = false;
+  let activeCropTarget = "";
+  let cropDraft = { x: 50, y: 50, zoom: 1 };
+  let cropDrag = null;
 
   function mergeConfig(base, custom) {
     const source = custom && typeof custom === "object" ? custom : {};
@@ -124,6 +131,10 @@
     merged.onlineCoaching = Object.assign({}, clone(base.onlineCoaching || {}), clone(source.onlineCoaching || {}));
     merged.backgrounds = Object.assign({}, clone(base.backgrounds || {}), clone(source.backgrounds || {}));
     merged.backgroundPositions = Object.assign({}, clone(base.backgroundPositions || {}), clone(source.backgroundPositions || {}));
+    merged.mobileCrops = {};
+    CROP_TARGETS.forEach(target => {
+      merged.mobileCrops[target.key] = Object.assign({}, clone(((base.mobileCrops || {})[target.key]) || {}), clone(((source.mobileCrops || {})[target.key]) || {}));
+    });
     merged.groupTraining = Object.assign({}, clone(base.groupTraining || {}), clone(source.groupTraining || {}));
     merged.groupTraining.classTypes = Array.isArray((source.groupTraining || {}).classTypes) ? clone(source.groupTraining.classTypes) : clone((base.groupTraining || {}).classTypes || []);
     merged.menu = Array.isArray(source.menu) ? clone(source.menu) : clone(base.menu || []);
@@ -340,6 +351,109 @@
     return resolveHeroUrl(value || (state.hero || {}).imageUrl || "shape-hero.png");
   }
 
+  function normaliseCrop(value) {
+    const source = value && typeof value === "object" ? value : {};
+    const rawX = Number(source.x);
+    const rawY = Number(source.y);
+    const rawZoom = Number(source.zoom);
+    return {
+      x: Math.min(100, Math.max(0, Number.isFinite(rawX) ? rawX : 50)),
+      y: Math.min(100, Math.max(0, Number.isFinite(rawY) ? rawY : 50)),
+      zoom: Math.min(2.5, Math.max(1, Number.isFinite(rawZoom) ? rawZoom : 1))
+    };
+  }
+
+  function cropImageUrl(target) {
+    const heroUrl = (state.hero || {}).imageUrl || "shape-hero.png";
+    if (target === "hero") return resolveHeroUrl(heroUrl);
+    return resolveBackgroundUrl(((state.backgrounds || {})[target]) || heroUrl);
+  }
+
+  function needsLegacyMobileZoom(value) {
+    return /\/(?:shape-1787392694673|groupClasses-1787555396094)\.(?:png|jpe?g|webp|avif)(?:[?#]|$)/i.test(String(value || ""));
+  }
+
+  function renderCropPreview() {
+    if (!activeCropTarget) return;
+    cropDraft = normaliseCrop(cropDraft);
+    const image = $("#cropPreviewImage");
+    const url = cropImageUrl(activeCropTarget);
+    const baseZoom = needsLegacyMobileZoom(url) ? 3 : 1;
+    image.style.objectPosition = `${cropDraft.x}% ${cropDraft.y}%`;
+    image.style.transform = `scale(${baseZoom * cropDraft.zoom})`;
+    $("#cropZoomInput").value = String(cropDraft.zoom);
+    $("#cropZoomOutput").textContent = `${cropDraft.zoom.toFixed(2)}×`;
+    $("#cropXOutput").textContent = `${Math.round(cropDraft.x)}%`;
+    $("#cropYOutput").textContent = `${Math.round(cropDraft.y)}%`;
+  }
+
+  function openCropEditor(target) {
+    const definition = CROP_TARGETS.find(item => item.key === target);
+    if (!definition) return;
+    activeCropTarget = target;
+    state.mobileCrops = state.mobileCrops || {};
+    cropDraft = normaliseCrop(state.mobileCrops[target]);
+    const image = $("#cropPreviewImage");
+    image.src = cropImageUrl(target);
+    image.alt = `${definition.label} mobil kadraj önizlemesi`;
+    $("#cropTargetLabel").textContent = definition.label;
+    $("#mobileCropModal").hidden = false;
+    document.body.classList.add("crop-open");
+    renderCropPreview();
+    window.requestAnimationFrame(() => $("#cropCloseButton").focus());
+  }
+
+  function closeCropEditor() {
+    cropDrag = null;
+    activeCropTarget = "";
+    $("#mobileCropModal").hidden = true;
+    document.body.classList.remove("crop-open");
+  }
+
+  function applyCropEditor() {
+    if (!activeCropTarget) return;
+    state.mobileCrops = state.mobileCrops || {};
+    state.mobileCrops[activeCropTarget] = normaliseCrop(cropDraft);
+    markDirty();
+    setStatus("Telefon kadrajı güncellendi. Yayınlamak için değişiklikleri kaydedin.", "dirty");
+    closeCropEditor();
+  }
+
+  function setCropPreset(preset) {
+    if (preset === "top") cropDraft = Object.assign({}, cropDraft, { x: 50, y: 18 });
+    else if (preset === "bottom") cropDraft = Object.assign({}, cropDraft, { x: 50, y: 82 });
+    else cropDraft = Object.assign({}, cropDraft, { x: 50, y: 50 });
+    renderCropPreview();
+  }
+
+  function beginCropDrag(event) {
+    if (!activeCropTarget) return;
+    event.preventDefault();
+    const viewport = $("#cropViewport");
+    if (viewport.setPointerCapture) viewport.setPointerCapture(event.pointerId);
+    viewport.classList.add("dragging");
+    cropDrag = { pointerId: event.pointerId, startX: event.clientX, startY: event.clientY, cropX: cropDraft.x, cropY: cropDraft.y };
+  }
+
+  function moveCropDrag(event) {
+    if (!cropDrag || cropDrag.pointerId !== event.pointerId) return;
+    event.preventDefault();
+    const viewport = $("#cropViewport");
+    const rect = viewport.getBoundingClientRect();
+    const scale = Math.max(1, cropDraft.zoom);
+    cropDraft.x = Math.min(100, Math.max(0, cropDrag.cropX - ((event.clientX - cropDrag.startX) / Math.max(1, rect.width)) * 100 / scale));
+    cropDraft.y = Math.min(100, Math.max(0, cropDrag.cropY - ((event.clientY - cropDrag.startY) / Math.max(1, rect.height)) * 100 / scale));
+    renderCropPreview();
+  }
+
+  function endCropDrag(event) {
+    if (!cropDrag || cropDrag.pointerId !== event.pointerId) return;
+    const viewport = $("#cropViewport");
+    if (viewport.releasePointerCapture && viewport.hasPointerCapture && viewport.hasPointerCapture(event.pointerId)) viewport.releasePointerCapture(event.pointerId);
+    viewport.classList.remove("dragging");
+    cropDrag = null;
+  }
+
   function renderBackgrounds() {
     const backgrounds = state.backgrounds || {};
     const positions = state.backgroundPositions || {};
@@ -353,6 +467,7 @@
           <div><p class="eyebrow">BÖLÜM FOTOĞRAFI</p><h3>${safe(section.label)}</h3><small>${customImage ? "Bu bölüm için özel fotoğraf kullanılıyor." : "Kapak fotoğrafı kullanılıyor."}</small></div>
           <label class="field background-position-field"><span>Fotoğraf konumu</span><select data-kind="background-position" data-section="${section.key}">${BACKGROUND_POSITIONS.map(option => `<option value="${option.value}" ${option.value === position ? "selected" : ""}>${option.label}</option>`).join("")}</select></label>
           <label class="button primary background-upload">Fotoğraf seç<input type="file" accept="image/jpeg,image/png,image/webp,image/avif" data-background-file data-section="${section.key}"></label>
+          <button class="button secondary background-crop-button" type="button" data-action="open-background-crop" data-section="${section.key}">Telefon kadrajını ayarla</button>
           <button class="button secondary" type="button" data-action="reset-background" data-section="${section.key}" ${customImage ? "" : "disabled"}>Kapak fotoğrafını kullan</button>
           <p class="upload-message" data-background-message="${section.key}" aria-live="polite"></p>
         </div>
@@ -440,6 +555,10 @@
   function handleAction(button) {
     const action = button.dataset.action;
     if (!action) return;
+    if (action === "open-background-crop") {
+      openCropEditor(button.dataset.section);
+      return;
+    }
     if (action === "typography-preset" && TYPOGRAPHY_PRESETS[button.dataset.preset]) {
       state.design = state.design || {};
       state.design.typography = clone(TYPOGRAPHY_PRESETS[button.dataset.preset]);
@@ -739,6 +858,25 @@
     });
     $$(".tab").forEach(tab => tab.addEventListener("click", () => activateTab(tab.dataset.tab)));
     $("#heroFile").addEventListener("change", event => uploadHero(event.target.files[0]));
+    $("[data-open-mobile-crop=\"hero\"]").addEventListener("click", () => openCropEditor("hero"));
+    $("#cropCloseButton").addEventListener("click", closeCropEditor);
+    $("#cropCancelButton").addEventListener("click", closeCropEditor);
+    $("#cropApplyButton").addEventListener("click", applyCropEditor);
+    $("#cropZoomInput").addEventListener("input", event => {
+      cropDraft.zoom = Number(event.target.value) || 1;
+      renderCropPreview();
+    });
+    $$("[data-crop-preset]").forEach(button => button.addEventListener("click", () => setCropPreset(button.dataset.cropPreset)));
+    $("#cropViewport").addEventListener("pointerdown", beginCropDrag);
+    $("#cropViewport").addEventListener("pointermove", moveCropDrag);
+    $("#cropViewport").addEventListener("pointerup", endCropDrag);
+    $("#cropViewport").addEventListener("pointercancel", endCropDrag);
+    $("#mobileCropModal").addEventListener("click", event => {
+      if (event.target === $("#mobileCropModal")) closeCropEditor();
+    });
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && !$("#mobileCropModal").hidden) closeCropEditor();
+    });
     $("#restoreHeroButton").addEventListener("click", () => {
       state.hero.imageUrl = "shape-hero.png";
       renderHero();
