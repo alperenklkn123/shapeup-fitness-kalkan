@@ -18,6 +18,8 @@ Kapak alanının altında mobilde 2×2 düzenlenen, vurgulu bir **Hızlı Erişi
 
 **Online koçluk** bölümü kişiye özel antrenman programı, beslenme desteği, haftalık kontrol ve WhatsApp desteğini ayrı bir tanıtım alanında gösterir. Koçluk sekmesinden bölüm açılıp kapatılabilir; dört dildeki hızlı erişim, grup dersi ve online koçluk metinleri **Ana metinler** sekmesinden düzenlenir.
 
+Üyelik, kişisel koçluk, online koçluk, grup dersleri, SHAPE BAR ve iletişim bölümlerinin arkasında salon fotoğrafı sabit ve belirgin bir genel arka plan olarak kullanılır. İçeriklerdeki yarı saydam koyu katmanlar metinlerin ve fiyatların okunmasını korur. Yönetim panelinden kapak görseli değiştirildiğinde genel sayfa arka planı da aynı görselle otomatik olarak güncellenir.
+
 ## Supabase kurulumu
 
 1. Size ayrıca verilen `supabase-setup.sql` dosyasını açın.
