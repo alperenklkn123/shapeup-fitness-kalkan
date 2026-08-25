@@ -148,7 +148,7 @@
       email: "shapetrainingclub@gmail.com",
       instagramUrl: "https://www.instagram.com/shape.training.club/",
       mapsUrl: "https://www.google.com/maps/search/?api=1&query=Shape+Training+Club+Kalkan",
-      reviewsUrl: "https://www.google.com/search?q=Shape+Training+Club+Kalkan+reviews",
+      reviewsUrl: "https://search.google.com/local/writereview?placeid=ChIJw_Y6vGAtwBQROEuRz0soR_8",
       addresses: {
         en: "Yasemen Sokak No:17 · Kalkan, Kaş / Antalya",
         tr: "Yasemen Sokak No:17 · Kalkan, Kaş / Antalya",

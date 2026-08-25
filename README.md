@@ -1,3 +1,7 @@
+## V22
+- Google Reviews bağlantısı doğrudan Google yorum yazma ekranına yönlendirildi.
+- Eski Supabase Google arama bağlantısı otomatik olarak yeni doğrudan yorum bağlantısına dönüştürülür.
+
 # Shape Training Club · Kalkan — V19
 
 `https://shapetrainingclub.net/` için hazırlanmış, GitHub Pages üzerinde çalışan ve Supabase destekli çok dilli web sitesi.

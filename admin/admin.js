@@ -154,6 +154,9 @@
     merged.contact = Object.assign({}, clone(base.contact || {}), clone(source.contact || {}));
     merged.contact.addresses = Object.assign({}, clone((base.contact || {}).addresses || {}), clone((source.contact || {}).addresses || {}));
     merged.contact.hours = Object.assign({}, clone((base.contact || {}).hours || {}), clone((source.contact || {}).hours || {}));
+    const directReviewUrl = "https://search.google.com/local/writereview?placeid=ChIJw_Y6vGAtwBQROEuRz0soR_8";
+    const savedReviewUrl = String(merged.contact.reviewsUrl || "").trim();
+    if (!savedReviewUrl || /^https?:\/\/(?:www\.)?google\.com\/search\?q=Shape(?:\+|%20)Training(?:\+|%20)Club(?:\+|%20)Kalkan(?:\+|%20)reviews(?:&.*)?$/i.test(savedReviewUrl)) merged.contact.reviewsUrl = directReviewUrl;
     merged.translations = {};
     LANGUAGES.forEach(language => {
       merged.translations[language.code] = Object.assign(
