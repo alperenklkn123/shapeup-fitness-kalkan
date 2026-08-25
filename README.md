@@ -1,3 +1,12 @@
+## V23 — Production hardening
+- Supabase JavaScript bağımlılığı bilinen kararlı `2.111.0` sürümüne sabitlendi.
+- Yerel CSS/JS cache sürümleri V23 olarak güncellendi.
+- Aktif Open Graph PNG dosyası görünüm değiştirilmeden yeniden sıkıştırıldı.
+- GitHub Pages için `.nojekyll` ve markalı `404.html` eklendi.
+- Her push'ta çalışan yerel üretim denetimi ve günlük canlı site/TLS kontrolü eklendi.
+- Domain, GitHub Pages ve Supabase için `OPERATIONS-CHECKLIST.md` eklendi.
+- Supabase RLS için çalıştırılmadan önce incelenmesi gereken `supabase-rls-template.sql` eklendi.
+
 ## V22
 - Google Reviews bağlantısı doğrudan Google yorum yazma ekranına yönlendirildi.
 - Eski Supabase Google arama bağlantısı otomatik olarak yeni doğrudan yorum bağlantısına dönüştürülür.
