@@ -1,3 +1,10 @@
+## V24 — Instagram landing page
+- Instagram bio trafiği için `https://shapetrainingclub.net/instagram/` mobil öncelikli hızlı erişim sayfası eklendi.
+- Üyelik, WhatsApp, grup dersleri, personal coaching, Shape Bar, konum ve galeri tek ekranda toplandı.
+- İngilizce, Türkçe, Almanca ve Rusça dil seçenekleri eklendi.
+- Instagram kaynaklı bağlantılara UTM parametreleri eklendi.
+- Yeni sayfa sitemap.xml içine eklendi.
+
 ## V23 — Production hardening
 - Supabase JavaScript bağımlılığı bilinen kararlı `2.111.0` sürümüne sabitlendi.
 - Yerel CSS/JS cache sürümleri V23 olarak güncellendi.
