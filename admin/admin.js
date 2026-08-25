@@ -34,6 +34,7 @@
     { key: "heroTitle", label: "Kapak başlığı", rows: 1 },
     { key: "heroIntro", label: "Kapak açıklaması", rows: 3 },
     { key: "heroWhatsappCta", label: "WhatsApp düğmesi", rows: 1 },
+    { key: "ruleCommunity", label: "Kayan uyarı — Topluluk mesajı", rows: 2 },
     { key: "quickMembership", label: "Hızlı bağlantı — Üyelik fiyatları", rows: 1 },
     { key: "quickHours", label: "Hızlı bağlantı — Çalışma saatleri", rows: 1 },
     { key: "quickMenu", label: "Hızlı bağlantı — Shape Bar", rows: 1 },

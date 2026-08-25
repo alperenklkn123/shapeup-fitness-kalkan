@@ -11,6 +11,7 @@
 
 ## Bu sürümde tamamlananlar
 
+- Kayan duyuru şeridi yalnızca dört dilde “More than a gym. A community in motion.” topluluk mesajını gösterir; görünürlük ve kontrast güçlendirildi.
 - Yeni topluluk mesajı yönetim panelindeki dört dil metin alanlarından değiştirilebilir hâle getirildi.
 - Kayan şerit daha güçlü kontrast, parlak sınır, vurgulu ikon ve topluluk mesajına özel altın-mavi kart görünümüyle belirginleştirildi.
 - WhatsApp ve sosyal medya bağlantı önizlemesi, gerçek salon fotoğrafı ve yeni marka metinleriyle yenilendi.
