@@ -1,15 +1,25 @@
-# Shape Training Club · Kalkan — V16
+# Shape Training Club · Kalkan — V18
 
 `https://shapetrainingclub.net/` için hazırlanmış, GitHub Pages üzerinde çalışan ve Supabase destekli çok dilli web sitesi.
 
 ## Canlı adresler
 
 - Ana site: `https://shapetrainingclub.net/`
+- Fotoğraf galerisi: `https://shapetrainingclub.net/gallery.html`
 - Yönetim paneli: `https://shapetrainingclub.net/admin/`
 - Site haritası: `https://shapetrainingclub.net/sitemap.xml`
 
 ## Bu sürümde tamamlananlar
 
+- WhatsApp ve sosyal medya bağlantı önizlemesi, gerçek salon fotoğrafı ve yeni marka metinleriyle yenilendi.
+- Paylaşım başlığı “Where Performance Meets Community | Shape Training Club Kalkan” olarak güncellendi.
+- Paylaşım açıklaması “Premium training, personal coaching and a welcoming community in central Kalkan.” olarak güncellendi.
+- Hızlı Erişim bölümüne, Google Reviews düğmesiyle orantılı yeni “Fotoğraf galerisi” düğmesi eklendi.
+- Ayrı, mobil öncelikli ve dört dilde çalışan `gallery.html` sayfası eklendi.
+- Galeriye başlangıç olarak Kadınlar tuvaleti, Erkekler tuvaleti, HYROX alanı, Serbest ağırlık alanı ve Koşu bandı alanı kategorileri eklendi.
+- Yönetim paneline kategori ekleme, kaldırma, dört dilde adlandırma, yayından kaldırma ve çoklu fotoğraf yükleme araçları eklendi.
+- Galeri fotoğrafları yükleme sırasında WebP biçimine ve mobil kullanıma uygun boyuta otomatik olarak hazırlanır.
+- Galeri fotoğrafları büyütülebilir; önceki/sonraki fotoğraf geçişi ve klavye kontrolü bulunur.
 - Üst logoya küçük “TRAINING CLUB” ibaresi eklendi; mobil başlık düzeni korunuyor.
 - Fotoğraf üzerindeki küçük açıklamalar, kur bilgileri ve ikincil metinler boyutları değiştirilmeden daha okunaklı hâle getirildi.
 - Hızlı Erişim bölümüne dört dilde çalışan, yönetim panelindeki Google yorum bağlantısını kullanan tam genişlikte Google Reviews düğmesi eklendi.
@@ -26,11 +36,13 @@
 ## Dosyalar
 
 - `index.html`: Ziyaretçilerin gördüğü ana site
+- `gallery.html`: Kategorili ve çok dilli fotoğraf galerisi
 - `admin/`: Güvenli yönetim paneli
 - `site-defaults.js`: İlk açılış ve bağlantı hataları için yedek içerik
 - `supabase-config.js`: Tarayıcıda kullanılabilen Supabase proje bağlantısı
 - `shape-hero.png`, `shape-hero-mobile.webp`: Masaüstü ve mobil kapak görselleri
-- `shape-og.png`: WhatsApp ve sosyal medya paylaşım görseli
+- `shape-og-v2.png`: Güncel WhatsApp ve sosyal medya paylaşım görseli
+- `shape-og.png`: Önceki paylaşım görseli; güvenli yedek olarak korunur
 - `shape-icon.svg`: Tarayıcı sekmesi simgesi
 - `CNAME`: GitHub Pages özel alan adı kaydı
 - `robots.txt`, `sitemap.xml`: Arama motoru yayın dosyaları
@@ -52,8 +64,9 @@
 2. İngilizce, Türkçe, Almanca ve Rusça dil düğmelerini deneyin.
 3. TL, EUR, USD ve GBP seçimlerini kontrol edin.
 4. WhatsApp, telefon, Instagram, harita ve Google yorum bağlantılarını deneyin.
-5. `https://shapetrainingclub.net/admin/` adresinden giriş yapın ve küçük bir metin değişikliğini kaydedip ana sayfada doğrulayın.
-6. Yönetim panelindeki bölüm fotoğraflarını ve telefon kadrajlarını kontrol edin.
+5. Hızlı Erişim içindeki “Fotoğraf galerisi” düğmesini açın ve beş kategorinin dört dilde değiştiğini kontrol edin.
+6. `https://shapetrainingclub.net/admin/` adresinden giriş yapın, galeriye bir deneme fotoğrafı yükleyin ve galeri sayfasında doğrulayın.
+7. Yönetim panelindeki bölüm fotoğraflarını ve telefon kadrajlarını kontrol edin.
 
 ## Supabase alan adı ayarı
 

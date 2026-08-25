@@ -107,6 +107,40 @@
         ]
       }
     ],
+    gallery: {
+      categories: [
+        {
+          id: "women-restroom",
+          active: true,
+          names: { en: "Women's restroom", tr: "Kadınlar tuvaleti", de: "Damentoilette", ru: "Женский туалет" },
+          photos: []
+        },
+        {
+          id: "men-restroom",
+          active: true,
+          names: { en: "Men's restroom", tr: "Erkekler tuvaleti", de: "Herrentoilette", ru: "Мужской туалет" },
+          photos: []
+        },
+        {
+          id: "hyrox-area",
+          active: true,
+          names: { en: "HYROX area", tr: "HYROX alanı", de: "HYROX-Bereich", ru: "Зона HYROX" },
+          photos: []
+        },
+        {
+          id: "free-weights-area",
+          active: true,
+          names: { en: "Free weights area", tr: "Serbest ağırlık alanı", de: "Freihantelbereich", ru: "Зона свободных весов" },
+          photos: []
+        },
+        {
+          id: "treadmill-area",
+          active: true,
+          names: { en: "Treadmill area", tr: "Koşu bandı alanı", de: "Laufbandbereich", ru: "Зона беговых дорожек" },
+          photos: []
+        }
+      ]
+    },
     contact: {
       phoneDisplay: "+90 530 378 57 08",
       phoneLink: "+905303785708",
@@ -154,6 +188,13 @@
         quickKicker: "QUICK ACCESS",
         quickIntro: "Everything you need, one tap away.",
         quickOnline: "Online coaching",
+        quickGallery: "Photo gallery",
+        galleryKicker: "DISCOVER SHAPE",
+        galleryTitle: "Explore the club.",
+        galleryIntro: "Take a closer look at our training areas and facilities.",
+        galleryEmpty: "Photos for this area will be added soon.",
+        galleryBack: "Back to the main site",
+        galleryLoading: "Gallery is loading…",
         directions: "Get directions",
         fact1: "Open 7 days",
         fact2: "Personal coaching",
@@ -226,6 +267,13 @@
         quickKicker: "HIZLI ERİŞİM",
         quickIntro: "İhtiyacın olan bilgiye tek dokunuşla ulaş.",
         quickOnline: "Online koçluk",
+        quickGallery: "Fotoğraf galerisi",
+        galleryKicker: "SHAPE’İ KEŞFET",
+        galleryTitle: "Salonu yakından incele.",
+        galleryIntro: "Antrenman alanlarımızı ve salon imkânlarımızı fotoğraflarla keşfet.",
+        galleryEmpty: "Bu alana ait fotoğraflar yakında eklenecek.",
+        galleryBack: "Ana siteye dön",
+        galleryLoading: "Galeri yükleniyor…",
         directions: "Yol tarifi al",
         fact1: "Haftanın 7 günü açık",
         fact2: "Kişisel koçluk",
@@ -298,6 +346,13 @@
         quickKicker: "SCHNELLZUGRIFF",
         quickIntro: "Alle wichtigen Infos mit nur einem Tippen.",
         quickOnline: "Online-Coaching",
+        quickGallery: "Fotogalerie",
+        galleryKicker: "SHAPE ENTDECKEN",
+        galleryTitle: "Entdecke unser Studio.",
+        galleryIntro: "Sieh dir unsere Trainingsbereiche und Einrichtungen genauer an.",
+        galleryEmpty: "Fotos für diesen Bereich werden bald hinzugefügt.",
+        galleryBack: "Zurück zur Hauptseite",
+        galleryLoading: "Galerie wird geladen…",
         directions: "Route anzeigen",
         fact1: "7 Tage geöffnet",
         fact2: "Personal Coaching",
@@ -370,6 +425,13 @@
         quickKicker: "БЫСТРЫЙ ДОСТУП",
         quickIntro: "Вся важная информация в одно касание.",
         quickOnline: "Онлайн-коучинг",
+        quickGallery: "Фотогалерея",
+        galleryKicker: "ОТКРОЙТЕ ДЛЯ СЕБЯ SHAPE",
+        galleryTitle: "Посмотрите наш клуб.",
+        galleryIntro: "Познакомьтесь ближе с тренировочными зонами и удобствами клуба.",
+        galleryEmpty: "Фотографии этого раздела скоро появятся.",
+        galleryBack: "Вернуться на главную",
+        galleryLoading: "Галерея загружается…",
         directions: "Построить маршрут",
         fact1: "Открыто 7 дней",
         fact2: "Персональный тренинг",

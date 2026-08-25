@@ -42,6 +42,12 @@
     { key: "quickGroup", label: "Hızlı bağlantı — Grup dersleri", rows: 1 },
     { key: "quickKicker", label: "Hızlı erişim — Üst etiket", rows: 1 },
     { key: "quickIntro", label: "Hızlı erişim — Açıklama", rows: 2 },
+    { key: "quickGallery", label: "Hızlı bağlantı — Fotoğraf galerisi", rows: 1 },
+    { key: "galleryKicker", label: "Galeri — Üst etiket", rows: 1 },
+    { key: "galleryTitle", label: "Galeri — Başlık", rows: 1 },
+    { key: "galleryIntro", label: "Galeri — Açıklama", rows: 2 },
+    { key: "galleryEmpty", label: "Galeri — Boş kategori mesajı", rows: 2 },
+    { key: "galleryBack", label: "Galeri — Ana siteye dönüş düğmesi", rows: 1 },
     { key: "directions", label: "Yol tarifi düğmesi", rows: 1 },
     { key: "membershipKicker", label: "Üyelik üst etiketi", rows: 1 },
     { key: "membershipTitle", label: "Üyelik başlığı", rows: 2 },
@@ -141,6 +147,8 @@
     merged.groupTraining = Object.assign({}, clone(base.groupTraining || {}), clone(source.groupTraining || {}));
     merged.groupTraining.classTypes = Array.isArray((source.groupTraining || {}).classTypes) ? clone(source.groupTraining.classTypes) : clone((base.groupTraining || {}).classTypes || []);
     merged.menu = Array.isArray(source.menu) ? clone(source.menu) : clone(base.menu || []);
+    merged.gallery = Object.assign({}, clone(base.gallery || {}), clone(source.gallery || {}));
+    merged.gallery.categories = Array.isArray((source.gallery || {}).categories) ? clone(source.gallery.categories) : clone((base.gallery || {}).categories || []);
     merged.hero = Object.assign({}, clone(base.hero || {}), clone(source.hero || {}));
     merged.design = Object.assign({}, clone(base.design || {}), clone(source.design || {}));
     merged.design.typography = Object.assign({}, clone(((base.design || {}).typography) || {}), clone(((source.design || {}).typography) || {}));
@@ -308,6 +316,40 @@
           <div class="add-row"><button class="button secondary" type="button" data-action="add-item" data-category="${categoryIndex}">+ Ürün ekle</button> <button class="button danger" type="button" data-action="delete-category" data-category="${categoryIndex}">Kategoriyi sil</button></div>
         </div>
       </details>`).join("") || `<p>Henüz menü kategorisi yok.</p>`;
+  }
+
+  function renderGallery() {
+    const gallery = state.gallery || {};
+    const categories = Array.isArray(gallery.categories) ? gallery.categories : [];
+    $("#galleryEditor").innerHTML = categories.map((category, categoryIndex) => {
+      const photos = Array.isArray(category.photos) ? category.photos : [];
+      const categoryId = String(category.id || `gallery-category-${categoryIndex}`);
+      return `<details class="category-card gallery-category-card" open>
+        <summary class="category-summary"><span class="menu-symbol" aria-hidden="true">▦</span><h3>${safe((category.names || {}).tr || `Kategori ${categoryIndex + 1}`)}</h3><span>${photos.length} fotoğraf</span></summary>
+        <div class="category-body gallery-category-body">
+          <div class="gallery-category-actions">
+            <label class="check"><input type="checkbox" data-kind="gallery-category" data-category="${categoryIndex}" data-field="active" ${category.active !== false ? "checked" : ""}> Kategori yayında</label>
+            <button class="mini-button danger" type="button" data-action="delete-gallery-category" data-category="${categoryIndex}">Kategoriyi sil</button>
+          </div>
+          <div class="field-grid gallery-name-fields">
+            ${LANGUAGES.map(language => `<label class="field"><span>Kategori adı · ${language.name}</span><input type="text" data-kind="gallery-category" data-category="${categoryIndex}" data-field="names" data-lang="${language.code}" value="${safe((category.names || {})[language.code])}"></label>`).join("")}
+          </div>
+          <div class="gallery-upload-panel">
+            <label class="button primary gallery-upload-button">+ Fotoğraf seç<input type="file" accept="image/jpeg,image/png,image/webp,image/avif" multiple data-gallery-files data-category="${categoryIndex}"></label>
+            <span>Bir seferde en fazla 20 fotoğraf seçebilirsiniz. Dosyalar mobil için otomatik küçültülür.</span>
+            <p class="upload-message" data-gallery-message="${safe(categoryId)}" aria-live="polite"></p>
+          </div>
+          <div class="gallery-photo-grid">${photos.map((photo, photoIndex) => `
+            <article class="gallery-photo-card">
+              <div class="gallery-photo-preview"><img src="${safe(photo.url || "")}" alt="" loading="lazy"></div>
+              <div class="gallery-photo-body">
+                <div class="item-head"><h4>Fotoğraf ${photoIndex + 1}</h4><button class="mini-button danger" type="button" data-action="delete-gallery-photo" data-category="${categoryIndex}" data-photo="${photoIndex}">Sil</button></div>
+                <div class="gallery-alt-fields">${LANGUAGES.map(language => `<label class="field"><span>Açıklama · ${language.name}</span><input type="text" data-kind="gallery-photo" data-category="${categoryIndex}" data-photo="${photoIndex}" data-field="alt" data-lang="${language.code}" value="${safe((photo.alt || {})[language.code])}" placeholder="İsteğe bağlı"></label>`).join("")}</div>
+              </div>
+            </article>`).join("")}</div>
+        </div>
+      </details>`;
+    }).join("") || `<div class="gallery-empty-admin"><strong>Henüz galeri kategorisi yok.</strong><span>“Kategori ekle” düğmesiyle ilk kategoriyi oluşturun.</span></div>`;
   }
 
   function renderContact() {
@@ -511,6 +553,7 @@
     renderOnlineCoaching();
     renderGroupTraining();
     renderMenu();
+    renderGallery();
     renderContact();
     renderTexts();
     renderTypography();
@@ -525,6 +568,7 @@
     const index = Number(target.dataset.index);
     const categoryIndex = Number(target.dataset.category);
     const itemIndex = Number(target.dataset.item);
+    const photoIndex = Number(target.dataset.photo);
     const field = target.dataset.field;
     const language = target.dataset.lang;
 
@@ -545,6 +589,17 @@
     } else if (kind === "menu-item" && state.menu[categoryIndex] && state.menu[categoryIndex].items[itemIndex]) {
       if (field === "names") state.menu[categoryIndex].items[itemIndex].names[language] = value;
       else state.menu[categoryIndex].items[itemIndex][field] = value;
+    } else if (kind === "gallery-category" && ((state.gallery || {}).categories || [])[categoryIndex]) {
+      const category = state.gallery.categories[categoryIndex];
+      if (field === "names") {
+        category.names = category.names || {};
+        category.names[language] = value;
+      } else category[field] = value;
+    } else if (kind === "gallery-photo" && ((state.gallery || {}).categories || [])[categoryIndex]) {
+      const photo = (state.gallery.categories[categoryIndex].photos || [])[photoIndex];
+      if (!photo) return;
+      photo.alt = photo.alt || {};
+      photo.alt[language] = value;
     } else if (kind === "contact") {
       state.contact[field] = value;
     } else if (kind === "contact-address") {
@@ -618,6 +673,26 @@
     if (action === "delete-item" && window.confirm("Bu ürün silinsin mi?")) {
       state.menu[Number(button.dataset.category)].items.splice(Number(button.dataset.item), 1);
       renderMenu();
+    }
+    if (action === "add-gallery-category") {
+      state.gallery = state.gallery || {};
+      state.gallery.categories = Array.isArray(state.gallery.categories) ? state.gallery.categories : [];
+      state.gallery.categories.push({
+        id: id("gallery-category"),
+        active: true,
+        names: { en: "New area", tr: "Yeni alan", de: "Neuer Bereich", ru: "Новая зона" },
+        photos: []
+      });
+      renderGallery();
+    }
+    if (action === "delete-gallery-category" && window.confirm("Bu kategori ve içindeki tüm fotoğraflar galeriden kaldırılsın mı?")) {
+      state.gallery.categories.splice(Number(button.dataset.category), 1);
+      renderGallery();
+    }
+    if (action === "delete-gallery-photo" && window.confirm("Bu fotoğraf galeriden kaldırılsın mı?")) {
+      const category = state.gallery.categories[Number(button.dataset.category)];
+      if (category && Array.isArray(category.photos)) category.photos.splice(Number(button.dataset.photo), 1);
+      renderGallery();
     }
     if (action === "reset-background") {
       state.backgrounds = state.backgrounds || {};
@@ -772,6 +847,86 @@
     return new File([blob], `${baseName || "section-photo"}.webp`, { type: "image/webp", lastModified: Date.now() });
   }
 
+  async function optimiseGalleryImage(file) {
+    if (!("createImageBitmap" in window)) return file;
+    const bitmap = await createImageBitmap(file);
+    const maximumSide = 1800;
+    const scale = Math.min(1, maximumSide / Math.max(bitmap.width, bitmap.height));
+    const width = Math.max(1, Math.round(bitmap.width * scale));
+    const height = Math.max(1, Math.round(bitmap.height * scale));
+    const canvas = document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+    canvas.getContext("2d", { alpha: false }).drawImage(bitmap, 0, 0, width, height);
+    if (typeof bitmap.close === "function") bitmap.close();
+    let blob = null;
+    for (const quality of [0.82, 0.74, 0.66, 0.58]) {
+      blob = await new Promise(resolve => canvas.toBlob(resolve, "image/webp", quality));
+      if (!blob || blob.size <= 1024 * 1024) break;
+    }
+    if (!blob) return file;
+    const baseName = String(file.name || "gallery-photo").replace(/\.[^.]+$/, "").replace(/[^a-z0-9_-]+/gi, "-");
+    return new File([blob], `${baseName || "gallery-photo"}.webp`, { type: "image/webp", lastModified: Date.now() });
+  }
+
+  function setGalleryMessage(categoryId, message, type) {
+    const element = $$(`[data-gallery-message]`).find(item => item.dataset.galleryMessage === String(categoryId));
+    if (!element) return;
+    element.textContent = message || "";
+    element.style.color = type === "success" ? "var(--good)" : type === "error" ? "var(--bad)" : "var(--muted)";
+  }
+
+  async function uploadGalleryFiles(fileList, categoryIndex) {
+    const category = (((state.gallery || {}).categories) || [])[categoryIndex];
+    if (!category) return;
+    category.photos = Array.isArray(category.photos) ? category.photos : [];
+    const categoryId = String(category.id || `gallery-category-${categoryIndex}`);
+    const files = Array.from(fileList || []).slice(0, 20);
+    if (!files.length) return;
+    const accepted = files.filter(file => /^image\/(jpeg|png|webp|avif)$/.test(file.type) && file.size <= 15 * 1024 * 1024);
+    if (!accepted.length) {
+      setGalleryMessage(categoryId, "JPG, PNG, WebP veya AVIF biçiminde ve 15 MB'dan küçük fotoğraf seçin.", "error");
+      return;
+    }
+    setGalleryMessage(categoryId, `${accepted.length} fotoğraf mobil için hazırlanıyor…`);
+    let uploaded = 0;
+    let failed = files.length - accepted.length;
+    for (let index = 0; index < accepted.length; index++) {
+      const originalFile = accepted[index];
+      setGalleryMessage(categoryId, `${index + 1}/${accepted.length} fotoğraf yükleniyor…`);
+      try {
+        let uploadFile = originalFile;
+        try { uploadFile = await optimiseGalleryImage(originalFile); }
+        catch (error) { console.warn("Galeri fotoğrafı optimize edilemedi; orijinal dosya denenecek.", error); }
+        if (uploadFile.size > 1.5 * 1024 * 1024) {
+          failed++;
+          continue;
+        }
+        const extension = (uploadFile.name.split(".").pop() || "webp").toLowerCase().replace(/[^a-z0-9]/g, "");
+        const safeCategoryId = categoryId.replace(/[^a-z0-9_-]+/gi, "-");
+        const path = `gallery/${safeCategoryId}/${Date.now()}-${index}-${Math.random().toString(36).slice(2, 7)}.${extension}`;
+        const { error } = await client.storage.from("site-assets").upload(path, uploadFile, { cacheControl: "31536000", upsert: false, contentType: uploadFile.type });
+        if (error) throw error;
+        const result = client.storage.from("site-assets").getPublicUrl(path);
+        category.photos.push({ id: id("gallery-photo"), url: result.data.publicUrl, alt: { en: "", tr: "", de: "", ru: "" } });
+        uploaded++;
+      } catch (error) {
+        console.error(error);
+        failed++;
+      }
+    }
+    if (!uploaded) {
+      setGalleryMessage(categoryId, "Fotoğraflar yüklenemedi. Bağlantıyı kontrol edip tekrar deneyin.", "error");
+      return;
+    }
+    renderGallery();
+    markDirty();
+    setGalleryMessage(categoryId, "Fotoğraflar yüklendi; galeri yayınlanıyor…");
+    await saveConfig();
+    const suffix = failed ? ` ${failed} dosya atlandı.` : "";
+    setGalleryMessage(categoryId, dirty ? `Fotoğraflar yüklendi ancak yayınlama sırasında hata oluştu.${suffix}` : `${uploaded} fotoğraf galeride yayında.${suffix}`, dirty ? "error" : "success");
+  }
+
   async function uploadBackground(file, section) {
     if (!file || !BACKGROUND_SECTIONS.some(item => item.key === section)) return;
     if (!/^image\/(jpeg|png|webp|avif)$/.test(file.type)) {
@@ -894,7 +1049,12 @@
     });
     $("#workspace").addEventListener("change", event => {
       const input = event.target.closest("[data-background-file]");
-      if (input) uploadBackground(input.files[0], input.dataset.section);
+      if (input) {
+        uploadBackground(input.files[0], input.dataset.section);
+        return;
+      }
+      const galleryInput = event.target.closest("[data-gallery-files]");
+      if (galleryInput) uploadGalleryFiles(galleryInput.files, Number(galleryInput.dataset.category));
     });
     $$(".tab").forEach(tab => tab.addEventListener("click", () => activateTab(tab.dataset.tab)));
     $("#heroFile").addEventListener("change", event => uploadHero(event.target.files[0]));

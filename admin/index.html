@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex,nofollow,noarchive">
   <meta name="theme-color" content="#07111d">
   <title>SHAPE Yönetim Paneli</title>
-  <link rel="stylesheet" href="admin.css?v=14">
+  <link rel="stylesheet" href="admin.css?v=17">
 </head>
 <body>
   <div class="ambient" aria-hidden="true"></div>
@@ -69,6 +69,7 @@
         <button class="tab" type="button" data-tab="typography">Yazı boyutları</button>
         <button class="tab" type="button" data-tab="hero">Kapak görseli</button>
         <button class="tab" type="button" data-tab="backgrounds">Bölüm fotoğrafları</button>
+        <button class="tab" type="button" data-tab="gallery">Fotoğraf galerisi</button>
       </nav>
 
       <div class="workspace" id="workspace">
@@ -135,6 +136,12 @@
           <div id="backgroundsEditor" class="background-editor-grid"></div>
           <p class="typography-note">Fotoğraflar alanı tamamen doldurur ve tekrar etmez. Önemli bölüm kırpılırsa her karttaki “Fotoğraf konumu” seçeneğiyle görüntüyü yukarı veya aşağı taşıyın. Dikey ya da kare fotoğraflar mobilde daha iyi sonuç verir.</p>
         </section>
+
+        <section class="panel" data-panel="gallery" hidden>
+          <div class="panel-head"><div><p class="eyebrow">FOTOĞRAF GALERİSİ</p><h2>Kategoriler ve fotoğraflar</h2><p>Kategori ekleyin, adlarını dört dilde değiştirin ve her kategoriye birden fazla fotoğraf yükleyin.</p></div><button class="button secondary" type="button" data-action="add-gallery-category">+ Kategori ekle</button></div>
+          <div class="gallery-admin-note"><strong>Nasıl kullanılır?</strong><span>Önce kategoriyi oluşturun, ardından fotoğrafları seçin. Yükleme tamamlandığında değişiklikler otomatik olarak yayınlanır. Bir kategori kapatılırsa galeri sayfasında görünmez.</span></div>
+          <div id="galleryEditor" class="gallery-editor stack"></div>
+        </section>
       </div>
 
       <div class="mobile-save">
@@ -180,7 +187,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="../supabase-config.js"></script>
-  <script src="../site-defaults.js?v=16"></script>
-  <script src="admin.js?v=16"></script>
+  <script src="../site-defaults.js?v=17"></script>
+  <script src="admin.js?v=17"></script>
 </body>
 </html>
