@@ -79,9 +79,13 @@ gallery = (ROOT / 'gallery.html').read_text(encoding='utf-8')
 defaults = (ROOT / 'site-defaults.js').read_text(encoding='utf-8')
 config = (ROOT / 'supabase-config.js').read_text(encoding='utf-8')
 
-for name, text in [('index.html', index), ('gallery.html', gallery), ('admin/index.html', admin)]:
-    if EXPECTED_SUPABASE not in text:
-        errors.append(f'{name}: Supabase JS is not pinned to the approved version')
+if EXPECTED_SUPABASE not in admin:
+    errors.append('admin/index.html: Supabase JS is not pinned to the approved version')
+for name, text in [('index.html', index), ('gallery.html', gallery)]:
+    if EXPECTED_SUPABASE in text:
+        warnings.append(f'{name}: public page still loads the full Supabase JS SDK; V25 expects REST reads')
+    if '/rest/v1/site_config' not in text:
+        errors.append(f'{name}: V25 public REST site_config loader is missing')
 
 for old in ('site-defaults.js?v=19','admin.js?v=19','admin.css?v=17'):
     if old in index + gallery + admin:
@@ -89,6 +93,14 @@ for old in ('site-defaults.js?v=19','admin.js?v=19','admin.css?v=17'):
 
 if DIRECT_REVIEW not in index or DIRECT_REVIEW not in defaults:
     errors.append('Direct Google review URL is missing from production defaults/page')
+if 'shape-hero.webp' not in index or not (ROOT / 'shape-hero.webp').exists():
+    errors.append('V25 optimized hero WebP/preload is missing')
+if 'shape-site-config-v25' not in index:
+    errors.append('V25 site-config cache is missing from index.html')
+if 'render(lang)}' in index and 'finally{clearTimeout(timeout);fxLoading=false;render(lang)}' in index:
+    errors.append('Async FX loader still triggers a full-page render')
+if 'static.cloudflareinsights.com/beacon.min.js' not in index:
+    errors.append('Cloudflare Web Analytics beacon is missing from index.html')
 if 'google.com/search?q=Shape+Training+Club+Kalkan+reviews' in index or 'google.com/search?q=Shape+Training+Club+Kalkan+reviews' in defaults:
     errors.append('Legacy Google search review URL remains in active production content')
 
@@ -113,4 +125,4 @@ if errors:
     sys.exit(1)
 print('SITE AUDIT: PASSED')
 for w in warnings: print(f'WARN: {w}')
-print('Checked local references, duplicate IDs, CNAME, sitemap, robots, Google Reviews, cache versions, Supabase version pinning and obvious secret exposure.')
+print('Checked local references, duplicate IDs, CNAME, sitemap, robots, Google Reviews, V25 caches/performance invariants, admin Supabase version pinning and obvious secret exposure.')

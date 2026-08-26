@@ -15,7 +15,7 @@
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://vhghrafodagmcbjiqfpq.supabase.co" crossorigin>
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preconnect" href="https://static.cloudflareinsights.com" crossorigin>
   <link rel="icon" href="shape-icon.svg" type="image/svg+xml">
   <title>Photo Gallery | Shape Training Club Kalkan</title>
   <style>
@@ -80,16 +80,20 @@
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.111.0"></script>
   <script src="supabase-config.js"></script>
-  <script src="site-defaults.js?v=23"></script>
+  <script src="site-defaults.js?v=25"></script>
   <script>
     (() => {
       "use strict";
       const LANGUAGES = ["en", "tr", "de", "ru"];
       const clone = value => JSON.parse(JSON.stringify(value || {}));
       const defaults = clone(window.SHAPE_DEFAULTS || {});
+      const configCacheKey = "shape-site-config-v25";
       let config = defaults;
+      try {
+        const cached = JSON.parse(localStorage.getItem(configCacheKey) || "null");
+        if (cached && cached.content && Date.now() - Number(cached.savedAt || 0) < 7 * 86400000) config = mergeConfig(defaults, cached.content);
+      } catch (error) {}
       let language = getInitialLanguage();
       let activeCategoryId = "";
       let lightboxPhotos = [];
@@ -213,6 +217,7 @@
           image.alt = photo.alt;
           image.loading = index < 2 ? "eager" : "lazy";
           image.decoding = "async";
+          if (index < 2) image.fetchPriority = "high";
           button.append(image);
           button.addEventListener("click", () => openLightbox(photos, index));
           grid.append(button);
@@ -273,14 +278,19 @@
 
       async function loadRemoteConfig() {
         const supabaseConfig = window.SHAPE_SUPABASE || {};
-        if (!window.supabase || !supabaseConfig.url || !supabaseConfig.publishableKey) return;
+        if (!supabaseConfig.url || !supabaseConfig.publishableKey) return;
         try {
-          const client = window.supabase.createClient(supabaseConfig.url, supabaseConfig.publishableKey);
-          const { data, error } = await client.from("site_config").select("content").eq("id", 1).maybeSingle();
-          if (error) throw error;
-          if (data && data.content) {
-            config = mergeConfig(defaults, data.content);
-            render();
+          const endpoint = `${String(supabaseConfig.url).replace(/\/$/, "")}/rest/v1/site_config?id=eq.1&select=content`;
+          const response = await fetch(endpoint, { headers: { apikey: supabaseConfig.publishableKey, Authorization: `Bearer ${supabaseConfig.publishableKey}`, Accept: "application/json" }, cache: "no-store" });
+          if (!response.ok) throw new Error(`Gallery config ${response.status}`);
+          const rows = await response.json();
+          const content = Array.isArray(rows) && rows[0] && rows[0].content;
+          if (content) {
+            const next = mergeConfig(defaults, content);
+            const changed = JSON.stringify((next.gallery || {}).categories || []) !== JSON.stringify((config.gallery || {}).categories || []) || JSON.stringify(next.translations || {}) !== JSON.stringify(config.translations || {});
+            config = next;
+            try { localStorage.setItem(configCacheKey, JSON.stringify({ content, savedAt: Date.now() })); } catch (error) {}
+            if (changed) render();
           }
         } catch (error) {
           console.warn("Galeri güncel içeriği alınamadı; yedek içerik gösteriliyor.", error);

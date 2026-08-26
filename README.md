@@ -1,4 +1,4 @@
-## V24 — Instagram landing page
+## V25 — Instagram landing page
 - Instagram bio trafiği için `https://shapetrainingclub.net/instagram/` mobil öncelikli hızlı erişim sayfası eklendi.
 - Üyelik, WhatsApp, grup dersleri, personal coaching, Shape Bar, konum ve galeri tek ekranda toplandı.
 - İngilizce, Türkçe, Almanca ve Rusça dil seçenekleri eklendi.
@@ -122,3 +122,17 @@ GitHub doğrulama için eklenen `_github-pages-challenge-alperenklkn123` TXT kay
 ## Sonraki adım
 
 Canlı mobil kontrol tamamlandıktan sonra masa üstü QR tabelası yalnızca `https://shapetrainingclub.net/` adresine göre hazırlanmalıdır.
+
+
+## V25 CLS + Performance Fix
+
+- Hero title no longer changes font size after first paint.
+- Async FX updates no longer rebuild the entire page.
+- Public pages fetch `site_config` through Supabase REST instead of loading the full Supabase JS SDK.
+- Site config and hero URL are cached locally to reduce repeat-visit layout shifts and late hero loading.
+- Hero assets are preloaded with high priority.
+- Remote config updates rebuild layout only when layout/content data actually changed; media-only updates are applied without reconstructing page sections.
+- Hero/contact action and quick-access text slots have reserved space to reduce CLS.
+- Cloudflare Web Analytics stays enabled and its script is placed inside the document body.
+
+After deployment, compare Cloudflare Web Analytics over new traffic; old CLS samples remain in the selected historical window until they age out.
