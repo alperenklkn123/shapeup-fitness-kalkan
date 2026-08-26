@@ -850,25 +850,63 @@
   }
 
   async function optimiseGalleryImage(file) {
-    if (!("createImageBitmap" in window)) return file;
-    const bitmap = await createImageBitmap(file);
-    const maximumSide = 1800;
-    const scale = Math.min(1, maximumSide / Math.max(bitmap.width, bitmap.height));
-    const width = Math.max(1, Math.round(bitmap.width * scale));
-    const height = Math.max(1, Math.round(bitmap.height * scale));
-    const canvas = document.createElement("canvas");
-    canvas.width = width;
-    canvas.height = height;
-    canvas.getContext("2d", { alpha: false }).drawImage(bitmap, 0, 0, width, height);
-    if (typeof bitmap.close === "function") bitmap.close();
-    let blob = null;
-    for (const quality of [0.82, 0.74, 0.66, 0.58]) {
-      blob = await new Promise(resolve => canvas.toBlob(resolve, "image/webp", quality));
-      if (!blob || blob.size <= 1024 * 1024) break;
+    let source = null;
+    let width = 0;
+    let height = 0;
+    let cleanup = () => {};
+
+    if ("createImageBitmap" in window) {
+      try {
+        const bitmap = await createImageBitmap(file);
+        source = bitmap;
+        width = bitmap.width;
+        height = bitmap.height;
+        cleanup = () => { if (typeof bitmap.close === "function") bitmap.close(); };
+      } catch (error) {
+        console.warn("createImageBitmap galeri görselini açamadı; Image fallback deneniyor.", error);
+      }
     }
-    if (!blob) return file;
-    const baseName = String(file.name || "gallery-photo").replace(/\.[^.]+$/, "").replace(/[^a-z0-9_-]+/gi, "-");
-    return new File([blob], `${baseName || "gallery-photo"}.webp`, { type: "image/webp", lastModified: Date.now() });
+
+    if (!source) {
+      const objectUrl = URL.createObjectURL(file);
+      try {
+        const image = await new Promise((resolve, reject) => {
+          const element = new Image();
+          element.onload = () => resolve(element);
+          element.onerror = () => reject(new Error("Fotoğraf tarayıcı tarafından açılamadı."));
+          element.src = objectUrl;
+        });
+        source = image;
+        width = image.naturalWidth || image.width;
+        height = image.naturalHeight || image.height;
+      } finally {
+        cleanup = () => URL.revokeObjectURL(objectUrl);
+      }
+    }
+
+    try {
+      const maximumSide = 1800;
+      const scale = Math.min(1, maximumSide / Math.max(width, height));
+      const outputWidth = Math.max(1, Math.round(width * scale));
+      const outputHeight = Math.max(1, Math.round(height * scale));
+      const canvas = document.createElement("canvas");
+      canvas.width = outputWidth;
+      canvas.height = outputHeight;
+      const context = canvas.getContext("2d", { alpha: false });
+      if (!context) return file;
+      context.drawImage(source, 0, 0, outputWidth, outputHeight);
+
+      let blob = null;
+      for (const quality of [0.82, 0.74, 0.66, 0.58]) {
+        blob = await new Promise(resolve => canvas.toBlob(resolve, "image/webp", quality));
+        if (!blob || blob.size <= 1024 * 1024) break;
+      }
+      if (!blob) return file;
+      const baseName = String(file.name || "gallery-photo").replace(/\.[^.]+$/, "").replace(/[^a-z0-9_-]+/gi, "-");
+      return new File([blob], `${baseName || "gallery-photo"}.webp`, { type: "image/webp", lastModified: Date.now() });
+    } finally {
+      cleanup();
+    }
   }
 
   function setGalleryMessage(categoryId, message, type) {
@@ -900,7 +938,10 @@
         let uploadFile = originalFile;
         try { uploadFile = await optimiseGalleryImage(originalFile); }
         catch (error) { console.warn("Galeri fotoğrafı optimize edilemedi; orijinal dosya denenecek.", error); }
-        if (uploadFile.size > 1.5 * 1024 * 1024) {
+        // Supabase site-assets bucket limiti 5 MB. Optimizasyon başarısız olsa bile
+        // 4.8 MB altındaki JPG/PNG dosyalarını doğrudan yüklemeye izin ver.
+        if (uploadFile.size > 4.8 * 1024 * 1024) {
+          console.warn("Galeri dosyası Storage limitine çok yakın/büyük olduğu için atlandı:", uploadFile.name, uploadFile.size);
           failed++;
           continue;
         }
@@ -914,6 +955,8 @@
         uploaded++;
       } catch (error) {
         console.error(error);
+        const detail = String(error && error.message ? error.message : "").trim();
+        if (detail) setGalleryMessage(categoryId, `Yükleme hatası: ${detail}`, "error");
         failed++;
       }
     }
