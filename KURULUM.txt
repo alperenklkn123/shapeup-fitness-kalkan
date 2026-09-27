@@ -1,0 +1,33 @@
+SHAPE Training Club — Yönetici şifre yenileme güncellemesi
+
+Bu paket yalnızca yönetici giriş ekranını ve şifre yenileme sayfasını günceller.
+Şifre veya özel anahtar içermez.
+
+Manuel yükleme gerekirse:
+1. ZIP dosyasını açın.
+2. İçindeki admin klasörünü GitHub deposunun köküne yükleyin.
+3. Var olan admin/admin.js ve admin/admin.css dosyalarını silmeyin.
+4. GitHub Pages yayını tamamlanınca yönetim panelini yenileyin.
+
+Yönetim paneli:
+https://shapetrainingclub.net/admin/
+
+Şifre yenileme:
+https://shapetrainingclub.net/admin/reset-password.html
+
+Supabase > Authentication > URL Configuration:
+Site URL: https://shapetrainingclub.net/admin/
+Redirect URL: https://shapetrainingclub.net/admin/**
+
+Kullanım:
+Giriş ekranından Şifremi unuttum bağlantısına basın. Yönetici e-postanızı
+yazıp bağlantı isteyin. En son gelen e-postadaki bağlantıyı açın.
+Yeni şifrenizi iki kez yazıp kaydedin. Sonra yönetim paneline giriş yapın.
+Yeni şifreyi doğrudan şifre alanlarına yazın; kod dosyalarına eklemeyin.
+
+Supabase panelinden gönderilen e-postalar /admin/ adresine dönse bile
+yeni sayfaya otomatik yönlendirilir. Süresi dolmuş veya daha önce
+kullanılmış bağlantıda yeniden e-posta istenmesi gerekir.
+
+E-posta gönderim sınırı görülürse bir süre bekleyin. Tekrar tekrar
+gönder düğmesine basmayın. Hesabın şifre güvenlik kuralları geçerlidir.

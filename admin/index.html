@@ -4,8 +4,23 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="no-referrer">
   <meta name="theme-color" content="#07111d">
   <title>SHAPE Yönetim Paneli</title>
+  <script>
+    // Supabase dashboard recovery emails may return to /admin/.
+    // Forward the callback before the regular admin client starts.
+    (function () {
+      const hash = new URLSearchParams(window.location.hash.slice(1));
+      const query = new URLSearchParams(window.location.search);
+      if (hash.get("type") === "recovery" || hash.has("error") || hash.has("error_code") || query.has("error") || query.has("error_code")) {
+        const target = new URL("reset-password.html", window.location.href);
+        target.search = window.location.search;
+        target.hash = window.location.hash;
+        window.location.replace(target.href);
+      }
+    })();
+  </script>
   <link rel="stylesheet" href="admin.css?v=26">
 </head>
 <body>
@@ -34,6 +49,7 @@
         <button class="button primary" id="loginButton" type="submit">Giriş yap</button>
         <p class="form-message" id="loginMessage" role="alert" aria-live="polite"></p>
       </form>
+      <a class="button secondary" href="reset-password.html">Şifremi unuttum</a>
       <p class="login-note">Bu sayfada üyelik oluşturulamaz. Yalnızca Supabase'te tanımlanan yönetici hesabı giriş yapabilir.</p>
     </section>
 
