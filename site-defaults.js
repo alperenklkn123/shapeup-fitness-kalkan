@@ -3,18 +3,171 @@
 
   window.SHAPE_DEFAULTS = {
     membership: [
-      { id: "day-1", active: true, featured: false, list: "₺1.000", cash: "₺900", labels: { en: "1 DAY", tr: "1 GÜN", de: "1 TAG", ru: "1 ДЕНЬ" } },
-      { id: "week-1", active: true, featured: false, list: "₺2.950", cash: "₺2.400", labels: { en: "1 WEEK", tr: "1 HAFTA", de: "1 WOCHE", ru: "1 НЕДЕЛЯ" } },
-      { id: "days-10", active: true, featured: false, list: "₺3.250", cash: "₺2.750", labels: { en: "10 DAYS", tr: "10 GÜN", de: "10 TAGE", ru: "10 ДНЕЙ" } },
-      { id: "weeks-2", active: true, featured: false, list: "₺3.700", cash: "₺3.000", labels: { en: "2 WEEKS", tr: "2 HAFTA", de: "2 WOCHEN", ru: "2 НЕДЕЛИ" } },
-      { id: "month-1", active: true, featured: false, list: "₺4.900", cash: "₺4.600", labels: { en: "1 MONTH", tr: "1 AY", de: "1 MONAT", ru: "1 МЕСЯЦ" } },
-      { id: "months-3", active: true, featured: false, list: "₺14.400", cash: "₺13.300", labels: { en: "3 MONTHS", tr: "3 AY", de: "3 MONATE", ru: "3 МЕСЯЦА" } },
-      { id: "months-6", active: true, featured: false, list: "₺27.000", cash: "₺25.000", labels: { en: "6 MONTHS", tr: "6 AY", de: "6 MONATE", ru: "6 МЕСЯЦЕВ" } },
-      { id: "months-12", active: true, featured: true, list: "₺50.000", cash: "₺45.000", labels: { en: "12 MONTHS", tr: "12 AY", de: "12 MONATE", ru: "12 МЕСЯЦЕВ" } }
+      {
+        "id": "day-1",
+        "cash": "₺900",
+        "list": "₺1.000",
+        "active": true,
+        "labels": {
+          "de": "1 TAG",
+          "en": "1 DAY",
+          "ru": "1 ДЕНЬ",
+          "tr": "1 GÜN"
+        },
+        "featured": false,
+        "cardGBP": 16,
+        "cashGBP": 15
+      },
+      {
+        "id": "week-1",
+        "cash": "₺2.400",
+        "list": "₺2.950",
+        "active": true,
+        "labels": {
+          "de": "1 WOCHE",
+          "en": "1 WEEK",
+          "ru": "1 НЕДЕЛЯ",
+          "tr": "1 HAFTA"
+        },
+        "featured": false,
+        "cardGBP": 48,
+        "cashGBP": 40
+      },
+      {
+        "id": "days-10",
+        "cash": "₺2.750",
+        "list": "₺3.250",
+        "active": true,
+        "labels": {
+          "de": "10 TAGE",
+          "en": "10 DAYS",
+          "ru": "10 ДНЕЙ",
+          "tr": "10 GÜN"
+        },
+        "featured": false,
+        "cardGBP": 53,
+        "cashGBP": 45
+      },
+      {
+        "id": "weeks-2",
+        "cash": "₺3.000",
+        "list": "₺3.700",
+        "active": true,
+        "labels": {
+          "de": "2 WOCHEN",
+          "en": "2 WEEKS",
+          "ru": "2 НЕДЕЛИ",
+          "tr": "2 HAFTA"
+        },
+        "featured": false,
+        "cardGBP": 60,
+        "cashGBP": 50
+      },
+      {
+        "id": "month-1",
+        "cash": "₺4.500",
+        "list": "₺4.900",
+        "active": true,
+        "labels": {
+          "de": "1 MONAT",
+          "en": "1 MONTH",
+          "ru": "1 МЕСЯЦ",
+          "tr": "1 AY"
+        },
+        "featured": false
+      },
+      {
+        "id": "months-3",
+        "cash": "₺13.300",
+        "list": "₺14.400",
+        "active": true,
+        "labels": {
+          "de": "3 MONATE",
+          "en": "3 MONTHS",
+          "ru": "3 МЕСЯЦА",
+          "tr": "3 AY"
+        },
+        "featured": false
+      },
+      {
+        "id": "months-6",
+        "cash": "₺25.000",
+        "list": "₺27.000",
+        "active": true,
+        "labels": {
+          "de": "6 MONATE",
+          "en": "6 MONTHS",
+          "ru": "6 МЕСЯЦЕВ",
+          "tr": "6 AY"
+        },
+        "featured": false
+      },
+      {
+        "id": "months-12",
+        "cash": "₺45.000",
+        "list": "₺50.000",
+        "active": true,
+        "labels": {
+          "de": "12 MONATE",
+          "en": "12 MONTHS",
+          "ru": "12 МЕСЯЦЕВ",
+          "tr": "12 AY"
+        },
+        "featured": true
+      }
     ],
     coaching: [
-      { id: "coaching-8", active: true, featured: false, sessions: 8, perWeek: 2, price: "₺16.000" },
-      { id: "coaching-12", active: true, featured: true, sessions: 12, perWeek: 3, price: "₺23.000" }
+      {
+        "id": "coaching-1",
+        "active": true,
+        "featured": false,
+        "sessions": 1,
+        "validMonths": 0,
+        "bonusSessions": 0,
+        "price": "₺2.500",
+        "perSession": "₺2.500"
+      },
+      {
+        "id": "coaching-8",
+        "active": true,
+        "featured": false,
+        "sessions": 8,
+        "validMonths": 1,
+        "bonusSessions": 0,
+        "price": "₺18.000",
+        "perSession": "₺2.250"
+      },
+      {
+        "id": "coaching-12",
+        "active": true,
+        "featured": true,
+        "sessions": 12,
+        "validMonths": 2,
+        "bonusSessions": 0,
+        "price": "₺24.000",
+        "perSession": "₺2.000"
+      },
+      {
+        "id": "coaching-36",
+        "active": true,
+        "featured": false,
+        "sessions": 36,
+        "validMonths": 4,
+        "bonusSessions": 0,
+        "price": "₺63.000",
+        "perSession": "₺1.750"
+      },
+      {
+        "id": "coaching-48",
+        "active": true,
+        "featured": false,
+        "sessions": 48,
+        "validMonths": 6,
+        "bonusSessions": 3,
+        "price": "₺72.000",
+        "perSession": "₺1.410",
+        "perSessionApprox": true
+      }
     ],
     onlineCoaching: {
       active: true
@@ -485,4 +638,6 @@
       }
     }
   };
+  const pricingTranslations = {"de":{"listPrice":"Kartenzahlung","gift":"+1 MONAT GRATIS BEI BARZAHLUNG","features":["Individueller Trainingsplan","Ernährungsplan","Messungen & Fortschrittskontrolle","Studiozugang inklusive; keine zusätzliche Mitgliedsgebühr"]},"en":{"listPrice":"Card price","gift":"+1 MONTH FREE WITH CASH PAYMENT","features":["Personalised training plan","Nutrition plan","Measurements & progress tracking","Gym access included; no extra membership fee"]},"ru":{"listPrice":"Оплата картой","gift":"+1 МЕСЯЦ В ПОДАРОК ПРИ ОПЛАТЕ НАЛИЧНЫМИ","features":["Индивидуальная программа","План питания","Замеры и контроль прогресса","Доступ в зал включён; дополнительная плата за абонемент не требуется"]},"tr":{"listPrice":"Kart fiyatı","gift":"NAKİT ÖDEMEDE +1 AY HEDİYE","features":["Kişiye özel antrenman planı","Beslenme planı","Ölçüm ve gelişim takibi","Salon kullanımı dahil; ek üyelik ücreti yok"]}};
+  Object.keys(pricingTranslations).forEach(language => Object.assign(window.SHAPE_DEFAULTS.translations[language], pricingTranslations[language]));
 })();

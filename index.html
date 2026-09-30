@@ -95,6 +95,7 @@
     @media(max-width:680px){.hero .quick-access .quick-wide{grid-column:span 1;min-height:78px}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}.rules-ticker-track{animation:none!important;transform:none!important}}
   </style>
+  <link rel="stylesheet" href="site-pricing.css?v=28">
 </head>
 <body>
   <header class="topbar">
@@ -165,7 +166,8 @@
 
   <footer><div class="shell foot"><a class="brand" href="#top"><strong>SH<i>A</i>PE</strong><small>TRAINING CLUB · KALKAN</small></a><p data-i18n="footer">More than a gym. A community in motion.</p><div class="meta"><span>© 2026 SHAPE</span><span data-i18n="legal">Payments are accepted in TRY, EUR, USD and GBP.</span></div></div></footer>
 
-  <script src="site-defaults.js?v=25"></script>
+  <script src="site-defaults.js?v=28"></script>
+  <script src="site-pricing.js?v=28"></script>
   <script>
     (()=>{
       "use strict";
@@ -179,7 +181,7 @@
       Object.assign(I18N.tr,{navMenu:"Shape Bar",heroTitle:"GÜÇLENMEK BURADA BAŞLAR.",heroIntro:"Kalkan merkezde premium antrenman, kişisel koçluk ve güçlü bir topluluk.",heroWhatsappCta:"WhatsApp’tan bize ulaşın",quickKicker:"HIZLI ERİŞİM",quickIntro:"İhtiyacın olan bilgiye tek dokunuşla ulaş.",quickMembership:"Üyelik fiyatları",quickMenu:"Shape Bar",quickGroup:"Grup dersleri",quickHours:"Çalışma saatlerimiz",quickOnline:"Online koçluk",paymentPolicy:"TL, EUR, USD ve GBP ile ödeme kabul edilir. Döviz tutarı ödeme anındaki güncel kur üzerinden hesaplanır.",legal:"TL, EUR, USD ve GBP ile ödeme kabul edilir.",onlineKicker:"ONLINE KOÇLUK",onlineTitle:"Planın ve koçun, nerede olursan ol yanında.",onlineIntro:"Yaşadığın yer fark etmeksizin, hedefine göre hazırlanan antrenman ve beslenme desteğiyle düzenli ilerle.",onlineFeatures:["Kişiye özel antrenman programı","Yaşam düzenine uygun beslenme desteği","Haftalık kontrol ve gelişim takibi","WhatsApp üzerinden doğrudan destek"],onlineCta:"Online koçluk hakkında bilgi al",onlineWhatsappMessage:"Merhaba, online koçluk hakkında bilgi almak istiyorum."});
       Object.assign(I18N.de,{navMenu:"Shape Bar",heroTitle:"STÄRKE BEGINNT HIER.",heroIntro:"Premium-Training, Personal Coaching und eine starke Community im Zentrum von Kalkan.",heroWhatsappCta:"Über WhatsApp kontaktieren",quickKicker:"SCHNELLZUGRIFF",quickIntro:"Alle wichtigen Infos mit nur einem Tippen.",quickMembership:"Mitgliedspreise",quickMenu:"Shape Bar",quickGroup:"Gruppenkurse",quickHours:"Öffnungszeiten",quickOnline:"Online-Coaching",paymentPolicy:"Zahlungen werden in TRY, EUR, USD und GBP akzeptiert. Fremdwährungsbeträge werden zum aktuellen Kurs zum Zahlungszeitpunkt berechnet.",legal:"Zahlungen in TRY, EUR, USD und GBP werden akzeptiert.",onlineKicker:"ONLINE-COACHING",onlineTitle:"Dein Plan. Dein Coach. Überall.",onlineIntro:"Trainiere unabhängig von deinem Wohnort mit einem persönlichen Trainingsplan, Ernährungsberatung und wöchentlichen Fortschrittschecks.",onlineFeatures:["Individueller Trainingsplan","Ernährungsberatung passend zu deinem Alltag","Wöchentliche Check-ins und Fortschrittskontrolle","Direkter Support über WhatsApp"],onlineCta:"Online-Coaching anfragen",onlineWhatsappMessage:"Hallo, ich möchte Informationen zum Online-Coaching erhalten."});
       Object.assign(I18N.ru,{navMenu:"Shape Bar",heroTitle:"СИЛА НАЧИНАЕТСЯ ЗДЕСЬ.",heroIntro:"Премиальный зал, персональные тренировки и сильное сообщество в центре Калкана.",heroWhatsappCta:"Связаться с нами в WhatsApp",quickKicker:"БЫСТРЫЙ ДОСТУП",quickIntro:"Вся важная информация в одно касание.",quickMembership:"Цены на абонементы",quickMenu:"Shape Bar",quickGroup:"Групповые занятия",quickHours:"Часы работы",quickOnline:"Онлайн-коучинг",paymentPolicy:"Оплата принимается в TRY, EUR, USD и GBP. Сумма в иностранной валюте рассчитывается по актуальному курсу на момент оплаты.",legal:"Оплата принимается в TRY, EUR, USD и GBP.",onlineKicker:"ОНЛАЙН-КОУЧИНГ",onlineTitle:"Ваш план и тренер — где бы вы ни находились.",onlineIntro:"Персональная программа тренировок, рекомендации по питанию и еженедельный контроль прогресса независимо от вашего местоположения.",onlineFeatures:["Индивидуальная программа тренировок","Рекомендации по питанию с учётом вашего режима","Еженедельные отчёты и контроль прогресса","Прямая поддержка в WhatsApp"],onlineCta:"Узнать об онлайн-коучинге",onlineWhatsappMessage:"Здравствуйте, я хочу узнать подробнее об онлайн-коучинге."});
-      const planPrices=[["₺1.000","₺900"],["₺2.950","₺2.400"],["₺3.250","₺2.750"],["₺3.700","₺3.000"],["₺4.900","₺4.600"],["₺14.400","₺13.300"],["₺27.000","₺25.000"],["₺50.000","₺45.000"]];
+      const planPrices=[["₺1.000","₺900"],["₺2.950","₺2.400"],["₺3.250","₺2.750"],["₺3.700","₺3.000"],["₺4.900","₺4.500"],["₺14.400","₺13.300"],["₺27.000","₺25.000"],["₺50.000","₺45.000"]];
       const menuGroups=[{start:0,prices:["₺80","₺120","₺130","₺160","₺170","₺220"],icon:"☕"},{start:6,prices:["₺300","₺350","₺300"],icon:"◆"},{start:9,prices:["₺150","₺130","₺30","₺50"],icon:"ϟ"}];
       const currencyCopy={
         en:{label:"Currency",loading:"Loading current daily rates…",ready:"Daily reference rate",unavailable:"Rate unavailable · Prices shown in TL"},
@@ -234,6 +236,7 @@
         const source=custom&&typeof custom==="object"?custom:{};
         const merged=Object.assign({},clone(base),clone(source));
         ["membership","coaching","menu"].forEach(key=>{merged[key]=Array.isArray(source[key])?clone(source[key]):clone((base||{})[key]||[])});
+        if(Array.isArray(source.coachingPackages))merged.coaching=clone(source.coachingPackages);
         merged.onlineCoaching=Object.assign({},clone((base||{}).onlineCoaching),clone(source.onlineCoaching));
         merged.backgrounds=Object.assign({},clone((base||{}).backgrounds),clone(source.backgrounds));
         merged.backgroundPositions=Object.assign({},clone((base||{}).backgroundPositions),clone(source.backgroundPositions));
@@ -331,16 +334,19 @@
         updateCurrencyControls(lang);
         const fallbackPlans=planPrices.map((prices,index)=>({active:true,featured:index===7,list:prices[0],cash:prices[1],labels:{[lang]:t.durations[index]}}));
         const memberships=(Array.isArray(siteConfig.membership)?siteConfig.membership:fallbackPlans).filter(plan=>plan.active!==false);
-        document.getElementById("plans").innerHTML=memberships.map((plan,index)=>{const featured=Boolean(plan.featured);const title=(plan.labels||{})[lang]||(plan.labels||{}).en||t.durations[index]||"";return `<article class="plan${featured?" featured":""}">${featured?`<span class="badge">${safe(t.best)}</span>`:""}<h3>${safe(title)}</h3><div class="label">${safe(t.listPrice)}</div><div class="price">${safe(formatPrice(plan.list||"",lang))}</div><div class="cash"><span>${safe(t.cash)}</span><strong>${safe(formatPrice(plan.cash||"",lang))}</strong></div>${featured?`<p class="gift">${safe(t.gift)}</p>`:""}</article>`}).join("");
+        document.getElementById("plans").innerHTML=window.SHAPE_PRICING.memberships(memberships,t,lang,currency,formatPrice);
         document.getElementById("features").innerHTML=t.features.map(x=>`<li><i>✓</i>${safe(x)}</li>`).join("");
         const online=siteConfig.onlineCoaching||{};
         const onlineActive=online.active!==false;
         document.getElementById("online-coaching").hidden=!onlineActive;
         const onlineFeatures=Array.isArray(t.onlineFeatures)&&t.onlineFeatures.length?t.onlineFeatures:["Personalised training programme","Nutrition guidance","Weekly progress tracking","WhatsApp support"];
         document.getElementById("onlineFeatures").innerHTML=onlineFeatures.map(x=>`<li><i>✓</i>${safe(x)}</li>`).join("");
-        const fallbackCoaching=[{active:true,featured:false,sessions:8,perWeek:2,price:"₺16.000"},{active:true,featured:true,sessions:12,perWeek:3,price:"₺23.000"}];
+        const fallbackCoaching=[{"id":"coaching-1","active":true,"featured":false,"sessions":1,"validMonths":0,"bonusSessions":0,"price":"₺2.500","perSession":"₺2.500"},{"id":"coaching-8","active":true,"featured":false,"sessions":8,"validMonths":1,"bonusSessions":0,"price":"₺18.000","perSession":"₺2.250"},{"id":"coaching-12","active":true,"featured":true,"sessions":12,"validMonths":2,"bonusSessions":0,"price":"₺24.000","perSession":"₺2.000"},{"id":"coaching-36","active":true,"featured":false,"sessions":36,"validMonths":4,"bonusSessions":0,"price":"₺63.000","perSession":"₺1.750"},{"id":"coaching-48","active":true,"featured":false,"sessions":48,"validMonths":6,"bonusSessions":3,"price":"₺72.000","perSession":"₺1.410","perSessionApprox":true}];
         const coaching=(Array.isArray(siteConfig.coaching)?siteConfig.coaching:fallbackCoaching).filter(plan=>plan.active!==false);
-        document.getElementById("coachCards").innerHTML=coaching.map(plan=>`<article class="coach${plan.featured?" featured":""}">${plan.featured?`<b class="badge">${safe(t.popular)}</b>`:""}<p><strong>${safe(plan.sessions)}</strong> ${safe(t.sessions)}</p><span>${safe(plan.perWeek)} × ${safe(t.perWeek)}</span><div class="coach-price">${safe(formatPrice(plan.price||"",lang))}</div></article>`).join("");
+        document.getElementById("coachCards").innerHTML=window.SHAPE_PRICING.coaching(coaching,t,lang,formatPrice);
+        let coachingPaymentNote=document.getElementById("coachingPaymentNote");
+        if(!coachingPaymentNote){coachingPaymentNote=document.createElement("p");coachingPaymentNote.id="coachingPaymentNote";coachingPaymentNote.className="coach-payment-note";document.querySelector(".coach-pricing").appendChild(coachingPaymentNote)}
+        coachingPaymentNote.textContent=window.SHAPE_PRICING.terms(lang);
         const group=siteConfig.groupTraining||{};
         const groupActive=group.active!==false;
         document.getElementById("group-classes").hidden=!groupActive;

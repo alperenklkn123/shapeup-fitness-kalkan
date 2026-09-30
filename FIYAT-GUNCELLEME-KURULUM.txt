@@ -1,0 +1,36 @@
+SHAPE FİYAT GÜNCELLEMESİ — 30 EYLÜL 2026
+
+CANLI SİTEDE TAMAMLANANLAR
+Üyelik fiyatları afişle eşleştirildi; 1 aylık nakit fiyat 4.500 TL oldu.
+Mevcut 8 derslik koçluk 18.000 TL, 12 derslik koçluk 24.000 TL oldu.
+Beş koçluk paketinin verileri kaydedildi.
+
+YENİ KOÇLUK GÖRÜNÜMÜNÜ YAYINLAMA
+1. ZIP dosyasını aç.
+2. GitHub'da alperenklkn123/shapeup-fitness-kalkan deposunu aç.
+3. Ana dizinde Add file > Upload files seç.
+4. Bu paketteki index.html, site-defaults.js, site-pricing.js, site-pricing.css
+   dosyalarını ve admin klasörünü, klasör yapısını koruyarak yükle.
+   Üstteki ZIP klasörünü bir alt klasör olarak yükleme.
+5. Commit changes ile kaydet.
+6. GitHub Pages yayını tamamlandığında siteyi yenile.
+
+Bu bir güncelleme paketidir. Mevcut diğer dosyaları silme.
+Yeni veri zaten kaydedildi; ayrıca fiyat girmen veya SQL çalıştırman gerekmez.
+
+GÖRÜNECEK KOÇLUK PAKETLERİ
+1 ders: 2.500 TL — ders başına 2.500 TL
+8 ders: 18.000 TL — 1 ay — ders başına 2.250 TL
+12 ders: 24.000 TL — 2 ay — ders başına 2.000 TL
+36 ders: 63.000 TL — 4 ay — ders başına 1.750 TL
+48 ders + 3 hediye: 72.000 TL — 6 ay
+
+48+3 paketinin afişteki 1.410 TL ders başı tutarı yaklaşık değer olarak
+gösterilir. Toplam ücret 72.000 TL, toplam ders sayısı 51'dir.
+
+Koçluk fiyatları nakittir. Kart ödemelerinde afişteki %20 KDV notu gösterilir.
+Beslenme planı, düzenli ölçüm/takip ve salon kullanımı dahildir.
+
+Türkçe, İngilizce, Almanca ve Rusça desteklenir.
+Yeni admin ekranından süre, hediye ders ve ders başına fiyat düzenlenebilir.
+

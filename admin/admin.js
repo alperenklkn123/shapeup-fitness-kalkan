@@ -51,7 +51,7 @@
     { key: "membershipKicker", label: "Üyelik üst etiketi", rows: 1 },
     { key: "membershipTitle", label: "Üyelik başlığı", rows: 2 },
     { key: "membershipIntro", label: "Üyelik açıklaması", rows: 3 },
-    { key: "listPrice", label: "Liste fiyatı etiketi", rows: 1 },
+    { key: "listPrice", label: "Kart fiyatı etiketi", rows: 1 },
     { key: "cash", label: "Nakit etiketi", rows: 1 },
     { key: "best", label: "Öne çıkan plan etiketi", rows: 1 },
     { key: "gift", label: "Hediye etiketi", rows: 1 },
@@ -135,7 +135,7 @@
     const source = custom && typeof custom === "object" ? custom : {};
     const merged = Object.assign({}, clone(base), clone(source));
     merged.membership = Array.isArray(source.membership) ? clone(source.membership) : clone(base.membership || []);
-    merged.coaching = Array.isArray(source.coaching) ? clone(source.coaching) : clone(base.coaching || []);
+    merged.coaching = Array.isArray(source.coachingPackages) ? clone(source.coachingPackages) : Array.isArray(source.coaching) ? clone(source.coaching) : clone(base.coaching || []);
     merged.onlineCoaching = Object.assign({}, clone(base.onlineCoaching || {}), clone(source.onlineCoaching || {}));
     merged.backgrounds = Object.assign({}, clone(base.backgrounds || {}), clone(source.backgrounds || {}));
     merged.backgroundPositions = Object.assign({}, clone(base.backgroundPositions || {}), clone(source.backgroundPositions || {}));
@@ -244,8 +244,10 @@
           </div>
         </div>
         <div class="field-grid">
-          <label class="field"><span>Liste fiyatı</span><input type="text" data-kind="membership" data-index="${index}" data-field="list" value="${safe(plan.list)}" placeholder="₺0"></label>
+          <label class="field"><span>Kart fiyatı</span><input type="text" data-kind="membership" data-index="${index}" data-field="list" value="${safe(plan.list)}" placeholder="₺0"></label>
           <label class="field"><span>Nakit fiyatı</span><input type="text" data-kind="membership" data-index="${index}" data-field="cash" value="${safe(plan.cash)}" placeholder="₺0"></label>
+          <label class="field"><span>Kart fiyatı (£, isteğe bağlı)</span><input type="number" min="0" step="0.01" data-kind="membership" data-index="${index}" data-field="cardGBP" value="${safe(plan.cardGBP || "")}"></label>
+          <label class="field"><span>Nakit fiyatı (£, isteğe bağlı)</span><input type="number" min="0" step="0.01" data-kind="membership" data-index="${index}" data-field="cashGBP" value="${safe(plan.cashGBP || "")}"></label>
           ${languageFields("membership", index, "labels", plan.labels)}
         </div>
       </article>`).join("");
@@ -264,8 +266,11 @@
         </div>
         <div class="field-grid">
           <label class="field"><span>Ders sayısı</span><input type="number" min="1" data-kind="coaching" data-index="${index}" data-field="sessions" value="${safe(plan.sessions)}"></label>
-          <label class="field"><span>Haftada kaç gün</span><input type="number" min="1" max="7" data-kind="coaching" data-index="${index}" data-field="perWeek" value="${safe(plan.perWeek)}"></label>
-          <label class="field wide"><span>Fiyat</span><input type="text" data-kind="coaching" data-index="${index}" data-field="price" value="${safe(plan.price)}" placeholder="₺0"></label>
+          <label class="field"><span>Kullanım süresi (ay; tek ders için 0)</span><input type="number" min="0" data-kind="coaching" data-index="${index}" data-field="validMonths" value="${safe(plan.validMonths || 0)}"></label>
+          <label class="field wide"><span>Nakit paket fiyatı</span><input type="text" data-kind="coaching" data-index="${index}" data-field="price" value="${safe(plan.price)}" placeholder="₺0"></label>
+          <label class="field"><span>Ders başına fiyat</span><input type="text" data-kind="coaching" data-index="${index}" data-field="perSession" value="${safe(plan.perSession || "")}" placeholder="₺0"></label>
+          <label class="field"><span>Hediye ders sayısı</span><input type="number" min="0" data-kind="coaching" data-index="${index}" data-field="bonusSessions" value="${safe(plan.bonusSessions || 0)}"></label>
+          <label class="check wide"><input type="checkbox" data-kind="coaching" data-index="${index}" data-field="perSessionApprox" ${plan.perSessionApprox ? "checked" : ""}> Ders başına fiyat yaklaşık değerdir</label>
         </div>
       </article>`).join("") || `<p>Henüz koçluk paketi yok.</p>`;
   }
@@ -578,7 +583,7 @@
       if (field === "labels") state.membership[index].labels[language] = value;
       else state.membership[index][field] = value;
     } else if (kind === "coaching" && state.coaching[index]) {
-      state.coaching[index][field] = ["sessions", "perWeek"].includes(field) ? Math.max(0, Number(value) || 0) : value;
+      state.coaching[index][field] = ["sessions", "perWeek", "validMonths", "bonusSessions"].includes(field) ? Math.max(0, Number(value) || 0) : value;
     } else if (kind === "online-coaching") {
       state.onlineCoaching = state.onlineCoaching || {};
       state.onlineCoaching[field] = value;
@@ -652,7 +657,7 @@
       renderTypography();
     }
     if (action === "add-coaching") {
-      state.coaching.push({ id: id("coaching"), active: true, featured: false, sessions: 8, perWeek: 2, price: "₺0" });
+      state.coaching.push({ id: id("coaching"), active: true, featured: false, sessions: 8, validMonths: 1, bonusSessions: 0, price: "₺0", perSession: "" });
       renderCoaching();
     }
     if (action === "delete-coaching" && window.confirm("Bu koçluk paketi silinsin mi?")) {
@@ -708,6 +713,7 @@
     if (saving || !client || !currentUser) return;
     toggleBusy(true);
     setStatus("Değişiklikler yayınlanıyor…", "dirty");
+    state.coachingPackages = clone(state.coaching || []);
     const payload = { id: 1, content: state, updated_by: currentUser.id };
     const { data, error } = await client.from("site_config").upsert(payload, { onConflict: "id" }).select("updated_at").single();
     toggleBusy(false);
