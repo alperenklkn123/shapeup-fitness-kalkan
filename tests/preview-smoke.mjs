@@ -25,6 +25,8 @@ try {
     await page.locator("#plans .plan").first().waitFor({timeout:15000});
     assert.equal(await page.locator(".lux-services .lux-service").count(),3);
     assert.equal(await page.locator(".lux-gallery-item").count(),4);
+    await page.locator("#menus .menu").first().waitFor({timeout:15000});
+    await page.locator("#groupPrices .group-price-card").first().waitFor({timeout:15000});
     assert.ok(await page.locator("a[href='shape-kids/']").count()>0);
     assert.ok(await page.locator("a[href='gallery.html']").count()>0);
     assert.ok(await page.locator(".currency-switcher button[data-currency='TRY']").count()>0);
@@ -32,10 +34,16 @@ try {
     const docWidth=await page.evaluate(()=>document.documentElement.scrollWidth);
     assert.ok(docWidth<=viewport.width+2,"Horizontal overflow at "+viewport.name+": "+docWidth);
     await page.screenshot({path:"preview-screenshots/"+viewport.name+"-home.png",fullPage:true,animations:"disabled"});
-    await page.locator(".topbar button[data-lang='tr']").click();
-    assert.equal((await page.locator("[data-lux-key='servicesLabel']").textContent()).trim(),"SHAPE DENEYİMİ");
+    for(const [lang,label] of [["tr","SHAPE DENEYİMİ"],["de","DAS SHAPE ERLEBNIS"],["ru","ОПЫТ SHAPE"],["en","THE SHAPE EXPERIENCE"]]){
+      await page.locator(".topbar button[data-lang='"+lang+"']").click();
+      assert.equal(await page.locator("html").getAttribute("lang"),lang);
+      assert.equal((await page.locator("[data-lux-key='servicesLabel']").textContent()).trim(),label);
+    }
     await page.goto(origin+"/gallery.html",{waitUntil:"domcontentloaded"});
     await page.locator("#categoryNav").waitFor();
+    await page.waitForTimeout(1200);
+    const galleryImageStatus=await page.locator(".photo-card img").evaluateAll(images=>({total:images.length,loaded:images.filter(i=>i.complete&&i.naturalWidth>0).length}));
+    console.log("GALLERY "+viewport.name+": "+JSON.stringify(galleryImageStatus));
     await page.screenshot({path:"preview-screenshots/"+viewport.name+"-gallery.png",fullPage:true,animations:"disabled"});
     await page.goto(origin+"/shape-kids/",{waitUntil:"domcontentloaded"});
     await page.locator(".hero h1").waitFor();
