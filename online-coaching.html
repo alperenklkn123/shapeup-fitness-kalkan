@@ -493,7 +493,7 @@
         const group=siteConfig.groupTraining||{};
         const groupActive=group.active!==false;
         document.getElementById("group-classes").hidden=!groupActive;
-        document.getElementById("quickGroupLink").hidden=!groupActive;
+        const quickGroupShortcut=document.getElementById("quickGroupLink");if(quickGroupShortcut)quickGroupShortcut.hidden=!groupActive;
         const groupTypes=Array.isArray(group.classTypes)&&group.classTypes.length?group.classTypes:["HYROX","HIIT CIRCUIT","STRENGTH & CONDITIONING"];
         document.getElementById("groupTypes").innerHTML=groupTypes.map(name=>`<span class="group-type">${safe(name)}</span>`).join("");
         const groupPriceCopy={member:t.groupMember||"MEMBER",memberNote:t.groupMemberNote||"Current members",nonMember:t.groupNonMember||"NON-MEMBER",nonMemberNote:t.groupNonMemberNote||"Outside participation",dropIn:t.groupDropIn||"1 DROP-IN SESSION"};
