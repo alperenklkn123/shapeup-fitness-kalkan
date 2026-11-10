@@ -1,0 +1,46 @@
+/* Gallery visual consistency for the Minimal Luxury preview branch. */
+:root{color-scheme:light;--ink:#f6f3ee;--surface:#faf8f4;--surface-2:#eee8e0;--line:rgba(62,53,43,.17);--line-strong:#bba186;--blue:#bda184;--light:#ad8d68;--white:#242521;--muted:#716c65;--shell:min(1240px,calc(100vw - 88px))}
+html{background:#f6f3ee}
+body{color:#272724;background:#f6f3ee}
+.topbar{min-height:74px;background:#171918;border-color:#36342e}
+.brand strong{font:400 31px/1 Georgia,"Times New Roman",serif;letter-spacing:.15em;color:#f9f3ea}
+.brand strong i{color:inherit}
+.brand em,.brand small{color:#c6b9a8;font-weight:600}
+.lang{color:#e5ded4;border-radius:3px}
+.lang.active{background:#c9ad8d;color:#24211b}
+.gallery-hero{padding:88px 0 65px;background:linear-gradient(115deg,#f6f3ee,#e8dfd2);border-bottom:1px solid #e2d7c8}
+.gallery-hero:after{display:none}
+.kicker{color:#9f8062;letter-spacing:.32em;font-weight:600}
+.gallery-hero h1{font:400 clamp(47px,6.9vw,90px)/1 Georgia,"Times New Roman",serif;letter-spacing:-.06em;color:#242420}
+.intro{color:#625b52;line-height:1.75}
+.hero-meta{color:#796c5f}
+.gallery-content{padding-bottom:90px;background:#f6f3ee}
+.category-nav-wrap{top:74px;background:rgba(246,243,238,.97);border-bottom:1px solid #e1d8cc}
+.category-tab{min-height:43px;padding:0 16px;border:1px solid #d8ccbd;border-radius:3px;background:#f9f6f2;color:#645d54;font-weight:600;font-size:11px;letter-spacing:.02em}
+.category-tab:hover{color:#2d2924;border-color:#aa9073}
+.category-tab.active{background:#20221f;border-color:#20221f;color:#fbf8f3;box-shadow:none}
+.category-heading h2{font-family:Georgia,"Times New Roman",serif;font-size:clamp(26px,4vw,44px);font-weight:400;color:#242521}
+.photo-count{color:#847b71}
+.photo-card{border-radius:3px;background:#dfd7cb;border-color:#d7c9ba;box-shadow:0 9px 25px #24201718}
+.photo-card:after{background:#c9ad8d;color:#211c17;border-color:#d7c0a6}
+.empty-state{border-color:#d7c9b8;border-radius:3px;background:#eee8df;color:#514a42}
+.empty-state-inner,.empty-state p{color:#6b6156}
+.back-link{color:#54483c;border:1px solid #d1bfa9;border-radius:3px;background:transparent}
+.back-link:hover{background:#e8dfd3}
+footer{background:#161816;color:#cfc4b6;border-color:#302f2b}
+.lightbox{background:rgba(12,12,11,.96)}
+.lightbox-close,.lightbox-control{border-radius:3px;background:#272521;border-color:#72685e;color:#fff9ef}
+@media(max-width:680px){
+:root{--shell:min(100% - 32px,1240px)}
+.topbar{padding:12px 16px;min-height:68px}
+.brand strong{font-size:24px}
+.brand small{display:none}
+.lang{font-size:10px}
+.gallery-hero{padding:63px 0 50px}
+.gallery-hero h1{font-size:clamp(42px,12vw,59px)}
+.category-nav-wrap{top:68px}
+.category-tab{min-height:40px;font-size:10px}
+.gallery-content{padding-bottom:55px}
+.photo-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.photo-card,.photo-card:nth-child(5n+1){grid-column:auto;aspect-ratio:4/5;border-radius:2px}
+}
