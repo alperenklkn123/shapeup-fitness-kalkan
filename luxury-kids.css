@@ -1,0 +1,77 @@
+/* Shape Kids: soft, welcoming companion to the Minimal Luxury club site. */
+:root{--bg:#f7f3ec;--panel:#fffbf5;--edge:#ded3c5;--blue:#bc9c7a;--sky:#ba9877;--text:#272823;--muted:#6e6a61;--container:1220px}
+html{background:#f7f3ec}
+body{color:#272823;background:#f7f3ec}
+.header{background:rgba(21,23,21,.97);border-bottom:1px solid #3c3933}
+.logo-word{font:400 30px/1 Georgia,"Times New Roman",serif;letter-spacing:.15em;color:#fff7ee}
+.logo-word span{color:inherit}
+.logo-sub{color:#cfc5b9;font-size:7px;font-weight:600}
+.logo-kids{color:#e0c0a3;border-left-color:#615449}
+.header .nav a{color:#eee5dc;font-weight:550}
+.header .nav a:hover{color:#edd6c1}
+.header .langs{border-color:#544b42;background:#252724}
+.header .langs button{color:#d6cbc0}
+.header .langs button.active{background:#c9ad8d;color:#1b1c1a}
+.header .brand-switch{background:#252724;border-color:#554e45}
+.header .brand-switch-link{color:#dfd2c3}
+.header .brand-switch-link.is-current{background:#c9ad8d;color:#1e1e1a}
+.hero{background:linear-gradient(113deg,#eee7da 0%,#f5eee4 51%,#d9d4c5 100%);border-bottom:1px solid #dfd3c4}
+.hero:before{background:radial-gradient(ellipse,rgba(201,173,141,.27),transparent 65%)}
+.hero-layout{min-height:610px}
+.eyebrow{color:#987656;font-weight:650}
+.kids-hello{color:#7e624b}
+.hero h1{font:400 clamp(65px,8.5vw,115px)/.96 Georgia,"Times New Roman",serif;color:#232523;letter-spacing:-.055em}
+.hero h1 span{color:#b18b65}
+.lead{color:#514f48}
+.tag{background:#fdf8ee;border-color:#d4c2ad;color:#625347;border-radius:3px}
+.button,.button-primary,.button-outline{border-radius:3px!important;box-shadow:none!important}
+.button-primary{background:#bfa080!important;border-color:#bfa080!important;color:#1d1b17!important}
+.button-primary:hover{background:#ddc5a9!important}
+.button-outline{border:1px solid #ac8f72!important;color:#493a2b!important;background:#fff8ed!important}
+.graphic{filter:saturate(.65)}
+.graphic-head,.graphic-foot{color:#6b5140}
+.block{padding:85px 0}
+.block.dark{background:#eae5dc}
+.kicker{color:#a08364;font-weight:650;letter-spacing:.3em}
+.heading{font:400 clamp(36px,4.9vw,61px)/1.06 Georgia,"Times New Roman",serif;color:#262623}
+.intro{color:#6d685f}
+.feature{background:#fffaf3;border:1px solid #ddd0c1;border-radius:3px;color:#262623;min-height:215px;box-shadow:0 5px 24px #4036280a}
+.feature .symbol{background:#efe1d0;border-radius:50%;color:#806246}
+.feature h3{color:#282722}
+.feature p{color:#666057}
+.program,.program.alt{background:#fffaf3;border:1px solid #d8c8b5;border-radius:3px;color:#2b2925}
+.program.alt{background:#eee7de}
+.program h3{color:#292824}
+.program p{color:#675f55}
+.flag{color:#7a5e42;border-color:#cdb292;border-radius:3px}
+.info{background:#f0e9e0;border:1px solid #ded0c1;border-radius:3px;color:#332e28}
+.info span,.info strong{color:#40362d}
+.steps .step,.step{background:#fffaf3;border-color:#ddd0c0;border-radius:3px}
+.registration{background:#211f1c;color:#f7eee3}
+.registration .heading,.registration h2,.registration .kicker{color:#f7eee3}
+.registration .intro{color:#cec1b1}
+.notice{background:#2c2924;border-color:#55483c;border-radius:3px;color:#d9caba}
+.form-panel{background:#302c26;border-color:#685949;border-radius:3px;color:#f7eee3;box-shadow:none}
+.form-panel h3,.form-panel>p,.form-panel .field label,.form-panel .fine{color:#f7eee3}
+.form-panel input,.form-panel select,.form-panel textarea{background:#faf7f1;color:#25231f;border-color:#cbb8a3;border-radius:3px}
+.form-panel input::placeholder,.form-panel textarea::placeholder{color:#847d73}
+.form-panel .check{color:#e6dcd0}
+.faq{background:#fffaf3;border-color:#d7cbbe;border-radius:3px;color:#2c2b27}
+.faq p{color:#6b655b}
+.footer{background:#151715;border-top-color:#413b35}
+.footer p,.footer-links a{color:#dfd4c6}
+@media(max-width:1000px){
+  .hero-layout{min-height:0}
+  .hero{background:linear-gradient(135deg,#eee7db,#faf2e8)}
+}
+@media(max-width:680px){
+  :root{--container:100%}
+  .header-inner{padding:10px 0}
+  .logo-word{font-size:25px}
+  .hero-layout{padding:63px 0}
+  .hero h1{font-size:clamp(62px,17vw,92px)}
+  .block{padding:60px 0}
+  .feature,.program{padding:23px}
+  .heading{font-size:clamp(36px,10vw,48px)}
+  .registration .form-panel{padding:22px}
+}
