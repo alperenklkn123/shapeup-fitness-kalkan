@@ -29,6 +29,19 @@
     @media(max-width:720px){.wrap{width:min(var(--container),calc(100% - 30px))}.header-inner{min-height:66px;gap:5px}.logo-word{font-size:19px}.logo-sub{font-size:7px;letter-spacing:.13em}.logo-kids{font-size:10px;padding-left:8px}.langs{padding:2px;gap:1px}.langs button{min-width:29px;min-height:30px;font-size:9px}.hero-layout{padding:74px 0}.hero h1{font-size:clamp(58px,15vw,90px)}.lead{font-size:14px}.hero .button{flex:1}.graphic{padding:17px}.graphic-head{font-size:8px}.graphic-foot{font-size:9px}.block{padding:70px 0!important}.heading{font-size:clamp(35px,10vw,48px)}.trio,.programs,.steps,.register-layout,.faq-grid{grid-template-columns:1fr}.trio,.programs,.steps{gap:11px;margin-top:29px}.feature{min-height:0;padding:23px}.feature h3{margin-top:14px}.program{padding:24px}.program p{min-height:0}.steps{gap:20px}.form-panel{padding:22px}.footer-inner{align-items:flex-start;flex-direction:column}.footer-links{flex-wrap:wrap}}
     @media(max-width:380px){.field-row{grid-template-columns:1fr}.logo-kids{letter-spacing:.08em}.langs button{min-width:27px}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+    /* Consistent section selector across Shape Club and Shape Kids. */
+    .header .brand-switch{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3px;width:min(470px,calc(100% - 30px));padding:4px;margin:0 auto 10px;border:1px solid rgba(126,188,238,.28);border-radius:14px;background:linear-gradient(145deg,rgba(15,40,63,.97),rgba(5,19,34,.97));box-shadow:inset 0 1px rgba(255,255,255,.06)}
+    .header .brand-switch-link{display:flex;align-items:center;justify-content:center;gap:7px;min-width:0;min-height:38px;border-radius:10px;color:#a7c8e4;font-size:11px;font-weight:900;letter-spacing:.07em;white-space:nowrap;transition:background .18s ease,color .18s ease,box-shadow .18s ease}
+    .header .brand-switch-link:hover{color:#fff;background:rgba(49,127,196,.21)}
+    .header .brand-switch-link.is-current{color:#fff;background:linear-gradient(130deg,#1a74d7,#2d96ef);box-shadow:0 6px 17px rgba(24,115,213,.25)}
+    .header .brand-switch-star{font-size:13px;color:#81c8ff}
+    .header .brand-switch-link.is-current .brand-switch-star{color:#fff}
+    @media(max-width:720px){
+      .header .brand-switch{width:min(var(--container),calc(100% - 30px));gap:3px;padding:3px;margin-bottom:8px;border-radius:12px}
+      .header .brand-switch-link{min-height:37px;font-size:10px;letter-spacing:.045em;border-radius:9px}
+    }
+    @media(prefers-reduced-motion:reduce){.header .brand-switch-link{transition:none}}
   </style>
 </head>
 <body>
@@ -36,7 +49,12 @@
     <a href="../" class="logo" aria-label="Shape Training Club"><div><div class="logo-word">SH<span>A</span>PE</div><span class="logo-sub">TRAINING CLUB · KALKAN</span></div><span class="logo-kids">KIDS</span></a>
     <nav class="nav" aria-label="Page navigation"><a href="#approach" data-i="nav1">Approach</a><a href="#programs" data-i="nav2">Programs</a><a href="#register" data-i="nav3">Enquire</a><a href="../" data-i="nav4">Main site</a></nav>
     <div class="langs" role="group" aria-label="Language"><button type="button" data-lang="en">EN</button><button type="button" data-lang="tr">TR</button><button type="button" data-lang="de">DE</button><button type="button" data-lang="ru">RU</button></div>
-  </div></header>
+  </div>
+  <div class="wrap brand-switch" role="navigation" aria-label="Shape Club and Shape Kids">
+    <a class="brand-switch-link" href="../"><span>SHAPE CLUB</span></a>
+    <a class="brand-switch-link is-current" href="./" aria-current="page"><span class="brand-switch-star" aria-hidden="true">✦</span><span>SHAPE KIDS</span></a>
+  </div>
+  </header>
   <main>
     <section class="hero"><div class="wrap hero-layout">
       <div><p class="eyebrow">SHAPE TRAINING CLUB · KALKAN</p><h1>SHAPE <span>KIDS.</span></h1><p class="lead" data-i="hero">Movement creates confidence. Coach-led fitness, coordination and functional training designed for children—not adult bodybuilding.</p><div class="tags"><span class="tag" data-i="tag1">FITNESS</span><span class="tag" data-i="tag2">COORDINATION</span><span class="tag" data-i="tag3">FUNCTIONAL TRAINING</span></div><div class="btn-row"><a href="#register" class="button button-primary" data-i="cta">Enquire now →</a><a href="#programs" class="button button-outline" data-i="explore">Explore programs ↓</a></div></div>
