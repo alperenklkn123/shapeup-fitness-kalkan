@@ -75,3 +75,10 @@ body{color:#272823;background:#f7f3ec}
   .heading{font-size:clamp(36px,10vw,48px)}
   .registration .form-panel{padding:22px}
 }
+
+/* Keep all three child-program benefit cards light and readable. */
+.feature:nth-child(1){background:#fffaf3!important;color:#262623!important}
+.feature:nth-child(2){background:#ecf2eb!important;color:#262623!important;border-color:#d4ded2!important}
+.feature:nth-child(3){background:#f3eaf0!important;color:#262623!important;border-color:#e1d3dd!important}
+.feature h3,.feature p{color:#3d3a34!important}
+.feature p{opacity:.9}
