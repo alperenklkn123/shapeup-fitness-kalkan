@@ -239,3 +239,28 @@ footer .meta{border-color:#3c3c38}
   .lux-service{transition:none}
   .lux-service:hover{transform:none}
 }
+
+/* Visual QA refinements: dependable local gym photography for development previews.
+   The original Supabase-based section imagery and admin controls remain unchanged. */
+.topbar .brand strong,.topbar .header-brand strong{color:#fff8ef!important}
+.lux-service--membership{
+  background-image:linear-gradient(0deg,rgba(10,10,10,.15),rgba(10,10,10,.15)),url("shape-hero.webp")!important;
+  background-position:24% center
+}
+.lux-service--coaching{
+  background-image:linear-gradient(0deg,rgba(10,10,10,.26),rgba(10,10,10,.26)),url("shape-hero-mobile.webp")!important;
+  background-position:70% center
+}
+.lux-service--group{
+  background-image:linear-gradient(0deg,rgba(10,10,10,.15),rgba(10,10,10,.15)),url("shape-hero.webp")!important;
+  background-position:87% center
+}
+.lux-gallery-item:nth-child(1){background-image:url("shape-hero.webp")!important;background-position:18% center}
+.lux-gallery-item:nth-child(2){background-image:url("shape-hero-mobile.webp")!important;background-position:75% center}
+.lux-gallery-item:nth-child(3){background-image:url("shape-hero.webp")!important;background-position:55% center}
+.lux-gallery-item:nth-child(4){background-image:url("shape-hero-mobile.webp")!important;background-position:38% center}
+.quick-link.featured,.quick-link.quick-kids,.quick-link.quick-reviews,.quick-link.quick-gallery{
+  background:transparent!important;border-color:#d7d0c7!important;
+}
+.lux-preview-label{left:auto;right:14px;bottom:14px}
+@media(max-width:680px){.lux-preview-label{right:8px;left:auto;bottom:8px}}
