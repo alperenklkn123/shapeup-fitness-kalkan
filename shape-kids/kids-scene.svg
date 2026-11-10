@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 430" role="img" aria-labelledby="title desc">
+<title id="title">SHAPE KIDS movement club</title>
+<desc id="desc">Two cheerful illustrated children doing fun functional movement exercises with a ball and agility equipment.</desc>
+<defs>
+<linearGradient id="sky" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#E9FAFF"/><stop offset=".56" stop-color="#CDF1FF"/><stop offset="1" stop-color="#EDE9FF"/></linearGradient>
+<linearGradient id="field" x1="0" x2="1"><stop stop-color="#A5F0DA"/><stop offset="1" stop-color="#B9E5FF"/></linearGradient>
+<filter id="shade"><feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#275D84" flood-opacity=".16"/></filter>
+</defs>
+<rect width="560" height="430" rx="35" fill="url(#sky)"/>
+<circle cx="461" cy="91" r="67" fill="#FFE4A0" opacity=".77"/>
+<circle cx="96" cy="89" r="40" fill="#B1A8FF" opacity=".37"/>
+<path d="M0 324Q137 289 264 337T560 326V430H0Z" fill="url(#field)"/>
+<path d="M22 366Q159 342 268 370T534 368" stroke="#FFF" stroke-width="5" stroke-linecap="round" stroke-dasharray="8 13" fill="none" opacity=".9"/>
+<g fill="#FFB849"><path d="M70 42l7 16 17 6-17 6-7 16-6-16-17-6 17-6Z"/><path d="M480 170l4 12 13 4-13 4-4 12-5-12-12-4 12-4Z"/></g>
+<g fill="#AC99FC"><circle cx="511" cy="234" r="7"/><circle cx="48" cy="200" r="5"/></g>
+<!-- kid 1: active step -->
+<g filter="url(#shade)" transform="translate(18 0)">
+<path d="M139 273l-22 73" stroke="#2B3D77" stroke-width="28" stroke-linecap="round"/>
+<path d="M188 272l32 68" stroke="#2B3D77" stroke-width="28" stroke-linecap="round"/>
+<path d="M114 345l-25 14q-11 10 3 16h45q12-4 8-15l-9-18Z" fill="#FFF" stroke="#CAD5E9" stroke-width="3"/>
+<path d="M219 341l28 14q12 11 0 17h-47q-11 0-9-13l9-17Z" fill="#FF8A91" stroke="#E37480" stroke-width="3"/>
+<path d="M134 219l-35 37M190 222l29 31" stroke="#F2B18E" stroke-width="22" stroke-linecap="round"/>
+<circle cx="97" cy="258" r="11" fill="#F2B18E"/><circle cx="220" cy="253" r="11" fill="#F2B18E"/>
+<path d="M133 206q33-19 66 7l1 67q-34 20-74-1Z" fill="#24B4AF" stroke="#0B969A" stroke-width="3"/>
+<path d="M143 255q22 11 44 1" fill="none" stroke="#8FF1DD" stroke-width="6" stroke-linecap="round"/>
+<circle cx="164" cy="160" r="45" fill="#F2B18E"/>
+<path d="M118 158q-9-55 45-54 47-6 48 52-20-15-28-29-28 29-65 31" fill="#453651"/>
+<circle cx="150" cy="164" r="4.5" fill="#44344A"/><circle cx="182" cy="164" r="4.5" fill="#44344A"/>
+<path d="M151 185q14 12 27-2" stroke="#AA5F60" stroke-width="4" fill="none" stroke-linecap="round"/>
+<circle cx="136" cy="180" r="8" fill="#FCA5A8" opacity=".55"/><circle cx="193" cy="180" r="8" fill="#FCA5A8" opacity=".55"/>
+</g>
+<!-- kid 2: jumping and balancing -->
+<g filter="url(#shade)" transform="translate(13 -4)">
+<path d="M356 273l-25 69M399 270l37 60" stroke="#59419A" stroke-width="28" stroke-linecap="round"/>
+<path d="M330 342l-22 15q-10 10 4 16h42q12-1 10-12l-13-21Z" fill="#FFF" stroke="#D0DAEF" stroke-width="3"/>
+<path d="M432 333l34 4q15 9 4 19l-46 8q-12 0-12-13l1-17Z" fill="#7CCBFF" stroke="#59A5E8" stroke-width="3"/>
+<path d="M349 217l-32-40M400 219l31-41" stroke="#BB784F" stroke-width="22" stroke-linecap="round"/>
+<circle cx="316" cy="176" r="12" fill="#BB784F"/><circle cx="432" cy="177" r="12" fill="#BB784F"/>
+<path d="M346 212q30-18 55 2l11 59q-36 20-78 1Z" fill="#FF8EA3" stroke="#E16C8E" stroke-width="3"/>
+<path d="M361 243h27" stroke="#FFE0E7" stroke-width="7" stroke-linecap="round"/>
+<circle cx="372" cy="155" r="45" fill="#BB784F"/>
+<path d="M326 150q-9-49 32-52 16-20 39-4 28 2 20 61l-10-24q-31-23-70 20" fill="#292D45"/>
+<circle cx="412" cy="114" r="20" fill="#292D45"/>
+<circle cx="359" cy="159" r="4.5" fill="#292D45"/><circle cx="390" cy="159" r="4.5" fill="#292D45"/>
+<path d="M358 182q15 13 28-1" fill="none" stroke="#733C3C" stroke-width="4" stroke-linecap="round"/>
+<circle cx="342" cy="177" r="8" fill="#DD8E77" opacity=".6"/><circle cx="404" cy="177" r="8" fill="#DD8E77" opacity=".6"/>
+</g>
+<g filter="url(#shade)">
+<path d="M65 348l-19 47h38Z" fill="#FFBA50" stroke="#EBA03E" stroke-width="3"/>
+<path d="M495 348l-19 47h38Z" fill="#FFBA50" stroke="#EBA03E" stroke-width="3"/>
+<circle cx="278" cy="363" r="30" fill="#80BFFF" stroke="#FFF" stroke-width="5"/>
+<path d="M270 335q27 25-6 55m-16-28q25 15 59-1" fill="none" stroke="#FFF" stroke-width="5" stroke-linecap="round"/>
+</g>
+</svg>
