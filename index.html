@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#05090f">
-  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="robots" content="noindex,nofollow,noarchive">
   <meta name="description" content="Shape Training Club in central Kalkan: day passes, memberships, personal coaching, group training, online coaching and Shape Bar.">
   <link rel="canonical" href="https://shapetrainingclub.net/">
   <meta property="og:site_name" content="Shape Training Club">
@@ -133,11 +133,12 @@
     @media(prefers-reduced-motion:reduce){.brand-switch-link{transition:none}}
   </style>
   <link rel="stylesheet" href="site-pricing.css?v=28">
+  <link rel="stylesheet" href="luxury-preview.css?v=1">
 </head>
 <body>
   <header class="topbar">
     <a class="brand header-brand" href="#top" aria-label="Shape Training Club Kalkan"><span class="brand-lockup"><strong>SH<i>A</i>PE</strong><em>TRAINING CLUB</em></span><small>KALKAN</small></a>
-    <nav aria-label="Main navigation"><a href="#membership" data-i18n="navMembership">Membership</a><a href="#coaching" data-i18n="navCoaching">Coaching</a><a href="shape-kids/" data-i18n="navKids">SHAPE KIDS</a><a href="#menu" data-i18n="navMenu">Menu</a><a href="#contact" data-i18n="navContact">Contact</a></nav>
+    <nav aria-label="Main navigation"><a href="#membership" data-i18n="navMembership">Membership</a><a href="#coaching" data-i18n="navCoaching">Coaching</a><a href="#group-classes" data-lux-key="menuGroup">Group classes</a><a href="gallery.html" data-lux-key="menuGallery">Gallery</a><a href="shape-kids/" data-i18n="navKids">SHAPE KIDS</a><a href="#menu" data-i18n="navMenu">Menu</a><a href="#contact" data-i18n="navContact">Contact</a></nav>
     <div class="langs" role="group" aria-label="Choose language">
       <button class="lang" type="button" data-lang="en" aria-label="English"><b>🇬🇧</b><span>EN</span></button>
       <button class="lang" type="button" data-lang="tr" aria-label="Türkçe"><b>🇹🇷</b><span>TR</span></button>
@@ -196,6 +197,22 @@
       </div>
     </div></section>
 
+    
+    <!-- Minimal Luxury: editorial navigation to existing live-data sections -->
+    <div class="lux-mantra" aria-label="Our philosophy"><span aria-hidden="true"></span>MORE THAN A GYM. A COMMUNITY IN MOTION.<span aria-hidden="true"></span></div>
+    <section class="lux-services" aria-labelledby="luxServicesHeading">
+      <div class="shell">
+        <div class="lux-service-heading">
+          <div><p class="lux-kicker" data-lux-key="servicesLabel">THE SHAPE EXPERIENCE</p><h2 class="lux-section-title" id="luxServicesHeading" data-lux-key="servicesTitle">Find your way to move.</h2></div>
+          <p data-lux-key="servicesNote">Whether you're here for a day or building a routine, there is a place for you.</p>
+        </div>
+        <div class="lux-service-grid">
+          <a class="lux-service lux-service--membership" href="#membership"><small data-lux-key="memberOver">01 / ACCESS</small><h3 data-lux-key="memberTitle">MEMBERSHIP</h3><p data-lux-key="memberCopy">Train on your terms, at your pace.</p><span class="lux-arrow"><span data-lux-key="memberMore">Explore plans</span> →</span></a>
+          <a class="lux-service lux-service--coaching" href="#coaching"><small data-lux-key="coachOver">02 / GUIDANCE</small><h3 data-lux-key="coachTitle">PERSONAL COACHING</h3><p data-lux-key="coachCopy">A plan built around your goals.</p><span class="lux-arrow"><span data-lux-key="coachMore">Explore coaching</span> →</span></a>
+          <a class="lux-service lux-service--group" href="#group-classes"><small data-lux-key="groupOver">03 / TOGETHER</small><h3 data-lux-key="groupTitle">GROUP CLASSES</h3><p data-lux-key="groupCopy">Move together. Grow stronger.</p><span class="lux-arrow"><span data-lux-key="groupMore">See classes</span> →</span></a>
+        </div>
+      </div>
+    </section>
     <section class="content" id="membership"><div class="shell"><div class="heading"><p class="kicker" data-i18n="membershipKicker">MEMBERSHIP</p><h2 data-i18n="membershipTitle">Choose the rhythm that fits you.</h2><p class="intro" data-i18n="membershipIntro">Flexible access for a single session, a holiday in Kalkan or a long-term training routine.</p></div><div class="currency-row"><div class="currency-switcher" role="group" aria-label="Currency"><button class="active" type="button" data-currency="TRY" aria-pressed="true"><b>₺</b><span>TL</span></button><button type="button" data-currency="EUR" aria-pressed="false" disabled><b>€</b><span>EUR</span></button><button type="button" data-currency="USD" aria-pressed="false" disabled><b>$</b><span>USD</span></button><button type="button" data-currency="GBP" aria-pressed="false" disabled><b>£</b><span>GBP</span></button></div><div class="currency-meta"><p class="rate-status" data-rate-status aria-live="polite">Current rates are loading…</p><p class="payment-policy" data-i18n="paymentPolicy">Payments are accepted in TRY, EUR, USD and GBP.</p></div></div><div class="plans" id="plans"></div></div></section>
 
     <section class="content" id="coaching"><div class="shell coach-layout"><div><div class="heading"><p class="kicker" data-i18n="coachingKicker">PERSONAL COACHING</p><h2 data-i18n="coachingTitle">A plan built around your goal.</h2><p class="intro" data-i18n="coachingIntro">Train one-to-one with structured programming, nutrition guidance and progress tracking.</p></div><ul class="features" id="features"></ul></div><div class="coach-pricing"><div class="currency-row"><div class="currency-switcher" role="group" aria-label="Currency"><button class="active" type="button" data-currency="TRY" aria-pressed="true"><b>₺</b><span>TL</span></button><button type="button" data-currency="EUR" aria-pressed="false" disabled><b>€</b><span>EUR</span></button><button type="button" data-currency="USD" aria-pressed="false" disabled><b>$</b><span>USD</span></button><button type="button" data-currency="GBP" aria-pressed="false" disabled><b>£</b><span>GBP</span></button></div><div class="currency-meta"><p class="rate-status" data-rate-status aria-live="polite">Current rates are loading…</p><p class="payment-policy" data-i18n="paymentPolicy">Payments are accepted in TRY, EUR, USD and GBP.</p></div></div><div class="coach-cards" id="coachCards"></div></div></div></section>
@@ -210,8 +227,38 @@
       <div class="group-offer"><div class="currency-row section-currency"><div class="currency-switcher" role="group" aria-label="Currency"><button class="active" type="button" data-currency="TRY" aria-pressed="true"><b>₺</b><span>TL</span></button><button type="button" data-currency="EUR" aria-pressed="false" disabled><b>€</b><span>EUR</span></button><button type="button" data-currency="USD" aria-pressed="false" disabled><b>$</b><span>USD</span></button><button type="button" data-currency="GBP" aria-pressed="false" disabled><b>£</b><span>GBP</span></button></div><div class="currency-meta"><p class="rate-status" data-rate-status aria-live="polite">Current rates are loading…</p><p class="payment-policy" data-i18n="paymentPolicy">Payments are accepted in TRY, EUR, USD and GBP.</p></div></div><div class="group-prices" id="groupPrices"></div><div class="group-points"><div class="group-point"><b aria-hidden="true">◇</b><span data-i18n="groupReservation">Reservation required</span></div><div class="group-point"><b aria-hidden="true">✓</b><span data-i18n="groupPayment">Booking is confirmed upon payment</span></div><div class="group-point"><b aria-hidden="true">◎</b><span data-i18n="groupLevels">Suitable for all levels</span></div></div><a class="btn primary group-book" id="groupWhatsappLink" target="_blank" rel="noopener" href="https://wa.me/905303785708"><span data-i18n="groupBook">Book your spot on WhatsApp</span> →</a><p class="group-schedule" data-i18n="groupSchedule">Ask us for the current schedule. Limited spots.</p></div>
     </div></section>
 
+    
+    <section class="lux-duo" aria-label="Shape Kids and Shape Bar">
+      <div class="lux-duo-card lux-duo-card--kids">
+        <span class="lux-kicker" data-lux-key="kidsOver">SHAPE KIDS</span>
+        <h2 data-lux-key="kidsTitle">MOVE · PLAY · GROW.</h2>
+        <p data-lux-key="kidsCopy">Age-appropriate fitness, coordination and movement for ages 6–13. Small groups and optional one-to-one sessions.</p>
+        <a class="lux-link" href="shape-kids/"><span data-lux-key="kidsMore">Explore Shape Kids</span> &nbsp;→</a>
+      </div>
+      <div class="lux-duo-card lux-duo-card--bar">
+        <span class="lux-kicker" data-lux-key="barOver">SHAPE BAR</span>
+        <h2 data-lux-key="barTitle">FUEL THE MOMENT.</h2>
+        <p data-lux-key="barCopy">Coffee, protein shakes and performance drinks—before or after your session.</p>
+        <a class="lux-link" href="#menu"><span data-lux-key="barMore">See the menu</span> &nbsp;→</a>
+      </div>
+    </section>
     <section class="content" id="menu"><div class="shell"><div class="heading"><p class="kicker">SHAPE BAR</p><h2 data-i18n="menuTitle">Fuel the work. Enjoy the ritual.</h2><p class="intro" data-i18n="menuIntro">Coffee, protein and performance drinks prepared for before, during or after your session.</p></div><div class="currency-row section-currency"><div class="currency-switcher" role="group" aria-label="Currency"><button class="active" type="button" data-currency="TRY" aria-pressed="true"><b>₺</b><span>TL</span></button><button type="button" data-currency="EUR" aria-pressed="false" disabled><b>€</b><span>EUR</span></button><button type="button" data-currency="USD" aria-pressed="false" disabled><b>$</b><span>USD</span></button><button type="button" data-currency="GBP" aria-pressed="false" disabled><b>£</b><span>GBP</span></button></div><div class="currency-meta"><p class="rate-status" data-rate-status aria-live="polite">Current rates are loading…</p><p class="payment-policy" data-i18n="paymentPolicy">Payments are accepted in TRY, EUR, USD and GBP.</p></div></div><div class="menus" id="menus"></div></div></section>
 
+    
+    <section class="lux-gallery" aria-labelledby="luxGalleryHeading">
+      <div class="shell">
+        <div class="lux-gallery-head">
+          <div><span class="lux-kicker" data-lux-key="galleryOver">INSIDE THE CLUB</span><h2 class="lux-section-title" id="luxGalleryHeading" data-lux-key="galleryTitle">Made for movement.</h2></div>
+          <a href="gallery.html"><span data-lux-key="galleryMore">View full gallery</span> →</a>
+        </div>
+        <div class="lux-gallery-grid">
+          <a href="gallery.html" class="lux-gallery-item"><strong data-lux-key="galleryHyrox">HYROX AREA</strong></a>
+          <a href="gallery.html" class="lux-gallery-item"><strong data-lux-key="galleryWeights">FREE WEIGHTS</strong></a>
+          <a href="gallery.html" class="lux-gallery-item"><strong data-lux-key="galleryCardio">TRAINING</strong></a>
+          <a href="gallery.html" class="lux-gallery-item"><strong data-lux-key="galleryFacility">FACILITIES</strong></a>
+        </div>
+      </div>
+    </section>
     <section class="content" id="contact"><div class="shell"><div class="contact-intro"><div class="heading"><p class="kicker" data-i18n="visitKicker">VISIT SHAPE</p><h2 data-i18n="visitTitle">Your next session starts here.</h2><p class="intro" data-i18n="visitIntro">Drop in, call us or send a message. We will help you choose the right plan.</p></div><div class="actions"><a class="btn primary" id="whatsappLink" target="_blank" rel="noopener" href="https://wa.me/905303785708">WhatsApp →</a><a class="btn ghost" id="callButton" href="tel:+905303785708" data-i18n="call">Call</a></div></div>
       <div class="cards">
         <article class="card"><span class="symbol">⌖</span><p class="card-label" data-i18n="addressLabel">ADDRESS</p><h3 id="addressText" data-i18n="address">Yasemen Sokak No:17 · Kalkan, Kaş / Antalya</h3><a class="action" id="mapsLink" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Shape+Training+Club+Kalkan"><span data-i18n="directions">Get directions</span> →</a></article>
@@ -556,8 +603,8 @@
       else window.addEventListener("resize",updateHeaderHeight,{passive:true});
     })();
   </script>
-  <!-- Cloudflare Web Analytics -->
-  <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4e67bf4c2b094c4487f6d765bd0b663e"}'></script>
-  <!-- End Cloudflare Web Analytics -->
+  <!-- Production analytics intentionally disabled in the preview branch. -->
+  <div class="lux-preview-label" data-lux-key="preview">PREVIEW · NOT LIVE</div>
+  <script src="luxury-preview.js?v=1"></script>
 </body>
 </html>
