@@ -112,6 +112,25 @@
     .hero-slide-pause:hover{background:rgba(35,89,132,.65);border-color:#65b4ff}
     @media(max-width:680px){.hero-kids-title{max-width:350px;font-size:var(--hero-title-mobile);line-height:.93;letter-spacing:-.05em}.hero-slide-kids .hero-copy{max-width:340px}.hero-slider-meta{margin-top:11px}}
     @media(prefers-reduced-motion:reduce){.hero-slide,.hero-slide-indicators span{transition:none;transform:none}}
+    /* Product switcher, shared visual language with /shape-kids/ */
+    .brand-switch{grid-column:1/-1;justify-self:center;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3px;width:min(470px,100%);padding:4px;border:1px solid rgba(126,188,238,.28);border-radius:14px;background:linear-gradient(145deg,rgba(15,40,63,.97),rgba(5,19,34,.97));box-shadow:inset 0 1px rgba(255,255,255,.06)}
+    .brand-switch-link{display:flex;align-items:center;justify-content:center;gap:7px;min-width:0;min-height:38px;border-radius:10px;color:#a7c8e4;font-size:11px;font-weight:900;letter-spacing:.07em;white-space:nowrap;transition:background .18s ease,color .18s ease,box-shadow .18s ease}
+    .brand-switch-link:hover{color:#fff;background:rgba(49,127,196,.21)}
+    .brand-switch-link.is-current{color:#fff;background:linear-gradient(130deg,#1a74d7,#2d96ef);box-shadow:0 6px 17px rgba(24,115,213,.25)}
+    .brand-switch-star{font-size:13px;color:#81c8ff}
+    .brand-switch-link.is-current .brand-switch-star{color:#fff}
+    /* The existing ticker sits under the fixed header; offset it by the measured header height. */
+    .rules-ticker{top:var(--shape-header-height,116px)}
+    .hero .shell{padding-top:calc(var(--shape-header-height,116px) + 88px)}
+    @media(max-width:1000px){.topbar{row-gap:7px}}
+    @media(max-width:680px){
+      .brand-switch{width:100%;gap:3px;padding:3px;border-radius:12px}
+      .brand-switch-link{min-height:37px;font-size:10px;letter-spacing:.045em;border-radius:9px}
+      .brand-switch-star{font-size:12px}
+      .rules-ticker{top:var(--shape-header-height,calc(112px + env(safe-area-inset-top)))}
+      .hero .shell{padding-top:calc(var(--shape-header-height,calc(112px + env(safe-area-inset-top))) + 82px)}
+    }
+    @media(prefers-reduced-motion:reduce){.brand-switch-link{transition:none}}
   </style>
   <link rel="stylesheet" href="site-pricing.css?v=28">
 </head>
@@ -124,6 +143,10 @@
       <button class="lang" type="button" data-lang="tr" aria-label="Türkçe"><b>🇹🇷</b><span>TR</span></button>
       <button class="lang" type="button" data-lang="de" aria-label="Deutsch"><b>🇩🇪</b><span>DE</span></button>
       <button class="lang" type="button" data-lang="ru" aria-label="Русский"><b>🇷🇺</b><span>RU</span></button>
+    </div>
+    <div class="brand-switch" role="navigation" aria-label="Shape Club and Shape Kids">
+      <a class="brand-switch-link is-current" href="./" aria-current="page"><span>SHAPE CLUB</span></a>
+      <a class="brand-switch-link" href="shape-kids/"><span class="brand-switch-star" aria-hidden="true">✦</span><span>SHAPE KIDS</span></a>
     </div>
   </header>
 
@@ -519,6 +542,18 @@
         });
       }
       paint();buttonLabel();start();
+    })();
+  </script>
+  <script>
+    (()=>{
+      const bar=document.querySelector(".topbar");
+      if(!bar)return;
+      const updateHeaderHeight=()=>{
+        document.documentElement.style.setProperty("--shape-header-height",Math.ceil(bar.getBoundingClientRect().height)+"px");
+      };
+      updateHeaderHeight();
+      if("ResizeObserver" in window)new ResizeObserver(updateHeaderHeight).observe(bar);
+      else window.addEventListener("resize",updateHeaderHeight,{passive:true});
     })();
   </script>
   <!-- Cloudflare Web Analytics -->
