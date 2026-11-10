@@ -1,0 +1,40 @@
+name: Minimal Luxury preview test
+
+on:
+  push:
+    branches: [minimal-luxury-preview]
+  pull_request:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'gallery.html'
+      - 'shape-kids/**'
+      - 'luxury-*.css'
+      - 'luxury-*.js'
+      - 'tests/preview-smoke.mjs'
+
+permissions:
+  contents: read
+
+jobs:
+  desktop-and-mobile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser testing tools
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Run responsive visual smoke tests
+        run: node tests/preview-smoke.mjs
+      - name: Upload desktop and mobile screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: minimal-luxury-screenshots
+          path: preview-screenshots/
+          if-no-files-found: ignore
