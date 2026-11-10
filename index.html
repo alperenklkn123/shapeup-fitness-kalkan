@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-lux-page="home">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -134,17 +134,35 @@
   </style>
   <link rel="stylesheet" href="site-pricing.css?v=28">
   <link rel="stylesheet" href="luxury-preview.css?v=1">
+  <link rel="stylesheet" href="luxury-routing.css?v=1">
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand header-brand" href="#top" aria-label="Shape Training Club Kalkan"><span class="brand-lockup"><strong>SH<i>A</i>PE</strong><em>TRAINING CLUB</em></span><small>KALKAN</small></a>
-    <nav aria-label="Main navigation"><a href="#membership" data-i18n="navMembership">Membership</a><a href="#coaching" data-i18n="navCoaching">Coaching</a><a href="#group-classes" data-lux-key="menuGroup">Group classes</a><a href="gallery.html" data-lux-key="menuGallery">Gallery</a><a href="shape-kids/" data-i18n="navKids">SHAPE KIDS</a><a href="#menu" data-i18n="navMenu">Menu</a><a href="#contact" data-i18n="navContact">Contact</a></nav>
+  <header class="topbar lux-topbar">
+    <a class="brand header-brand" href="index.html" aria-label="Shape Training Club Kalkan"><span class="brand-lockup"><strong>SH<i>A</i>PE</strong><em>TRAINING CLUB</em></span><small>KALKAN</small></a>
+    <nav class="lux-main-nav" id="luxMainNav" aria-label="Main navigation">
+      <a href="membership.html" data-route="membership" data-lux-nav="member">Membership</a>
+      <a href="coaching.html" data-route="coaching" data-lux-nav="coach">Coaching</a>
+      <a href="group-classes.html" data-route="group-classes" data-lux-nav="group">Group classes</a>
+      <a href="shape-kids/" data-lux-nav="kids">SHAPE KIDS</a>
+      <a href="shape-bar.html" data-route="shape-bar" data-lux-nav="bar">Shape Bar</a>
+      <a href="gallery.html" data-lux-nav="gallery">Gallery</a>
+      <details class="lux-nav-more">
+        <summary data-lux-nav="more">More</summary>
+        <div class="lux-more-panel">
+          <a href="online-coaching.html" data-route="online-coaching" data-lux-nav="online">Online coaching</a>
+          <a href="hours.html" data-route="hours" data-lux-nav="hours">Opening hours</a>
+          <a href="reviews.html" data-route="reviews" data-lux-nav="reviews">Google Reviews</a>
+          <a href="contact.html" data-route="contact" data-lux-nav="contact">Contact</a>
+        </div>
+      </details>
+    </nav>
     <div class="langs" role="group" aria-label="Choose language">
       <button class="lang" type="button" data-lang="en" aria-label="English"><b>🇬🇧</b><span>EN</span></button>
       <button class="lang" type="button" data-lang="tr" aria-label="Türkçe"><b>🇹🇷</b><span>TR</span></button>
       <button class="lang" type="button" data-lang="de" aria-label="Deutsch"><b>🇩🇪</b><span>DE</span></button>
       <button class="lang" type="button" data-lang="ru" aria-label="Русский"><b>🇷🇺</b><span>RU</span></button>
     </div>
+    <button id="luxMenuToggle" class="lux-menu-toggle" type="button" aria-expanded="false" aria-controls="luxMainNav" aria-label="Open navigation menu">☰ <span data-lux-route="menuText">Menü</span></button>
     <div class="brand-switch" role="navigation" aria-label="Shape Club and Shape Kids">
       <a class="brand-switch-link is-current" href="./" aria-current="page"><span>SHAPE CLUB</span></a>
       <a class="brand-switch-link" href="shape-kids/"><span class="brand-switch-star" aria-hidden="true">🌈</span><span>SHAPE KIDS</span></a>
@@ -153,6 +171,27 @@
 
   <div class="lux-preview-label" data-lux-key="preview">PREVIEW · NOT LIVE</div>
   <main>
+
+    <section class="lux-route-intro">
+      <div class="shell">
+        <a class="lux-breadcrumb" href="index.html" data-lux-route="home">← Back to home</a>
+        <h1 id="luxRouteTitle">Membership</h1>
+        <p id="luxRouteLead">Flexible access for every way you train.</p>
+      </div>
+    </section>
+    <section class="lux-reviews-route" aria-label="Google Reviews">
+      <div class="shell">
+        <div class="lux-reviews-box">
+          <span class="lux-kicker" data-lux-nav="reviews">Google Reviews</span>
+          <h2 data-lux-route="reviewsHeading">Your feedback matters.</h2>
+          <p data-lux-route="reviewsBody">Read the latest visitor experiences on our Google business profile, or leave an honest review of your own.</p>
+          <div class="lux-review-actions">
+            <a href="https://www.google.com/maps/search/?api=1&amp;query=Shape+Training+Club+Kalkan" target="_blank" rel="noopener" data-lux-route="readReviews">See our Google profile</a>
+            <a id="quickReviewsLink" href="https://search.google.com/local/writereview?placeid=ChIJw_Y6vGAtwBQROEuRz0soR_8" target="_blank" rel="noopener" data-lux-route="writeReview">Write a Google review</a>
+          </div>
+        </div>
+      </div>
+    </section>
     <section class="hero" id="top">
       <div class="rules-ticker" role="region" aria-label="Important gym rules">
         <div class="rules-ticker-track">
@@ -184,18 +223,7 @@
         <span class="hero-slide-count" id="shapeHeroCounter" aria-hidden="true">01 / 02</span>
         <button class="hero-slide-pause" type="button" id="shapeHeroPause" aria-label="Pause automatic slide rotation" aria-pressed="false"><span aria-hidden="true">Ⅱ</span></button>
       </div>
-      <div class="quick-access">
-        <div class="quick-access-head"><strong data-i18n="quickKicker">QUICK ACCESS</strong><small data-i18n="quickIntro">Everything you need, one tap away.</small></div>
-        <div class="quick-links" id="quickLinks" aria-label="Quick links">
-          <a class="quick-link featured" href="#membership"><span aria-hidden="true">◇</span><b data-i18n="quickMembership">Membership prices</b><i aria-hidden="true">↓</i></a>
-          <a class="quick-link" href="#menu"><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M4 3v5a2 2 0 0 0 4 0V3M6 3v18"/><path d="M12 8h8l-1 9h-6zM15.5 8l2-5M13 21h6"/></svg></span><b data-i18n="quickMenu">Shape Bar</b><i aria-hidden="true">↓</i></a>
-          <a class="quick-link" id="quickGroupLink" href="#group-classes"><span aria-hidden="true">◎</span><b data-i18n="quickGroup">Group classes</b><i aria-hidden="true">↓</i></a>
-          <a class="quick-link quick-kids" href="shape-kids/"><span aria-hidden="true">🧩</span><b data-i18n="quickKids">Shape Kids</b><i aria-hidden="true">→</i></a>
-          <a class="quick-link" href="#opening-hours"><span aria-hidden="true">◷</span><b data-i18n="quickHours">Opening hours</b><i aria-hidden="true">↓</i></a>
-          <a class="quick-link quick-wide quick-reviews" id="quickReviewsLink" target="_blank" rel="noopener" href="https://search.google.com/local/writereview?placeid=ChIJw_Y6vGAtwBQROEuRz0soR_8"><span aria-hidden="true">★</span><b data-i18n="reviews">Google Reviews</b><i aria-hidden="true">↗</i></a>
-          <a class="quick-link quick-wide quick-gallery" href="gallery.html"><span aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m5 18 4-4 3 3 3-4 4 5"/></svg></span><b data-i18n="quickGallery">Photo gallery</b><i aria-hidden="true">→</i></a>
-        </div>
-      </div>
+
     </div></section>
 
     
@@ -208,9 +236,9 @@
           <p data-lux-key="servicesNote">Whether you're here for a day or building a routine, there is a place for you.</p>
         </div>
         <div class="lux-service-grid">
-          <a class="lux-service lux-service--membership" href="#membership"><small data-lux-key="memberOver">01 / ACCESS</small><h3 data-lux-key="memberTitle">MEMBERSHIP</h3><p data-lux-key="memberCopy">Train on your terms, at your pace.</p><span class="lux-arrow"><span data-lux-key="memberMore">Explore plans</span> →</span></a>
-          <a class="lux-service lux-service--coaching" href="#coaching"><small data-lux-key="coachOver">02 / GUIDANCE</small><h3 data-lux-key="coachTitle">PERSONAL COACHING</h3><p data-lux-key="coachCopy">A plan built around your goals.</p><span class="lux-arrow"><span data-lux-key="coachMore">Explore coaching</span> →</span></a>
-          <a class="lux-service lux-service--group" href="#group-classes"><small data-lux-key="groupOver">03 / TOGETHER</small><h3 data-lux-key="groupTitle">GROUP CLASSES</h3><p data-lux-key="groupCopy">Move together. Grow stronger.</p><span class="lux-arrow"><span data-lux-key="groupMore">See classes</span> →</span></a>
+          <a class="lux-service lux-service--membership" href="membership.html"><small data-lux-key="memberOver">01 / ACCESS</small><h3 data-lux-key="memberTitle">MEMBERSHIP</h3><p data-lux-key="memberCopy">Train on your terms, at your pace.</p><span class="lux-arrow"><span data-lux-key="memberMore">Explore plans</span> →</span></a>
+          <a class="lux-service lux-service--coaching" href="coaching.html"><small data-lux-key="coachOver">02 / GUIDANCE</small><h3 data-lux-key="coachTitle">PERSONAL COACHING</h3><p data-lux-key="coachCopy">A plan built around your goals.</p><span class="lux-arrow"><span data-lux-key="coachMore">Explore coaching</span> →</span></a>
+          <a class="lux-service lux-service--group" href="group-classes.html"><small data-lux-key="groupOver">03 / TOGETHER</small><h3 data-lux-key="groupTitle">GROUP CLASSES</h3><p data-lux-key="groupCopy">Move together. Grow stronger.</p><span class="lux-arrow"><span data-lux-key="groupMore">See classes</span> →</span></a>
         </div>
       </div>
     </section>
@@ -240,7 +268,7 @@
         <span class="lux-kicker" data-lux-key="barOver">SHAPE BAR</span>
         <h2 data-lux-key="barTitle">FUEL THE MOMENT.</h2>
         <p data-lux-key="barCopy">Coffee, protein shakes and performance drinks—before or after your session.</p>
-        <a class="lux-link" href="#menu"><span data-lux-key="barMore">See the menu</span> &nbsp;→</a>
+        <a class="lux-link" href="shape-bar.html"><span data-lux-key="barMore">See the menu</span> &nbsp;→</a>
       </div>
     </section>
     <section class="content" id="menu"><div class="shell"><div class="heading"><p class="kicker">SHAPE BAR</p><h2 data-i18n="menuTitle">Fuel the work. Enjoy the ritual.</h2><p class="intro" data-i18n="menuIntro">Coffee, protein and performance drinks prepared for before, during or after your session.</p></div><div class="currency-row section-currency"><div class="currency-switcher" role="group" aria-label="Currency"><button class="active" type="button" data-currency="TRY" aria-pressed="true"><b>₺</b><span>TL</span></button><button type="button" data-currency="EUR" aria-pressed="false" disabled><b>€</b><span>EUR</span></button><button type="button" data-currency="USD" aria-pressed="false" disabled><b>$</b><span>USD</span></button><button type="button" data-currency="GBP" aria-pressed="false" disabled><b>£</b><span>GBP</span></button></div><div class="currency-meta"><p class="rate-status" data-rate-status aria-live="polite">Current rates are loading…</p><p class="payment-policy" data-i18n="paymentPolicy">Payments are accepted in TRY, EUR, USD and GBP.</p></div></div><div class="menus" id="menus"></div></div></section>
@@ -269,7 +297,8 @@
     </div></section>
   </main>
 
-  <footer><div class="shell foot"><a class="brand" href="#top"><strong>SH<i>A</i>PE</strong><small>TRAINING CLUB · KALKAN</small></a><p data-i18n="footer">More than a gym. A community in motion.</p><div class="meta"><span>© 2026 SHAPE</span><span data-i18n="legal">Payments are accepted in TRY, EUR, USD and GBP.</span></div></div></footer>
+  <footer><div class="shell foot"><a class="brand" href="index.html"><strong>SH<i>A</i>PE</strong><small>TRAINING CLUB · KALKAN</small></a><p data-i18n="footer">More than a gym. A community in motion.</p><div class="meta"><span>© 2026 SHAPE</span><span data-i18n="legal">Payments are accepted in TRY, EUR, USD and GBP.</span></div></div></footer>
+  <div class="lux-site-end"><div class="shell"><span>SHAPE TRAINING CLUB · KALKAN</span><div><a href="hours.html" data-lux-route="footerHours">Opening hours</a> &nbsp;·&nbsp; <a href="contact.html" data-lux-route="footerContact">Contact</a></div></div></div>
 
   <script src="site-defaults.js?v=28"></script>
   <script src="site-pricing.js?v=28"></script>
@@ -606,5 +635,6 @@
   </script>
   <!-- Production analytics intentionally disabled in the preview branch. -->
   <script src="luxury-preview.js?v=1"></script>
+  <script src="luxury-routing.js?v=1"></script>
 </body>
 </html>
