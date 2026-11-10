@@ -1,17 +1,27 @@
 name: Minimal Luxury preview test
 
 on:
-  push:
-    branches: [minimal-luxury-preview]
   pull_request:
     branches: [main]
     paths:
+      - 'membership.html'
+      - 'coaching.html'
+      - 'online-coaching.html'
+      - 'group-classes.html'
+      - 'shape-bar.html'
+      - 'hours.html'
+      - 'reviews.html'
+      - 'contact.html'
       - 'index.html'
       - 'gallery.html'
       - 'shape-kids/**'
       - 'luxury-*.css'
       - 'luxury-*.js'
       - 'tests/preview-smoke.mjs'
+
+concurrency:
+  group: minimal-luxury-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
