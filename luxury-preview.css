@@ -264,3 +264,8 @@ footer .meta{border-color:#3c3c38}
 }
 .lux-preview-label{left:auto;right:14px;bottom:14px}
 @media(max-width:680px){.lux-preview-label{right:8px;left:auto;bottom:8px}}
+
+/* Preview ribbon is in document flow, never on top of a control or heading. */
+.lux-preview-label{position:relative!important;inset:auto!important;z-index:2;display:block;width:100%;margin:0;padding:6px 14px;background:#d6bea2;color:#2a241d;text-align:center;border:0;border-radius:0;box-shadow:none;font-size:9px;letter-spacing:.18em}
+.quick-link:before,.quick-link:after{display:none!important}
+@media(max-width:680px){.lux-preview-label{padding:6px 10px;font-size:8px}}
