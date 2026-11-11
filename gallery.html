@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#05090f">
-  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="robots" content="noindex,nofollow,noarchive">
   <meta name="description" content="Explore the training areas and facilities at Shape Training Club in Kalkan.">
   <link rel="canonical" href="https://shapetrainingclub.net/gallery.html">
   <meta property="og:site_name" content="Shape Training Club">
@@ -31,6 +31,8 @@
     @media(max-width:520px){.brand small{display:none}.brand em{font-size:6px}.topbar{gap:10px}.langs{gap:1px}.lang{min-width:39px;padding:0 5px}.gallery-hero h1{font-size:42px}.intro{font-size:14px}.category-tab{min-height:43px;padding:0 14px}.photo-grid{grid-template-columns:1fr}.photo-card,.photo-card:nth-child(3n+1),.photo-card:nth-child(5n+1){grid-column:auto;aspect-ratio:4/3}.empty-state{min-height:280px;padding:25px}.category-heading{align-items:flex-start;flex-direction:column;gap:8px}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.photo-card img,.photo-card:after,.category-tab,.back-link{transition:none}}
   </style>
+  <link rel="stylesheet" href="luxury-gallery.css?v=1">
+  <link rel="stylesheet" href="luxury-secondary.css?v=1">
 </head>
 <body>
   <header class="topbar">
@@ -44,6 +46,7 @@
       <button class="lang" type="button" data-lang="ru" aria-label="Русский">🇷🇺</button>
     </div>
   </header>
+  <nav class="lux-secondary-nav" aria-label="Site pages"><div class="lux-secondary-inner"><a href="index.html" data-lux-nav="home">Home</a><a href="membership.html" data-lux-nav="member">Membership prices</a><a href="shape-bar.html" data-lux-nav="bar">Shape Bar</a><a href="group-classes.html" data-lux-nav="group">Group classes</a><a href="shape-kids/" data-lux-nav="kids">SHAPE KIDS</a><a href="hours.html" data-lux-nav="hours">Opening hours</a><a href="reviews.html" data-lux-nav="reviews">Google Reviews</a><a href="gallery.html" data-lux-nav="gallery" aria-current="page">Photo gallery</a><a href="coaching.html" data-lux-nav="coach">Coaching</a><a href="contact.html" data-lux-nav="contact">Contact</a></div></nav>
 
   <main>
     <section class="gallery-hero">
@@ -321,5 +324,6 @@
 <!-- Cloudflare Web Analytics -->
 <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4e67bf4c2b094c4487f6d765bd0b663e"}'></script>
 <!-- End Cloudflare Web Analytics -->
+  <script src="luxury-routing.js?v=1"></script>
 </body>
 </html>

@@ -1,0 +1,9 @@
+/* Consistent, horizontally scrollable site navigation on Gallery and Shape Kids */
+.lux-secondary-nav{background:#20221f;border-bottom:1px solid #4c4339;color:#f2e9dc;position:relative;z-index:5}
+.lux-secondary-nav .lux-secondary-inner{display:flex;gap:5px;align-items:center;justify-content:center;margin:0 auto;max-width:1260px;padding:8px 14px;overflow-x:auto;scrollbar-width:thin}
+.lux-secondary-nav a{display:inline-block;flex:0 0 auto;padding:11px 13px;color:#eae0d5!important;font:500 11px/1.2 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;text-decoration:none;border:1px solid transparent;border-radius:2px;white-space:nowrap}
+.lux-secondary-nav a:hover,.lux-secondary-nav a[aria-current="page"]{color:#241e17!important;background:#c9ad8d;border-color:#c9ad8d}
+@media(max-width:1000px){
+ .lux-secondary-nav .lux-secondary-inner{justify-content:flex-start;padding:8px 16px}
+ .lux-secondary-nav a{font-size:11px;padding:10px 12px}
+}
