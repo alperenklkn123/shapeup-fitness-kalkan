@@ -24,6 +24,31 @@ try {
     await page.locator(".lux-service").first().waitFor();
     assert.equal(await page.locator(".lux-service").count(),3);
     assert.equal(await page.locator(".quick-access").count(),0);
+    const quickRoutes=[
+      ["membership.html","Üyelik fiyatları"],
+      ["shape-bar.html","Shape Bar"],
+      ["group-classes.html","Grup dersleri"],
+      ["shape-kids/","Shape Kids"],
+      ["hours.html","Çalışma saatleri"],
+      ["reviews.html","Google Yorumları"],
+      ["gallery.html","Fotoğraf galerisi"]
+    ];
+    assert.equal(await page.locator(".lux-main-nav .lux-nav-more").count(),0);
+    assert.equal(await page.locator("#luxMenuToggle").count(),0);
+    for(const [href] of quickRoutes){
+      assert.equal(await page.locator('.lux-main-nav>a[href="'+href+'"]').count(),1,"Missing direct top link: "+href);
+    }
+    assert.equal(await page.locator(".lux-main-nav").isVisible(),true);
+    const navMetrics=await page.locator(".lux-main-nav").evaluate(nav=>({
+      scrollWidth:nav.scrollWidth,clientWidth:nav.clientWidth,
+      links:[...nav.querySelectorAll("a")].slice(0,7).map(a=>({left:a.getBoundingClientRect().left,right:a.getBoundingClientRect().right}))
+    }));
+    if(vp.name==="desktop"){
+      assert.ok(navMetrics.links.every(rect=>rect.left>=-1&&rect.right<=vp.width+1),"Not all seven navigation links fit on desktop");
+    } else {
+      assert.ok(navMetrics.scrollWidth>navMetrics.clientWidth,"Mobile menu should be horizontally swipeable");
+    }
+
     assert.equal(await page.locator(".lux-gallery-item").count(),4);
     assert.equal(await page.locator('meta[name="robots"]').getAttribute("content"),"noindex,nofollow,noarchive");
     await page.screenshot({path:"preview-screenshots/"+vp.name+"-home.png",fullPage:true,animations:"disabled"});
@@ -32,6 +57,10 @@ try {
       assert.equal(await page.locator("html").getAttribute("lang"),language);
       assert.equal((await page.locator("[data-lux-key='servicesLabel']").textContent()).trim(),label);
     }
+    await page.locator('.lux-main-nav a[href="hours.html"]').click();
+    assert.ok(page.url().endsWith("/hours.html"),"Opening hours must navigate to own page");
+    await page.goto(origin+"/index.html",{waitUntil:"domcontentloaded"});
+
     for(const route of pages){
       await page.goto(origin+"/"+route+".html",{waitUntil:"domcontentloaded",timeout:25000});
       assert.equal(await page.locator("html").getAttribute("data-lux-page"),route);
