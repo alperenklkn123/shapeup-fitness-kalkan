@@ -3,7 +3,7 @@
   "use strict";
   const text={
     en:{
-      member:"Membership",coach:"Coaching",group:"Group classes",kids:"SHAPE KIDS",bar:"Shape Bar",gallery:"Gallery",more:"More",
+      member:"Membership prices",coach:"Coaching",group:"Group classes",kids:"SHAPE KIDS",bar:"Shape Bar",gallery:"Photo gallery",more:"More",
       online:"Online coaching",hours:"Opening hours",reviews:"Google Reviews",contact:"Contact",home:"← Back to home",
       membershipTitle:"Membership",membershipLead:"Flexible access for every way you train.",
       coachingTitle:"Personal coaching",coachingLead:"One-to-one coaching, tailored to your goals.",
@@ -17,8 +17,8 @@
       footerContact:"Contact",footerHours:"Opening hours"
     },
     tr:{
-      member:"Üyelik",coach:"Koçluk",group:"Grup dersleri",kids:"SHAPE KIDS",bar:"Shape Bar",gallery:"Galeri",more:"Diğer",
-      online:"Online koçluk",hours:"Çalışma saatleri",reviews:"Google Yorumları",contact:"İletişim",home:"← Ana sayfaya dön",
+      member:"Üyelik fiyatları",coach:"Koçluk",group:"Grup dersleri",kids:"SHAPE KIDS",bar:"Shape Bar",gallery:"Fotoğraf galerisi",more:"Diğer",
+      online:"Online koçluk",hours:"Çalışma saatlerimiz",reviews:"Google Yorumları",contact:"İletişim",home:"← Ana sayfaya dön",
       membershipTitle:"Üyelik",membershipLead:"Antrenman düzenine uygun esnek üyelik seçenekleri.",
       coachingTitle:"Kişisel antrenman",coachingLead:"Hedeflerine özel birebir koçluk.",
       onlineTitle:"Online koçluk",onlineLead:"Nerede olursan ol, sana özel antrenman planı.",
@@ -31,7 +31,7 @@
       footerContact:"İletişim",footerHours:"Çalışma saatleri"
     },
     de:{
-      member:"Mitgliedschaft",coach:"Coaching",group:"Gruppenkurse",kids:"SHAPE KIDS",bar:"Shape Bar",gallery:"Galerie",more:"Mehr",
+      member:"Mitgliedschaftspreise",coach:"Coaching",group:"Gruppenkurse",kids:"SHAPE KIDS",bar:"Shape Bar",gallery:"Fotogalerie",more:"Mehr",
       online:"Online-Coaching",hours:"Öffnungszeiten",reviews:"Google-Bewertungen",contact:"Kontakt",home:"← Zur Startseite",
       membershipTitle:"Mitgliedschaft",membershipLead:"Flexible Mitgliedschaften für dein Training.",
       coachingTitle:"Personal Training",coachingLead:"Individuelles Training für deine Ziele.",
@@ -45,7 +45,7 @@
       footerContact:"Kontakt",footerHours:"Öffnungszeiten"
     },
     ru:{
-      member:"Абонементы",coach:"Тренер",group:"Групповые занятия",kids:"SHAPE KIDS",bar:"Shape Bar",gallery:"Галерея",more:"Ещё",
+      member:"Цены на абонементы",coach:"Тренер",group:"Групповые занятия",kids:"SHAPE KIDS",bar:"Shape Bar",gallery:"Фотогалерея",more:"Ещё",
       online:"Онлайн-тренировки",hours:"Часы работы",reviews:"Отзывы Google",contact:"Контакты",home:"← На главную",
       membershipTitle:"Абонементы",membershipLead:"Гибкие варианты посещения для любого графика.",
       coachingTitle:"Персональный тренер",coachingLead:"Индивидуальные тренировки для ваших целей.",
@@ -87,26 +87,7 @@
   }
   function init(){
     const nav=document.getElementById("luxMainNav");
-    const toggle=document.getElementById("luxMenuToggle");
-    if(toggle&&nav){
-      toggle.addEventListener("click",()=>{
-        const opened=!nav.classList.contains("is-open");
-        nav.classList.toggle("is-open",opened);
-        toggle.setAttribute("aria-expanded",String(opened));
-      });
-      document.addEventListener("keydown",event=>{
-        if(event.key==="Escape"){
-          nav.classList.remove("is-open");
-          toggle.setAttribute("aria-expanded","false");
-          const submenu=nav.querySelector("details[open]");
-          if(submenu)submenu.open=false;
-        }
-      });
-      document.addEventListener("click",event=>{
-        if(event.target.closest(".lux-topbar"))return;
-        nav.classList.remove("is-open");
-        toggle.setAttribute("aria-expanded","false");
-      });
+    if(nav){
       const current=document.documentElement.dataset.luxPage||"home";
       nav.querySelectorAll("a[data-route]").forEach(a=>{
         if(a.dataset.route===current)a.setAttribute("aria-current","page");
