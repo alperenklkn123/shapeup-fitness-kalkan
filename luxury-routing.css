@@ -99,3 +99,80 @@ html[data-lux-page] section.content{scroll-margin-top:80px}
   html[data-lux-page="hours"] #contact #opening-hours{padding:25px 20px}
   .lux-site-end .shell{display:block}
 }
+
+/* 2026-11-11: All former Quick Access links directly visible in the top navigation.
+   Desktop: elegant two-level header, no "More" dropdown.
+   Mobile: same links in a horizontally swipeable bar, never hidden behind a menu. */
+html[data-lux-page] .topbar.lux-topbar{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  grid-template-rows:auto auto;
+  align-items:center;
+  column-gap:24px!important;
+  row-gap:12px!important;
+  min-height:115px!important;
+  padding:14px max(22px,calc((100vw - 1260px)/2)) 0!important;
+}
+html[data-lux-page] .topbar.lux-topbar>.brand{
+  grid-column:1;grid-row:1;min-width:0;
+}
+html[data-lux-page] .topbar.lux-topbar>.langs{
+  grid-column:2;grid-row:1;justify-self:end;
+}
+html[data-lux-page] .topbar.lux-topbar .lux-main-nav{
+  position:static!important;
+  grid-column:1/-1;
+  grid-row:2;
+  display:flex!important;
+  flex-direction:row!important;
+  flex-wrap:nowrap!important;
+  align-items:center!important;
+  justify-content:center;
+  gap:clamp(9px,1.8vw,26px)!important;
+  min-width:0;width:100%;max-height:none!important;
+  margin:0!important;padding:4px 0 10px!important;
+  border:0!important;border-top:1px solid rgba(255,255,255,.11)!important;
+  border-radius:0;background:transparent!important;
+  box-shadow:none!important;
+  overflow-x:auto!important;overflow-y:hidden!important;
+  white-space:nowrap!important;
+  scrollbar-width:thin;scrollbar-color:rgba(201,173,141,.4) transparent;
+  -webkit-overflow-scrolling:touch;
+}
+html[data-lux-page] .topbar.lux-topbar .lux-main-nav>a{
+  display:inline-flex;flex:0 0 auto;align-items:center;
+  position:relative;min-height:35px;
+  padding:10px 0 8px!important;margin:0!important;
+  border:0!important;border-bottom:0!important;
+  font-size:clamp(10px,.82vw,12px)!important;font-weight:550;
+  color:#eee8df;line-height:1.35!important;
+  letter-spacing:.012em;text-align:center;text-decoration:none;
+}
+html[data-lux-page] .topbar.lux-topbar .lux-main-nav>a[aria-current="page"]{color:#e0c4a3}
+html[data-lux-page] .topbar.lux-topbar .lux-main-nav>a::after{bottom:5px}
+html[data-lux-page] .topbar.lux-topbar .lux-menu-toggle,
+html[data-lux-page] .topbar.lux-topbar .lux-nav-more{display:none!important}
+@media(max-width:1250px){
+  html[data-lux-page] .topbar.lux-topbar .lux-main-nav{
+    justify-content:flex-start!important;gap:19px!important;
+  }
+  html[data-lux-page] .topbar.lux-topbar .lux-main-nav>a{font-size:11px!important}
+}
+@media(max-width:680px){
+  html[data-lux-page] .topbar.lux-topbar{
+    grid-template-columns:minmax(0,1fr) auto!important;
+    min-height:102px!important;row-gap:8px!important;
+    padding:10px 14px 0!important;
+  }
+  html[data-lux-page] .topbar.lux-topbar .lux-main-nav{
+    justify-content:flex-start!important;gap:22px!important;
+    padding:5px 0 9px!important;
+    scroll-snap-type:x proximity;
+  }
+  html[data-lux-page] .topbar.lux-topbar .lux-main-nav>a{
+    min-height:40px;padding:11px 0 8px!important;
+    font-size:11px!important;scroll-snap-align:start;
+  }
+  html[data-lux-page] .topbar.lux-topbar .brand strong{font-size:25px!important}
+  html[data-lux-page] .topbar.lux-topbar .langs{gap:2px}
+}
