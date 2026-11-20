@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#0e1113">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>SHAPE PT · Antrenör Paneli</title>
+<style>
+:root{--bg:#0e1113;--panel:#171b1e;--card:#1c2124;--line:#30373a;--ink:#f5f2ea;--muted:#9ba5a8;--gold:#d9bc84;--green:#91d9ba;--red:#f1a9a7}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.45}button,input,textarea{font:inherit}button{cursor:pointer}button:disabled{opacity:.48;cursor:not-allowed}a{color:var(--gold)}
+[hidden]{display:none!important}.page{max-width:1450px;margin:auto;padding:24px 24px 56px}
+header{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:10px 0 26px;border-bottom:1px solid var(--line)}
+.logo{font-size:25px;font-weight:900;letter-spacing:.22em}.logo span{color:var(--gold)}.subtitle{font-size:10px;letter-spacing:.18em;color:var(--muted);font-weight:700}.header-actions{display:flex;align-items:center;gap:15px;flex-wrap:wrap}.role{font-size:13px;color:var(--muted)}
+.hero{padding:30px 0 22px}.eyebrow{font-size:11px;font-weight:800;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;margin:0 0 8px}h1{font-size:clamp(25px,3vw,38px);margin:0;font-weight:750;letter-spacing:-.035em}h2{font-size:19px;letter-spacing:-.02em;margin:0}h3{font-size:15px;margin:0}.lead{font-size:14px;color:var(--muted);margin:9px 0 0}
+.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:0 0 24px}.metric,.panel,.profile,.editor,.empty{border:1px solid var(--line);background:var(--panel);border-radius:18px}.metric{padding:17px}.metric small{color:var(--muted);font-size:12px}.metric strong{display:block;font-size:28px;margin-top:3px;font-variant-numeric:tabular-nums}
+.workspace{display:grid;grid-template-columns:300px minmax(0,1fr);gap:18px;align-items:start}
+.panel{padding:16px;position:sticky;top:16px}.panel-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}
+.field,.search,textarea{display:block;width:100%;min-width:0;background:#101417;border:1px solid #394146;color:var(--ink);border-radius:11px;padding:11px 12px;outline:none}.field:focus,.search:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 0 2px #d9bc8424}
+.search{margin-bottom:12px}.student-list{display:grid;gap:8px;max-height:67vh;overflow:auto}
+.student{border:1px solid transparent;background:#20262a;color:var(--ink);width:100%;padding:12px;display:flex;align-items:center;gap:11px;border-radius:12px;text-align:left}
+.student:hover{background:#273035}.student.active{border-color:var(--gold);background:#2b2a24}
+.avatar{display:grid;place-items:center;flex:none;width:42px;height:42px;border-radius:12px;background:#353b3d;color:var(--gold);font-weight:800}
+.student b{font-size:13px;display:block}.student small{font-size:11px;color:var(--muted)}.student-text{flex:1;min-width:0}.muted{color:var(--muted)}.tiny{font-size:12px}
+.body-panel{display:grid;gap:16px;min-width:0}.profile{padding:20px}.profile-top{display:flex;align-items:center;gap:15px;flex-wrap:wrap}.profile-top .avatar{width:56px;height:56px;font-size:18px}
+.profile-head{flex:1}.profile-head h2{margin:0 0 4px}.tag{display:inline-flex;align-items:center;border:1px solid #65593e;background:#302b20;color:#ebcf96;border-radius:99px;padding:5px 10px;font-size:11px;font-weight:750}.tag.live{background:#153428;border-color:#38644f;color:#9be0bb}
+.info-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:20px}
+.info{background:#22282b;border-radius:12px;padding:12px;min-width:0}.info small{display:block;color:var(--muted);font-size:11px}.info strong{display:block;margin-top:5px;font-size:14px;overflow-wrap:anywhere}
+.editor{padding:20px}.editor-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.button{border:1px solid var(--line);border-radius:10px;background:#242a2d;color:var(--ink);padding:10px 14px;font-size:13px;font-weight:650;white-space:nowrap}
+.button:hover{background:#30383c}.button.primary{background:var(--gold);border-color:var(--gold);color:#131517}.button.primary:hover{background:#e8cd99}.button.danger{color:var(--red);border-color:#5a3a3b}.button.small{font-size:11px;padding:7px 10px}.row{display:flex;align-items:center;gap:9px;flex-wrap:wrap}.stack{display:grid;gap:13px}.label{display:block;font-size:12px;color:#c7d0d0;margin-bottom:6px;font-weight:650}
+.divider{border:0;border-top:1px solid var(--line);margin:18px 0}.form-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px}
+.days{display:flex;gap:7px;overflow-x:auto;padding:2px 0 12px}.day{flex:none}.day.selected{border-color:var(--gold);color:var(--gold)}
+.exercise{background:#202629;border:1px solid #394144;border-radius:13px;padding:14px;margin-top:10px}.exercise-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
+.ex-grid{display:grid;grid-template-columns:minmax(0,2fr) repeat(4,minmax(0,.9fr));gap:9px}.ex-notes{margin-top:10px}
+.empty{padding:48px 20px;text-align:center}.empty .symbol{font-size:40px;color:var(--gold)}.empty h2{margin:10px 0}.empty p{color:var(--muted);font-size:14px;max-width:520px;margin:8px auto}
+.notice{position:fixed;right:20px;bottom:20px;max-width:420px;padding:14px 18px;border-radius:12px;background:#1c3830;border:1px solid #457e65;color:#def4e8;box-shadow:0 14px 35px #0008;z-index:5;font-size:13px}.notice.error{background:#452724;border-color:#a45f59;color:#ffe5de}
+.login-wrap{min-height:100dvh;display:grid;place-items:center;padding:22px}.login-card{width:min(100%,430px);background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:30px}.login-card h1{font-size:27px;margin:24px 0 5px}.login-card p{color:var(--muted);font-size:13px}.login-card .label{margin-top:15px}.login-card .button{width:100%;margin-top:20px;padding:13px}
+.legacy{margin-top:14px;padding:13px;background:#22282b;border-radius:11px;color:var(--muted);white-space:pre-wrap;font-size:12px;max-height:180px;overflow:auto}
+.nocontent{padding:20px;border:1px dashed #475053;border-radius:13px;text-align:center;color:var(--muted);font-size:13px}
+@media(max-width:990px){.workspace{grid-template-columns:1fr}.panel{position:relative;top:auto}.student-list{display:flex;overflow-x:auto;max-height:none}.student{min-width:190px;flex:none}.info-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:610px){.page{padding:16px 13px 35px}.hero{padding:24px 0 20px}.metrics{gap:7px}.metric{padding:12px}.metric strong{font-size:23px}.metric small{font-size:10px}.profile,.editor{padding:15px}.info-grid{gap:7px}.info{padding:10px}.form-grid{grid-template-columns:1fr}.ex-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ex-grid>div:first-child{grid-column:span 2}.header-actions .role{display:none}header{padding-bottom:18px}.button{padding:9px 11px}}
+</style>
+</head>
+<body>
+<section id="loginView" class="login-wrap">
+  <form id="loginForm" class="login-card">
+    <div class="logo">SH<span>A</span>PE</div>
+    <div class="subtitle">PERSONAL TRAINING · KALKAN</div>
+    <h1>Antrenör Paneli</h1>
+    <p>Öğrencilerini, programlarını ve ders bilgilerini güvenle yönet.</p>
+    <label class="label" for="email">E-posta</label>
+    <input class="field" id="email" type="email" autocomplete="username" required>
+    <label class="label" for="password">Şifre</label>
+    <input class="field" id="password" type="password" autocomplete="current-password" required>
+    <button id="loginBtn" type="submit" class="button primary">Giriş yap</button>
+    <p id="loginError" role="alert" style="color:var(--red)"></p>
+  </form>
+</section>
+<div id="appView" hidden>
+<div class="page">
+<header>
+  <div><div class="logo">SH<span>A</span>PE</div><div class="subtitle">PT · ANTRENÖR MERKEZİ</div></div>
+  <div class="header-actions"><span id="roleLabel" class="role"></span><button class="button small" id="refreshBtn">Yenile</button><button class="button small" id="logoutBtn">Çıkış yap</button></div>
+</header>
+<section class="hero"><p class="eyebrow">SHAPE TRAINING CLUB</p><h1>Öğrenci ve program yönetimi</h1><p class="lead">Öğrencilerin ilerlemesini takip et, antrenmanlarını hazırla ve yayınla.</p></section>
+<div class="metrics">
+  <div class="metric"><small>Öğrencilerim</small><strong id="countStudents">0</strong></div>
+  <div class="metric"><small>Toplam kalan ders</small><strong id="countRemaining">0</strong></div>
+  <div class="metric"><small>Yayınlanan program</small><strong id="countPrograms">0</strong></div>
+</div>
+<div class="workspace">
+  <aside class="panel">
+    <div class="panel-header"><h3>Öğrencilerim</h3><span class="tag" id="listCount">0</span></div>
+    <input id="search" class="search" placeholder="Öğrenci ara…" aria-label="Öğrenci ara">
+    <div class="student-list" id="studentList"></div>
+    <p class="tiny muted" style="margin-bottom:0">Yalnızca sana atanmış öğrenciler görünür.</p>
+  </aside>
+  <main class="body-panel" id="mainPanel">
+    <div class="empty"><div class="symbol">⌁</div><h2>Öğrenci seç</h2><p>Bir öğrencinin profilini ve antrenman programını görmek için sol taraftan seçim yap.</p></div>
+  </main>
+</div>
+</div>
+</div>
+<div id="notice" class="notice" role="status" hidden></div>
+<datalist id="exerciseSuggestions">
+<option value="Barbell Bench Press"><option value="Incline Dumbbell Press"><option value="Dumbbell Fly"><option value="Chest Press"><option value="Push Up">
+<option value="Lat Pulldown"><option value="Pull Up"><option value="Barbell Row"><option value="Seated Cable Row"><option value="One Arm Dumbbell Row">
+<option value="Overhead Press"><option value="Lateral Raise"><option value="Rear Delt Fly"><option value="Face Pull">
+<option value="Back Squat"><option value="Front Squat"><option value="Goblet Squat"><option value="Leg Press"><option value="Leg Extension">
+<option value="Romanian Deadlift"><option value="Deadlift"><option value="Leg Curl"><option value="Hip Thrust"><option value="Bulgarian Split Squat"><option value="Walking Lunge">
+<option value="Calf Raise"><option value="Barbell Curl"><option value="Hammer Curl"><option value="Triceps Pushdown"><option value="Skull Crusher">
+<option value="Plank"><option value="Cable Crunch"><option value="Hanging Leg Raise"><option value="Ab Wheel">
+</datalist>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.111.0/dist/umd/supabase.min.js"></script>
+<script src="../supabase-config.js"></script>
+<script>
+(function(){
+"use strict";
+const cfg=window.SHAPE_SUPABASE;
+const $=id=>document.getElementById(id);
+const clean=x=>String(x==null?"":x).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const text=x=>String(x==null?"":x);
+const blank=()=>({title:"Yeni antrenman programı",notes:"",days:[{name:"1. Gün",exercises:[]}]});
+const exBlank=()=>({name:"",sets:3,reps:"10-12",weight:"",rest:60,notes:""});
+const cap=x=>Math.max(0,Number(x)||0);
+const date=x=>x?new Date(x).toLocaleDateString("tr-TR",{day:"2-digit",month:"short",year:"numeric"}):"Henüz yayınlanmadı";
+let sb,user,role,students=[],programClientIds=[],selected=null,intake=null,doc=null,draftVersion=null,publication=null,dayIndex=0,dirty=false,busy=false;
+let flashTimer;
+function notify(message,error){const n=$("notice");n.textContent=message;n.className="notice"+(error?" error":"");n.hidden=false;clearTimeout(flashTimer);flashTimer=setTimeout(()=>n.hidden=true,4800)}
+function fail(e){notify(e?.message||"İşlem tamamlanamadı. Tekrar dene.",true)}
+function setBusy(x){busy=x;document.querySelectorAll('[data-action="save"],[data-action="publish"]').forEach(b=>b.disabled=x)}
+function showLogin(err){$("loginView").hidden=false;$("appView").hidden=true;if(err)$("loginError").textContent=err}
+async function start(){
+ try {
+ if(!cfg||!window.supabase)throw Error("Bağlantı ayarları yüklenemedi");
+ sb=window.supabase.createClient(cfg.url,cfg.publishableKey,{auth:{persistSession:true,autoRefreshToken:true}});
+ const res=await sb.auth.getUser();
+ if(res.data?.user)await openApp(res.data.user);
+ else showLogin();
+ }catch(e){showLogin("Bağlantı kurulamadı: "+(e.message||""))}
+}
+async function openApp(authUser){
+ const {data:pr,error}=await sb.from("pt_profiles").select("role,full_name").eq("id",authUser.id).maybeSingle();
+ if(error)throw error;
+ if(!pr||!["trainer","admin"].includes(pr.role)){await sb.auth.signOut();showLogin("Bu hesap antrenör veya yönetici yetkisine sahip değil.");return}
+ user=authUser;role=pr.role;
+ $("roleLabel").textContent=(pr.full_name||"SHAPE")+" · "+(role==="admin"?"Yönetici":"Antrenör");
+ $("loginView").hidden=true;$("appView").hidden=false;
+ await loadStudents();
+}
+async function loadStudents(){
+ const {data,error}=await sb.from("pt_clients").select("id,full_name,total,used,coach_id,trainer_id,workout").order("full_name");
+ if(error)throw error;
+ let filtered=(data||[]).filter(c=>c.id!==user.id);
+ if(role==="admin"){
+  const {data:profiles,error:pe}=await sb.from("pt_profiles").select("id,role");
+  if(pe)throw pe;const allowed=new Set((profiles||[]).filter(p=>p.role==="customer").map(p=>p.id));filtered=filtered.filter(c=>allowed.has(c.id));
+ }
+ students=filtered;
+ const {data:published,error:pubErr}=await sb.from("pt_program_publications").select("client_id");
+ if(pubErr)throw pubErr;
+ programClientIds=(published||[]).map(p=>p.client_id);
+ $("countStudents").textContent=students.length;
+ $("countRemaining").textContent=students.reduce((sum,c)=>sum+cap(c.total-c.used),0);
+ $("countPrograms").textContent=programClientIds.filter(id=>students.some(s=>s.id===id)).length;
+ $("listCount").textContent=students.length;
+ renderList();
+ if(selected){
+  const current=students.find(s=>s.id===selected.id);
+  if(current){selected=current;renderDetail();}
+  else {selected=null;renderEmpty();}
+ }
+}
+function renderList(){
+ const query=$("search").value.trim().toLocaleLowerCase("tr");
+ const items=students.filter(c=>(c.full_name||"").toLocaleLowerCase("tr").includes(query));
+ $("studentList").innerHTML=items.length?items.map(c=>{
+  const name=c.full_name||"İsimsiz öğrenci";
+  const initials=name.split(/\s+/).slice(0,2).map(x=>x.charAt(0)).join("").toUpperCase();
+  return '<button class="student '+(selected?.id===c.id?'active':'')+'" data-action="choose" data-id="'+clean(c.id)+'">'+
+    '<span class="avatar">'+clean(initials)+'</span><span class="student-text"><b>'+clean(name)+'</b><small>'+cap(c.total-c.used)+' ders kaldı · '+(programClientIds.includes(c.id)?"Program hazır":"Program bekliyor")+'</small></span></button>';
+ }).join(""):'<div class="nocontent">Kayıtlı öğrenci bulunamadı.</div>';
+}
+function renderEmpty(){
+ $("mainPanel").innerHTML='<div class="empty"><div class="symbol">⌁</div><h2>'+(students.length?"Öğrenci seç":"Henüz atanmış öğrenci yok")+'</h2><p>'+(students.length?"Profil ve programını açmak için bir öğrenci seç.":"Öğrenciler kayıt sırasında seni seçtiğinde burada listelenecek.")+'</p></div>';
+}
+async function choose(id){
+ if(dirty&&!confirm("Kaydedilmemiş program değişiklikleri var. Öğrenci değiştirilsin mi?"))return;
+ selected=students.find(x=>x.id===id);
+ if(!selected)return;
+ intake=null;publication=null;doc=null;draftVersion=null;dirty=false;dayIndex=0;renderList();
+ $("mainPanel").innerHTML='<div class="empty"><p>Öğrenci yükleniyor…</p></div>';
+ try{
+ const results=await Promise.all([
+  sb.from("pt_intake").select("user_id,full_name,phone,height_cm,starting_weight_kg,target_weight_kg,goal,weekly_days,experience,selected_package_name").eq("user_id",id).maybeSingle(),
+  sb.from("pt_program_drafts").select("client_id,document,version").eq("client_id",id).maybeSingle(),
+  sb.from("pt_program_publications").select("client_id,document,version,published_at").eq("client_id",id).maybeSingle()
+ ]);
+ for(const r of results)if(r.error)throw r.error;
+ intake=results[0].data;const draft=results[1].data;publication=results[2].data;
+ draftVersion=draft?draft.version:null;
+ doc=draft?structuredCloneSafe(draft.document):publication?structuredCloneSafe(publication.document):blank();
+ renderDetail();
+ }catch(e){fail(e);renderEmpty()}
+}
+function structuredCloneSafe(x){return JSON.parse(JSON.stringify(x))}
+function infoItem(label,value){return '<div class="info"><small>'+clean(label)+'</small><strong>'+clean(value||"—")+'</strong></div>'}
+function docField(label,key,extra){return '<div><label class="label">'+label+'</label><input class="field" data-field="'+key+'" '+(extra||"")+' value="'+clean(doc[key])+'"></div>'}
+function exerciseRow(ex,idx){
+ const input=(name,label,type,extra)=>'<div><label class="label">'+label+'</label><input class="field" data-ex="'+idx+'" data-ex-field="'+name+'" type="'+type+'" '+(extra||"")+' value="'+clean(ex[name])+'"></div>';
+ return '<div class="exercise"><div class="exercise-head"><h3>Hareket '+(idx+1)+'</h3><button class="button danger small" data-action="remove-ex" data-index="'+idx+'">Hareketi kaldır</button></div>'+
+ '<div class="ex-grid">'+
+ input("name","Hareket adı","text",'list="exerciseSuggestions" maxlength="120" placeholder="Örn. Bench Press"')+
+ input("sets","Set","number",'min="1" max="30"')+
+ input("reps","Tekrar","text",'maxlength="50" placeholder="8-12"')+
+ input("weight","Ağırlık","text",'maxlength="50" placeholder="40 kg"')+
+ input("rest","Dinlenme (sn)","number",'min="0" max="3600"')+'</div>'+
+ '<div class="ex-notes">'+input("notes","Antrenör notu","text",'maxlength="500" placeholder="Tempo, form veya alternatif hareket"')+'</div></div>';
+}
+function renderDetail(){
+ if(!selected||!doc){renderEmpty();return}
+ const c=selected;const remaining=cap(c.total-c.used);
+ const isLive=!!publication;
+ const head='<section class="profile"><div class="profile-top"><span class="avatar">'+clean((c.full_name||"Ö").charAt(0).toUpperCase())+'</span><div class="profile-head"><h2>'+clean(c.full_name)+'</h2><div class="tiny muted">'+clean(intake?.goal||"Hedef belirtilmedi")+'</div></div><span class="tag '+(isLive?"live":"")+'">'+(isLive?"Program yayında":"Program yayınlanmadı")+'</span></div>'+
+ '<div class="info-grid">'+
+ infoItem("Kalan PT dersi",String(remaining)+' / '+cap(c.total))+
+ infoItem("Kullanılan ders",String(cap(c.used)))+
+ infoItem("Telefon",intake?.phone)+
+ infoItem("Hedef",intake?.goal)+
+ infoItem("Boy",intake?.height_cm?intake.height_cm+" cm":"—")+
+ infoItem("Başlangıç / hedef kilo",(intake?.starting_weight_kg||"—")+" / "+(intake?.target_weight_kg||"—")+" kg")+
+ infoItem("Haftalık antrenman",intake?.weekly_days?intake.weekly_days+" gün":"—")+
+ infoItem("PT paketi",intake?.selected_package_name||"Tanımlanmadı")+'</div></section>';
+ const actions='<section class="editor"><div class="editor-head"><div><p class="eyebrow">PROGRAM EDİTÖRÜ</p><h2>Antrenman programı</h2><p class="tiny muted">Son yayınlama: '+date(publication?.published_at)+'</p></div><div class="row"><button class="button" data-action="save">Taslağı kaydet</button><button class="button primary" data-action="publish">Öğrenciye yayınla</button></div></div><hr class="divider">'+
+ '<div class="form-grid">'+docField("Program adı","title",'maxlength="120"')+
+ '<div><label class="label">Program durumu</label><div class="field">'+(dirty?"Kaydedilmedi":draftVersion===null?"Yeni taslak":"Taslak kaydedildi")+'</div></div>'+
+ '<div><label class="label">Gün sayısı</label><div class="field">'+doc.days.length+' / 7</div></div></div>'+
+ '<div style="margin-top:12px"><label class="label">Genel açıklama / hedef</label><textarea data-field="notes" rows="2" maxlength="4000" placeholder="Programın genel notları">'+clean(doc.notes)+'</textarea></div>'+
+ '<hr class="divider"><div class="editor-head"><h3>Antrenman günleri</h3><button class="button small" data-action="add-day" '+(doc.days.length>=7?"disabled":"")+'>+ Gün ekle</button></div>'+
+ '<div class="days" id="days">'+doc.days.map((d,i)=>'<button class="button small day '+(dayIndex===i?"selected":"")+'" data-action="day" data-index="'+i+'">'+clean(d.name)+'</button>').join("")+'</div>'+
+ (doc.days.length?renderDay():'<div class="nocontent">İlk antrenman gününü ekleyerek başla.</div>')+
+ '<hr class="divider"><div class="row" style="justify-content:space-between"><span class="tiny muted">Önce taslağı kaydet, ardından yayınla. Öğrenci yalnızca yayınlanmış sürümü görür.</span><span id="dirtyLabel" class="tiny" style="color:var(--gold)">'+(dirty?"Kaydedilmemiş değişiklik var":"")+'</span></div></section>';
+ let legacy='';
+ if(!publication&&c.workout?.trim())legacy='<section class="editor"><h3>Önceki program (metin)</h3><p class="tiny muted">Eski sistemde kayıtlı program silinmedi.</p><div class="legacy">'+clean(c.workout)+'</div></section>';
+ $("mainPanel").innerHTML=head+actions+legacy;
+}
+function renderDay(){
+ dayIndex=Math.min(dayIndex,doc.days.length-1);
+ const day=doc.days[dayIndex];
+ return '<div class="row" style="justify-content:space-between;margin:9px 0 12px"><div style="flex:1;min-width:170px"><label class="label">Gün adı</label><input class="field" data-day-field="name" maxlength="80" value="'+clean(day.name)+'"></div>'+
+ '<div class="row" style="align-self:end"><button class="button danger small" data-action="remove-day">Günü sil</button></div></div>'+
+ (day.exercises.length?day.exercises.map((ex,i)=>exerciseRow(ex,i)).join(""):'<div class="nocontent">Bu güne henüz hareket eklenmedi.</div>')+
+ '<div style="margin-top:13px"><button class="button" data-action="add-ex" '+(day.exercises.length>=30?"disabled":"")+'>+ Hareket ekle</button><p class="tiny muted">Listeden hareket seçebilir veya kendi hareket adını yazabilirsin.</p></div>';
+}
+function markDirty(){dirty=true;const s=$("dirtyLabel");if(s)s.textContent="Kaydedilmemiş değişiklik var"}
+async function save(){
+ if(busy||!selected) return false;
+ if(!doc.title.trim()||doc.title.trim().length<2)throw Error("Program adı en az 2 karakter olmalı");
+ if(doc.days.length>7)throw Error("En fazla 7 gün eklenebilir");
+ for(const d of doc.days){
+  if(!d.name.trim())throw Error("Gün adı boş olamaz");
+  for(const ex of d.exercises){
+   if(!ex.name.trim()||ex.name.trim().length<2||!Number.isInteger(Number(ex.sets))||Number(ex.sets)<1||Number(ex.sets)>30||!Number.isInteger(Number(ex.rest))||Number(ex.rest)<0||Number(ex.rest)>3600)throw Error("Hareket adı, set veya dinlenme bilgisi geçersiz");
+  }
+ }
+ const payload={client_id:selected.id,document:doc,updated_by:user.id};
+ let result;
+ if(draftVersion===null){
+  result=await sb.from("pt_program_drafts").insert({...payload,version:0}).select("version").single();
+ }else{
+  result=await sb.from("pt_program_drafts").update({...payload,version:draftVersion+1}).eq("client_id",selected.id).eq("version",draftVersion).select("version").maybeSingle();
+ }
+ if(result.error)throw result.error;
+ if(!result.data)throw Error("Bu program başka bir oturumda değişmiş. Yenileyip yeniden dene.");
+ draftVersion=result.data.version;dirty=false;return true;
+}
+async function publish(){
+ if(busy||!selected)return;
+ setBusy(true);
+ try{
+  await saveInner();
+  const {error}=await sb.rpc("pt_publish_program",{p_client:selected.id});
+  if(error)throw error;
+  const c=selected.id;await loadStudents();await choose(c);
+  notify("Program yayınlandı. Öğrencinin mevcut uygulamasında da görüntülenebilir.");
+ }catch(e){fail(e)}
+ finally{setBusy(false)}
+}
+async function saveInner(){
+ // Called only after setBusy is active. Uses the same optimistic-concurrency checks.
+ if(!doc||!selected)throw Error("Öğrenci seçilmedi");
+ if(doc.title.trim().length<2)throw Error("Program adı gerekli");
+ for(const d of doc.days)for(const ex of d.exercises)if(ex.name.trim().length<2)throw Error("Boş hareket adlarını tamamla");
+ const payload={client_id:selected.id,document:doc,updated_by:user.id};
+ let r;
+ if(draftVersion===null)r=await sb.from("pt_program_drafts").insert({...payload,version:0}).select("version").single();
+ else r=await sb.from("pt_program_drafts").update({...payload,version:draftVersion+1}).eq("client_id",selected.id).eq("version",draftVersion).select("version").maybeSingle();
+ if(r.error)throw r.error;
+ if(!r.data)throw Error("Taslak başka bir oturumda değişmiş. Yenileyip tekrar dene.");
+ draftVersion=r.data.version;dirty=false;
+}
+document.addEventListener("input",e=>{
+ const t=e.target;if(!doc||!selected)return;
+ if(t.dataset.field){doc[t.dataset.field]=t.value;markDirty()}
+ else if(t.dataset.dayField && doc.days[dayIndex]){doc.days[dayIndex][t.dataset.dayField]=t.value;markDirty()}
+ else if(t.dataset.exField && doc.days[dayIndex]){
+  const ex=doc.days[dayIndex].exercises[Number(t.dataset.ex)];
+  if(ex){ex[t.dataset.exField]=["sets","rest"].includes(t.dataset.exField)?Number(t.value):t.value;markDirty()}
+ }
+});
+document.addEventListener("click",async e=>{
+ const btn=e.target.closest("[data-action]");if(!btn||!doc&&btn.dataset.action!=="choose")return;
+ const a=btn.dataset.action;
+ if(a==="choose"){await choose(btn.dataset.id);return}
+ if(!selected)return;
+ if(a==="day"){dayIndex=Number(btn.dataset.index);renderDetail()}
+ if(a==="add-day"){if(doc.days.length<7){doc.days.push({name:(doc.days.length+1)+". Gün",exercises:[]});dayIndex=doc.days.length-1;markDirty();renderDetail()}}
+ if(a==="remove-day"){if(confirm("Bu günü ve içindeki hareketleri silmek istiyor musun?")){doc.days.splice(dayIndex,1);dayIndex=Math.max(0,dayIndex-1);markDirty();renderDetail()}}
+ if(a==="add-ex"){const arr=doc.days[dayIndex].exercises;if(arr.length<30){arr.push(exBlank());markDirty();renderDetail()}}
+ if(a==="remove-ex"){doc.days[dayIndex].exercises.splice(Number(btn.dataset.index),1);markDirty();renderDetail()}
+ if(a==="save"){if(busy)return;setBusy(true);try{await saveInner();renderDetail();notify("Taslak program kaydedildi.")}catch(err){fail(err)}finally{setBusy(false)}}
+ if(a==="publish"){await publish()}
+});
+$("search").addEventListener("input",renderList);
+$("loginForm").addEventListener("submit",async e=>{
+ e.preventDefault();$("loginError").textContent="";$("loginBtn").disabled=true;
+ try{
+  if(!sb)throw Error("Bağlantı hazır değil");
+  const {data,error}=await sb.auth.signInWithPassword({email:$("email").value.trim(),password:$("password").value});
+  if(error)throw error;await openApp(data.user);
+ }catch(err){$("loginError").textContent=err.message||"Giriş başarısız"}finally{$("loginBtn").disabled=false}
+});
+$("logoutBtn").addEventListener("click",async()=>{
+ if(dirty&&!confirm("Kaydedilmemiş değişiklikler kaybolacak. Çıkış yapılsın mı?"))return;
+ await sb.auth.signOut();user=null;role=null;selected=null;students=[];dirty=false;showLogin();$("password").value="";
+});
+$("refreshBtn").addEventListener("click",async()=>{
+ if(dirty&&!confirm("Kaydedilmemiş değişiklikler var. Yenilemek istiyor musun?"))return;
+ try{const prev=selected?.id;selected=null;dirty=false;await loadStudents();if(prev&&students.some(s=>s.id===prev))await choose(prev);else renderEmpty();notify("Bilgiler yenilendi.")}catch(e){fail(e)}
+});
+start();
+})();
+</script>
+</body>
+</html>
