@@ -219,3 +219,32 @@ footer .meta {border-color:rgba(255,255,255,.15)}
   #membership .plans{grid-template-columns:1fr}
 }
 @media(prefers-reduced-motion:reduce){.bambu-service{transition:none}.bambu-service:hover{transform:none}}
+
+/* Compatibility with the original mobile navigation and admin-controlled section photos. */
+.topbar nav {display:flex!important}
+.bambu-page-intro h1 {text-transform:none!important;overflow-wrap:normal}
+.bambu-story-photo,.bambu-club-visual {background-image:var(--shape-hero,url("shape-hero.webp"))}
+.bambu-service.photo {background-image:var(--shape-hero,url("shape-hero.webp"))}
+#membership {--editorial-photo:var(--bg-membership,var(--shape-hero,url("shape-hero.webp")))}
+#coaching {--editorial-photo:var(--bg-coaching,var(--shape-hero,url("shape-hero.webp")))}
+#online-coaching {--editorial-photo:var(--bg-online,var(--shape-hero,url("shape-hero.webp")))}
+#group-classes {--editorial-photo:var(--bg-group,var(--shape-hero,url("shape-hero.webp")))}
+#menu {--editorial-photo:var(--bg-menu,var(--shape-hero,url("shape-hero.webp")))}
+#contact {--editorial-photo:var(--bg-contact,var(--shape-hero,url("shape-hero.webp")))}
+section.content:before {
+  content:"";display:block;position:relative;inset:auto;z-index:0;width:100%;height:clamp(220px,23vw,355px);
+  margin-top:calc(-1 * clamp(65px,7vw,105px));margin-bottom:clamp(44px,6vw,78px);
+  background-image:var(--editorial-photo);background-size:cover;background-position:center;
+  background-repeat:no-repeat;transform:none;will-change:auto
+}
+section.content:after {display:none}
+@media(max-width:680px){
+  .topbar nav {display:flex!important}
+  section.content:before {
+    height:240px;margin-top:-63px;margin-bottom:45px;
+    background-image:var(--editorial-photo,var(--mobile-section-photo));
+    background-position:var(--mobile-crop-x,50%) var(--mobile-crop-y,50%);
+    background-size:cover;transform:scale(var(--mobile-crop-scale,1))
+  }
+  section.content:after{display:none!important}
+}
