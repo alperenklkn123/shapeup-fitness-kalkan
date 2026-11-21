@@ -535,7 +535,14 @@
         const backgrounds=siteConfig.backgrounds||{};
         const resolvedBackgroundUrls={};
         Object.entries(backgroundVariables).forEach(([key])=>{const source=String(backgrounds[key]||"").trim();const selectedUrl=(source?validWebUrl(source,""):"")||mobileHero;resolvedBackgroundUrls[key]=selectedUrl;document.documentElement.style.setProperty(backgroundFitVariables[key],needsMobileBlackBarCrop(selectedUrl)?"auto 300%":"cover")});
-        applyLazySectionBackgrounds(resolvedBackgroundUrls);
+        // Homepage experience cards need CMS images even while legacy sections are hidden.
+        if(document.documentElement.dataset.shapeView==="home"){
+          Object.entries(resolvedBackgroundUrls).forEach(([key,url])=>{
+            if(url)document.documentElement.style.setProperty(backgroundVariables[key],cssBackgroundUrl(url));
+          });
+        }else{
+          applyLazySectionBackgrounds(resolvedBackgroundUrls);
+        }
         const positionVariables={membership:"--bg-pos-membership",coaching:"--bg-pos-coaching",onlineCoaching:"--bg-pos-online",groupClasses:"--bg-pos-group",menu:"--bg-pos-menu",contact:"--bg-pos-contact"};
         const allowedPositions=new Set(["center top","center 25%","center center","center 75%","center bottom"]);
         const backgroundPositions=siteConfig.backgroundPositions||{};
