@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#05090f">
+  <meta name="theme-color" content="#f4f2ea">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <meta name="description" content="Shape Training Club in central Kalkan: day passes, memberships, personal coaching, group training, online coaching and Shape Bar.">
   <link rel="canonical" href="https://shapetrainingclub.net/">
@@ -133,11 +133,26 @@
     @media(prefers-reduced-motion:reduce){.brand-switch-link{transition:none}}
   </style>
   <link rel="stylesheet" href="site-pricing.css?v=28">
+  <!-- Determine the route before the first paint; legacy components stay available for Supabase. -->
+  <script>
+    (()=>{const allowed=["club","membership","training","bar","visit"];let page="home";
+      try{const requested=new URLSearchParams(location.search).get("page");if(allowed.includes(requested))page=requested}catch(error){}
+      document.documentElement.dataset.shapeView=page;
+    })();
+  </script>
+  <link rel="stylesheet" href="bambu-redesign.css?v=1">
 </head>
 <body>
   <header class="topbar">
-    <a class="brand header-brand" href="#top" aria-label="Shape Training Club Kalkan"><span class="brand-lockup"><strong>SH<i>A</i>PE</strong><em>TRAINING CLUB</em></span><small>KALKAN</small></a>
-    <nav aria-label="Main navigation"><a href="#membership" data-i18n="navMembership">Membership</a><a href="#coaching" data-i18n="navCoaching">Coaching</a><a href="shape-kids/" data-i18n="navKids">SHAPE KIDS</a><a href="#menu" data-i18n="navMenu">Menu</a><a href="#contact" data-i18n="navContact">Contact</a></nav>
+    <a class="brand header-brand" href="./" aria-label="Shape Training Club Kalkan"><span class="brand-lockup"><strong>SH<i>A</i>PE</strong><em>TRAINING CLUB</em></span><small>KALKAN</small></a>
+    <nav aria-label="Main navigation">
+      <a data-shape-nav="home" data-bambu="navHome" href="./">Home</a>
+      <a data-shape-nav="club" data-bambu="navClub" href="?page=club">The Club</a>
+      <a data-shape-nav="membership" data-bambu="navMembership" href="?page=membership">Memberships</a>
+      <a data-shape-nav="training" data-bambu="navTraining" href="?page=training">Training</a>
+      <a data-shape-nav="bar" data-bambu="navBar" href="?page=bar">Shape Bar</a>
+      <a data-shape-nav="visit" data-bambu="navVisit" href="?page=visit">Visit</a>
+    </nav>
     <div class="langs" role="group" aria-label="Choose language">
       <button class="lang" type="button" data-lang="en" aria-label="English"><b>🇬🇧</b><span>EN</span></button>
       <button class="lang" type="button" data-lang="tr" aria-label="Türkçe"><b>🇹🇷</b><span>TR</span></button>
@@ -168,7 +183,7 @@
           <p class="eyebrow">SHAPE TRAINING CLUB · KALKAN</p>
           <h1><span data-i18n="heroTitle">STRONGER STARTS HERE.</span></h1>
           <p class="hero-copy" data-i18n="heroIntro">Premium training, personal coaching and a welcoming community in central Kalkan.</p>
-          <div class="actions"><a class="btn primary" id="heroWhatsappLink" target="_blank" rel="noopener" href="https://wa.me/905303785708"><span data-i18n="heroWhatsappCta">Contact us on WhatsApp</span> →</a></div>
+          <div class="actions"><a class="btn primary" data-bambu="heroExplore" href="?page=membership">Explore memberships</a><a class="btn ghost" id="heroWhatsappLink" target="_blank" rel="noopener" href="https://wa.me/905303785708"><span data-i18n="heroWhatsappCta">Contact us on WhatsApp</span> →</a></div>
         </div>
         <div class="hero-slide hero-slide-kids" aria-hidden="true" inert>
           <p class="eyebrow"><span aria-hidden="true">🎈 </span><span data-i18n="heroKidsEyebrow">CHILDREN'S MOVEMENT PROGRAM</span></p>
@@ -196,6 +211,85 @@
       </div>
     </div></section>
 
+
+    <section class="bambu-story" aria-labelledby="bambu-story-title">
+      <div class="shell bambu-story-grid">
+        <div class="bambu-story-copy">
+          <p class="bambu-overline" data-bambu="storyEyebrow">THIS IS SHAPE · KALKAN</p>
+          <h2 id="bambu-story-title" data-bambu="storyTitle">A space to move. A place to belong.</h2>
+          <p data-bambu="storyText">Thoughtful training, real coaching and a community that makes showing up feel natural. Welcome to your training home in Kalkan.</p>
+          <a class="bambu-text-link" data-bambu="storyLink" href="?page=club">Discover the club</a>
+        </div>
+        <div class="bambu-story-photo" role="img" aria-label="Shape Training Club gym"></div>
+      </div>
+    </section>
+
+    <section class="bambu-experience" aria-labelledby="bambu-experience-title">
+      <div class="shell">
+        <div class="bambu-section-head">
+          <div>
+            <p class="bambu-overline" data-bambu="experienceEyebrow">DISCOVER SHAPE</p>
+            <h2 id="bambu-experience-title" data-bambu="experienceTitle">The Shape experience</h2>
+          </div>
+          <p class="bambu-section-desc" data-bambu="experienceDesc">One space, many ways to train, grow and connect.</p>
+        </div>
+        <div class="bambu-service-grid">
+          <a href="?page=club" class="bambu-service photo featured"><span class="bambu-service-top">01 / SHAPE</span><span class="bambu-arrow" aria-hidden="true">↗</span><h3 data-bambu="cardGym">The Club</h3><p data-bambu="cardGymDesc">Get to know our training space and equipment.</p></a>
+          <a href="?page=membership" class="bambu-service sand"><span class="bambu-service-top">02 / SHAPE</span><span class="bambu-arrow" aria-hidden="true">↗</span><h3 data-bambu="cardMembership">Memberships</h3><p data-bambu="cardMembershipDesc">Drop in for a day or make Shape part of your routine.</p></a>
+          <a href="?page=training#coaching" class="bambu-service olive"><span class="bambu-service-top">03 / SHAPE</span><span class="bambu-arrow" aria-hidden="true">↗</span><h3 data-bambu="cardCoaching">Personal Training</h3><p data-bambu="cardCoachingDesc">Focused one-to-one coaching built around you.</p></a>
+          <a href="?page=training#group-classes" class="bambu-service"><span class="bambu-service-top">04 / SHAPE</span><span class="bambu-arrow" aria-hidden="true">↗</span><h3 data-bambu="cardGroup">Group Classes</h3><p data-bambu="cardGroupDesc">Move together with HYROX, conditioning and more.</p></a>
+          <a href="shape-kids/" class="bambu-service sand"><span class="bambu-service-top">05 / SHAPE</span><span class="bambu-arrow" aria-hidden="true">↗</span><h3 data-bambu="cardKids">Shape Kids</h3><p data-bambu="cardKidsDesc">Movement, coordination and confidence for younger athletes.</p></a>
+          <a href="?page=bar" class="bambu-service olive"><span class="bambu-service-top">06 / SHAPE</span><span class="bambu-arrow" aria-hidden="true">↗</span><h3 data-bambu="cardBar">Shape Bar</h3><p data-bambu="cardBarDesc">Coffee, protein shakes and post-workout favourites.</p></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="bambu-community" aria-labelledby="bambu-community-title">
+      <div class="shell">
+        <p class="bambu-overline" data-bambu="communityEyebrow">MORE THAN A GYM</p>
+        <h2 id="bambu-community-title" data-bambu="communityTitle">The best part of training is who you do it with.</h2>
+        <p data-bambu="communityText">Train with purpose. Make connections. Feel at home every time you walk in.</p>
+        <a class="bambu-text-link" href="gallery.html" data-bambu="communityLink">Explore the gallery</a>
+      </div>
+    </section>
+
+    <section class="bambu-visit" aria-labelledby="bambu-visit-title">
+      <div class="shell bambu-visit-grid">
+        <div>
+          <p class="bambu-overline" data-bambu="visitEyebrow">COME TRAIN WITH US</p>
+          <h2 id="bambu-visit-title" data-bambu="visitTitle">See you in Kalkan.</h2>
+          <p data-bambu="visitText">Yasemen Sokak No:17 · Kalkan, Kaş / Antalya. Open seven days a week.</p>
+        </div>
+        <div class="bambu-visit-actions">
+          <a class="bambu-text-link" href="?page=visit" data-bambu="visitLink">Plan your visit</a>
+          <a class="bambu-text-link" href="?page=membership" data-bambu="visitMembership">See memberships</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="bambu-page-intro" aria-labelledby="bambu-page-title">
+      <div class="shell">
+        <p class="bambu-overline" data-bambu-page-eyebrow>WELCOME TO SHAPE</p>
+        <h1 id="bambu-page-title" data-bambu-page-title>Your training space in Kalkan.</h1>
+        <p data-bambu-page-text>A gym built around strength, consistency and good energy.</p>
+      </div>
+    </section>
+
+    <section class="bambu-club-detail" aria-labelledby="bambu-club-detail-title">
+      <div class="shell bambu-club-detail-grid">
+        <div class="bambu-club-visual" role="img" aria-label="Shape Training Club training area"></div>
+        <div>
+          <p class="bambu-overline" data-bambu="clubDetailEyebrow">THE CLUB</p>
+          <h2 id="bambu-club-detail-title" data-bambu="clubDetailTitle">Train in a space that feels like yours.</h2>
+          <p data-bambu="clubDetailText">Discover our free weights, cardio and functional training areas. Explore real photos from the club before your first visit.</p>
+          <div class="bambu-club-links">
+            <a href="gallery.html" class="bambu-text-link" data-bambu="clubGallery">Explore photo gallery</a>
+            <a href="?page=membership" class="bambu-text-link" data-bambu="clubMembership">View memberships</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="content" id="membership"><div class="shell"><div class="heading"><p class="kicker" data-i18n="membershipKicker">MEMBERSHIP</p><h2 data-i18n="membershipTitle">Choose the rhythm that fits you.</h2><p class="intro" data-i18n="membershipIntro">Flexible access for a single session, a holiday in Kalkan or a long-term training routine.</p></div><div class="currency-row"><div class="currency-switcher" role="group" aria-label="Currency"><button class="active" type="button" data-currency="TRY" aria-pressed="true"><b>₺</b><span>TL</span></button><button type="button" data-currency="EUR" aria-pressed="false" disabled><b>€</b><span>EUR</span></button><button type="button" data-currency="USD" aria-pressed="false" disabled><b>$</b><span>USD</span></button><button type="button" data-currency="GBP" aria-pressed="false" disabled><b>£</b><span>GBP</span></button></div><div class="currency-meta"><p class="rate-status" data-rate-status aria-live="polite">Current rates are loading…</p><p class="payment-policy" data-i18n="paymentPolicy">Payments are accepted in TRY, EUR, USD and GBP.</p></div></div><div class="plans" id="plans"></div></div></section>
 
     <section class="content" id="coaching"><div class="shell coach-layout"><div><div class="heading"><p class="kicker" data-i18n="coachingKicker">PERSONAL COACHING</p><h2 data-i18n="coachingTitle">A plan built around your goal.</h2><p class="intro" data-i18n="coachingIntro">Train one-to-one with structured programming, nutrition guidance and progress tracking.</p></div><ul class="features" id="features"></ul></div><div class="coach-pricing"><div class="currency-row"><div class="currency-switcher" role="group" aria-label="Currency"><button class="active" type="button" data-currency="TRY" aria-pressed="true"><b>₺</b><span>TL</span></button><button type="button" data-currency="EUR" aria-pressed="false" disabled><b>€</b><span>EUR</span></button><button type="button" data-currency="USD" aria-pressed="false" disabled><b>$</b><span>USD</span></button><button type="button" data-currency="GBP" aria-pressed="false" disabled><b>£</b><span>GBP</span></button></div><div class="currency-meta"><p class="rate-status" data-rate-status aria-live="polite">Current rates are loading…</p><p class="payment-policy" data-i18n="paymentPolicy">Payments are accepted in TRY, EUR, USD and GBP.</p></div></div><div class="coach-cards" id="coachCards"></div></div></div></section>
@@ -221,7 +315,7 @@
     </div></section>
   </main>
 
-  <footer><div class="shell foot"><a class="brand" href="#top"><strong>SH<i>A</i>PE</strong><small>TRAINING CLUB · KALKAN</small></a><p data-i18n="footer">More than a gym. A community in motion.</p><div class="meta"><span>© 2026 SHAPE</span><span data-i18n="legal">Payments are accepted in TRY, EUR, USD and GBP.</span></div></div></footer>
+  <footer><div class="shell foot"><a class="brand" href="./"><strong>SH<i>A</i>PE</strong><small>TRAINING CLUB · KALKAN</small></a><p data-i18n="footer">More than a gym. A community in motion.</p><div class="meta"><span>© 2026 SHAPE</span><span data-i18n="legal">Payments are accepted in TRY, EUR, USD and GBP.</span></div></div></footer>
 
   <script src="site-defaults.js?v=28"></script>
   <script src="site-pricing.js?v=28"></script>
@@ -489,6 +583,8 @@
       "use strict";
       const slider=document.getElementById("shapeHeroSlider");
       if(!slider)return;
+      // The kids program has its own experience card; keep the editorial hero static.
+      slider.querySelectorAll(".hero-slide-kids").forEach(slide=>slide.remove());
       const slides=Array.from(slider.querySelectorAll(".hero-slide"));
       const dots=Array.from(document.querySelectorAll(".hero-slide-indicators span"));
       const counter=document.getElementById("shapeHeroCounter");
@@ -556,6 +652,7 @@
       else window.addEventListener("resize",updateHeaderHeight,{passive:true});
     })();
   </script>
+  <script src="bambu-redesign.js?v=1" defer></script>
   <!-- Cloudflare Web Analytics -->
   <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4e67bf4c2b094c4487f6d765bd0b663e"}'></script>
   <!-- End Cloudflare Web Analytics -->

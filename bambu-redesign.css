@@ -1,0 +1,250 @@
+/* SHAPE / Bambu-inspired editorial direction.
+   Original photography and CMS remain owned by SHAPE. No assets from Bambu are copied. */
+:root {
+  --ink:#f4f2ea; --navy:#f4f2ea; --panel:#fffef9; --line:rgba(49,60,46,.15);
+  --blue:#4d6250; --light:#667961; --white:#26352b; --muted:#687467;
+  --shell:min(1240px,calc(100vw - 64px));
+}
+html {background:#f4f2ea;scroll-padding-top:110px}
+body {background:#f4f2ea;color:#26352b;font-family:"Helvetica Neue",Inter,Arial,sans-serif}
+a,button { -webkit-tap-highlight-color:transparent }
+a:focus-visible,button:focus-visible {outline:3px solid #9caa79;outline-offset:4px}
+.topbar {
+  position:sticky!important;top:0;inset:auto;z-index:40;min-height:86px;
+  grid-template-columns:auto minmax(0,1fr) auto;gap:34px;padding:13px max(32px,calc((100vw - 1240px)/2));
+  border-bottom:1px solid rgba(39,53,43,.12);background:rgba(249,248,241,.97);
+  backdrop-filter:blur(20px);box-shadow:0 4px 26px rgba(27,40,27,.04)
+}
+.header-brand .brand-lockup strong,.brand strong {color:#2e4133;letter-spacing:.12em;font-weight:900;font-size:25px}
+.header-brand .brand-lockup em,.brand small {color:#657464;border-color:rgba(39,53,43,.2)}
+.brand strong i {color:#566951}
+.topbar .brand-switch {display:none!important}
+.topbar nav {justify-content:center;align-items:center;min-width:0;gap:clamp(13px,2vw,28px)}
+.topbar nav a {color:#485a4a;font-size:11px;font-weight:750;letter-spacing:.025em;white-space:nowrap;padding:14px 0}
+.topbar nav a:after {background:#4c624e}
+.topbar nav a[aria-current="page"] {color:#1e3122}
+.topbar nav a[aria-current="page"]:after {right:0}
+.langs {border-color:rgba(39,53,43,.12);background:#efeee5;border-radius:50px;gap:2px}
+.lang {color:#687966;min-width:43px;border-radius:50px}
+.lang:hover {color:#2e4133;transform:none}
+.lang.active {color:#fff;background:#536750;box-shadow:none}
+.rules-ticker,.hero .quick-access,.hero-slider-meta,.mobile-dock {display:none!important}
+.hero {min-height:min(840px,85svh);background:#304339;align-items:flex-end}
+.hero:before {background-position:50% 48%;filter:saturate(.82) contrast(1.03)}
+.hero:after {
+  background:linear-gradient(90deg,rgba(13,27,20,.68),rgba(16,27,20,.28) 66%,rgba(14,29,21,.09)),
+    linear-gradient(0deg,rgba(16,27,20,.55),transparent 65%);
+}
+.hero .shell {padding-top:clamp(140px,16vw,245px);padding-bottom:clamp(76px,10vw,128px)}
+.hero .eyebrow {color:#e3e3d8;font-size:12px;font-weight:700;letter-spacing:.17em;text-shadow:none}
+.hero .eyebrow:before {background:#d5ddc3;box-shadow:none}
+.hero h1 {max-width:1000px;font-size:clamp(60px,8.5vw,132px);line-height:.91;color:#fffdf4;font-weight:800;letter-spacing:-.069em}
+.hero .hero-copy {max-width:480px;min-height:0;margin-top:26px;color:#f1eee4;font-size:clamp(15px,1.5vw,18px);line-height:1.7;text-shadow:none}
+.hero .actions {margin-top:30px;gap:12px;min-height:0}
+.btn {min-height:50px;border-radius:3px;padding:0 24px;font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;box-shadow:none}
+.btn:hover {transform:translateY(-2px)}
+.btn.primary,.primary {background:#f2f0e7;color:#29402d;border-color:#f2f0e7;box-shadow:none}
+.btn.ghost,.ghost {background:transparent;color:#f8f6ed;border-color:rgba(255,255,255,.65);backdrop-filter:none}
+.hero .primary {min-width:0}
+.hero .hero-slide {transition:none!important;transform:none!important}
+.hero .hero-slide-kids {display:none!important}
+.bambu-overline,.kicker {font-size:11px;font-weight:800;letter-spacing:.16em;color:#667960;text-transform:uppercase}
+.bambu-story {background:#f5f3eb;padding:clamp(75px,9vw,140px) 0}
+.bambu-story-grid {display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(44px,7vw,110px);align-items:center}
+.bambu-story-copy {max-width:530px}
+.bambu-story h2,.bambu-experience h2,.bambu-visit h2,.bambu-community h2,.bambu-page-intro h1 {
+  margin:24px 0 0;color:#304335;font-size:clamp(43px,5.4vw,84px);font-weight:650;letter-spacing:-.06em;line-height:1.02;text-wrap:balance
+}
+.bambu-story p:not(.bambu-overline),.bambu-experience .bambu-section-desc,.bambu-visit p:not(.bambu-overline),.bambu-page-intro p:not(.bambu-overline) {
+  color:#6e786c;font-size:clamp(15px,1.35vw,18px);line-height:1.75;max-width:610px
+}
+.bambu-story-photo {height:580px;min-height:340px;background:#a9b1a5 url("shape-hero.webp") center/cover no-repeat;border-radius:2px;filter:saturate(.68)}
+.bambu-text-link {display:inline-block;margin-top:26px;padding-bottom:8px;border-bottom:1px solid currentColor;color:#344b36;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+.bambu-experience {padding:clamp(80px,9vw,140px) 0;background:#e9e9df}
+.bambu-section-head {display:flex;justify-content:space-between;align-items:end;gap:32px;margin-bottom:44px}
+.bambu-experience h2 {margin:12px 0 0}
+.bambu-experience .bambu-section-desc {max-width:335px;margin:0 0 5px}
+.bambu-service-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.bambu-service {
+  min-height:345px;padding:28px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;
+  border:1px solid rgba(42,62,47,.11);background:#dadfd2;color:#344735;overflow:hidden;transition:transform .22s ease,background .22s ease
+}
+.bambu-service:hover {transform:translateY(-4px);background:#cdd5c6}
+.bambu-service.photo {color:#f7f5e9;background:#314335 url("shape-hero.webp") center/cover no-repeat}
+.bambu-service.photo:before {content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(8,23,14,.84),rgba(8,23,14,.02) 75%)}
+.bambu-service.featured {grid-column:span 2;min-height:420px;background-position:center 42%}
+.bambu-service.olive {background:#566d5b;color:#f6f5ed}
+.bambu-service.sand {background:#ebe7d8}
+.bambu-service .bambu-service-top {position:absolute;z-index:1;top:29px;left:29px;font-size:11px;font-weight:700;letter-spacing:.14em;opacity:.85}
+.bambu-service h3 {position:relative;z-index:1;font-size:clamp(28px,3vw,48px);font-weight:650;letter-spacing:-.05em;line-height:1.05;margin:0 0 11px}
+.bambu-service p {position:relative;z-index:1;margin:0;max-width:350px;font-size:13px;line-height:1.65;opacity:.87}
+.bambu-service .bambu-arrow {position:absolute;z-index:1;right:26px;top:22px;font-size:25px;font-weight:300}
+.bambu-community {padding:clamp(90px,12vw,170px) 0;background:#485e4c;color:#fffdf5}
+.bambu-community .bambu-overline {color:#cadcc7}
+.bambu-community h2 {color:#fffdf5;max-width:950px;margin-top:20px}
+.bambu-community p {max-width:490px;color:#dee5d8;line-height:1.75}
+.bambu-community .bambu-text-link {color:#fffef5}
+.bambu-visit {padding:110px 0;background:#f4f2ea}
+.bambu-visit-grid {display:grid;grid-template-columns:1fr .8fr;gap:55px;align-items:end}
+.bambu-visit h2 {margin-top:14px}
+.bambu-visit-actions {display:flex;gap:22px;flex-wrap:wrap}
+.bambu-visit .bambu-text-link {margin-top:0}
+.bambu-page-intro {padding:clamp(70px,9vw,125px) 0 42px;background:#e9e9df}
+.bambu-page-intro h1 {max-width:980px;margin-top:12px}
+.bambu-page-intro p:not(.bambu-overline) {max-width:700px}
+.bambu-club-detail {padding:40px 0 115px;background:#f4f2ea}
+.bambu-club-detail-grid {display:grid;grid-template-columns:1.1fr .9fr;gap:65px;align-items:center}
+.bambu-club-visual {min-height:610px;background:#889486 url("shape-hero.webp") center/cover no-repeat;filter:saturate(.72)}
+.bambu-club-detail h2 {font-size:clamp(40px,4vw,66px);font-weight:650;line-height:1.05;letter-spacing:-.05em;color:#334a37}
+.bambu-club-detail p {font-size:16px;line-height:1.8;color:#687766}
+.bambu-club-links {display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+html[data-shape-view="home"] #membership,
+html[data-shape-view="home"] #coaching,
+html[data-shape-view="home"] #online-coaching,
+html[data-shape-view="home"] #group-classes,
+html[data-shape-view="home"] #menu,
+html[data-shape-view="home"] #contact {display:none!important}
+html[data-shape-view]:not([data-shape-view="home"]) .hero,
+html[data-shape-view]:not([data-shape-view="home"]) .bambu-story,
+html[data-shape-view]:not([data-shape-view="home"]) .bambu-experience,
+html[data-shape-view]:not([data-shape-view="home"]) .bambu-community,
+html[data-shape-view]:not([data-shape-view="home"]) .bambu-visit {display:none!important}
+html[data-shape-view="home"] .bambu-page-intro,
+html[data-shape-view="home"] .bambu-club-detail {display:none!important}
+html[data-shape-view="club"] #membership,html[data-shape-view="club"] #coaching,html[data-shape-view="club"] #online-coaching,html[data-shape-view="club"] #group-classes,html[data-shape-view="club"] #menu,html[data-shape-view="club"] #contact {display:none!important}
+html[data-shape-view="membership"] #coaching,html[data-shape-view="membership"] #online-coaching,html[data-shape-view="membership"] #group-classes,html[data-shape-view="membership"] #menu,html[data-shape-view="membership"] #contact,html[data-shape-view="membership"] .bambu-club-detail {display:none!important}
+html[data-shape-view="training"] #membership,html[data-shape-view="training"] #menu,html[data-shape-view="training"] #contact,html[data-shape-view="training"] .bambu-club-detail {display:none!important}
+html[data-shape-view="bar"] #membership,html[data-shape-view="bar"] #coaching,html[data-shape-view="bar"] #online-coaching,html[data-shape-view="bar"] #group-classes,html[data-shape-view="bar"] #contact,html[data-shape-view="bar"] .bambu-club-detail {display:none!important}
+html[data-shape-view="visit"] #membership,html[data-shape-view="visit"] #coaching,html[data-shape-view="visit"] #online-coaching,html[data-shape-view="visit"] #group-classes,html[data-shape-view="visit"] #menu,html[data-shape-view="visit"] .bambu-club-detail {display:none!important}
+section.content {padding:clamp(65px,7vw,105px) 0;background:#f4f2ea!important;background-image:none!important}
+section.content:nth-child(even) {background:#e9e9df!important}
+.heading h2 {color:#2e4334;font-size:clamp(37px,5vw,72px);font-weight:650;letter-spacing:-.06em}
+.heading .intro {color:#6b796e;text-shadow:none}
+.plan,.plan.featured,.coach,.coach.featured,.group-offer,.group-price-card,.group-price-card.member,.online-card,.menu,.card {
+  background:#fffdf5;border:1px solid #d7dccf;border-radius:3px;box-shadow:none;color:#314434
+}
+.plan:hover {border-color:#8d9b85}
+.plan h3,.coach p,.coach p strong,.coach-price,.coach-per-session strong,.group-price-card h3,.group-price-values strong,.menu h3,.item strong,.card h3,.hours strong {color:#2d3e31}
+.plan .label,.plan .cash,.coach>span,.coach-validity,.coach-price-label,.coach-per-session,.group-price-card header span,.group-price-card>p,.group-point,.menu-head p,.item,.hours,.card>a,.online-features li,.features li {color:#5c6c5f;text-shadow:none}
+.plan .price,.coach-price,.group-price-values strong {font-weight:730;letter-spacing:-.04em}
+.badge {background:#526a56;border-radius:1px}
+.cash,.coach-per-session,.item,.hours {border-color:#d9dfd3}
+.cash strong,.gift,.card>a.action {color:#516f54}
+.coach-payment-note,.online-features li,.group-point,.group-type,.currency-switcher,.group-offer .group-price-card {
+  background:#f0f2e9;border:1px solid #d5ddcf;border-radius:3px;color:#556a58
+}
+.coach-payment-note {color:#526653!important}
+.group-offer:before,.online-card:before,.menu:before {display:none}
+.online-card-head,.menu-head {background:transparent;border-color:#dce1d7}
+.online-card-head strong,.group-price-card h3 {color:#2e4334}
+.online-card-icon,.menu-icon {background:#566e59;box-shadow:none;color:#fff}
+.group-points {grid-template-columns:repeat(3,minmax(0,1fr))}
+.group-point b {color:#526f56}
+.group-type {color:#536a54}
+.currency-switcher {background:#edece4}
+.currency-switcher button {color:#667665}
+.currency-switcher button.active {background:#526b56;color:#fff;box-shadow:none}
+.rate-status,.payment-policy {color:#627466;text-shadow:none}
+#menu .menus {grid-template-columns:repeat(3,minmax(0,1fr))}
+.menu h3 {font-size:15px}
+.card .symbol {background:#e4e9df;border-color:#d3dccf}
+.card-label {color:#6e886c}
+#contact .btn.ghost {border-color:#536b57;color:#415b45}
+#contact .btn.primary,#group-classes .btn.primary,#online-coaching .btn.primary {background:#536b57;color:#fff;border-color:#536b57}
+footer {background:#2e4435;color:#f0f4eb;border-top:none;padding:65px 0 35px}
+footer .brand strong,footer .brand strong i {color:#f0f4eb}
+footer .brand small,footer .foot p,footer .meta {color:#d2ddcc}
+footer .meta {border-color:rgba(255,255,255,.15)}
+@media(max-width:1050px){
+  .topbar {grid-template-columns:1fr auto;gap:9px 14px;padding:12px 24px}
+  .topbar nav {grid-column:1/-1;grid-row:2;justify-content:flex-start;overflow-x:auto;scrollbar-width:none;gap:26px}
+  .topbar nav::-webkit-scrollbar {display:none}
+  .topbar .langs {grid-column:2;grid-row:1}
+  .bambu-service-grid {grid-template-columns:repeat(2,minmax(0,1fr))}
+  .bambu-service.featured {grid-column:span 2}
+}
+@media(max-width:680px){
+  :root{--shell:calc(100vw - 38px)}
+  html{scroll-padding-top:124px}
+  .topbar {min-height:0;grid-template-columns:1fr auto;padding:9px 19px 0;gap:0 10px}
+  .topbar nav {grid-column:1/-1;grid-row:2;gap:24px}
+  .topbar nav a {padding:12px 0 13px;font-size:10px}
+  .header-brand .brand-lockup strong {font-size:21px}
+  .header-brand .brand-lockup em {font-size:6px}
+  .header-brand small {font-size:7px}
+  .langs {grid-column:2;grid-row:1;padding:2px;gap:1px}
+  .lang {height:30px;min-width:34px;font-size:9px;padding:0 3px}
+  .lang b {font-size:12px}
+  .hero {min-height:74svh}
+  .hero:before {background:var(--shape-hero-mobile,url("shape-hero-mobile.webp")) var(--hero-crop-x,50%) var(--hero-crop-y,50%)/var(--hero-fit-mobile,cover) no-repeat;transform:scale(var(--hero-crop-scale,1))}
+  .hero:after {background:linear-gradient(0deg,rgba(12,24,17,.8),rgba(13,25,18,.12) 90%)}
+  .hero .shell {padding-top:110px;padding-bottom:61px}
+  .hero h1 {font-size:clamp(50px,13vw,78px);letter-spacing:-.067em;line-height:.91}
+  .hero .eyebrow {font-size:9px;margin-bottom:19px}
+  .hero .hero-copy {font-size:14px;line-height:1.6;max-width:350px;margin-top:18px}
+  .hero .actions {gap:9px;margin-top:24px}
+  .hero .btn {min-height:44px;padding:0 13px;font-size:9px}
+  .bambu-story {padding:72px 0}
+  .bambu-story-grid,.bambu-visit-grid,.bambu-club-detail-grid {grid-template-columns:1fr;gap:35px}
+  .bambu-story h2,.bambu-experience h2,.bambu-visit h2,.bambu-community h2,.bambu-page-intro h1 {font-size:clamp(41px,11vw,58px)}
+  .bambu-story-photo {height:365px;min-height:0}
+  .bambu-experience {padding:75px 0}
+  .bambu-section-head {display:block;margin-bottom:30px}
+  .bambu-experience .bambu-section-desc {margin-top:20px}
+  .bambu-service-grid {grid-template-columns:1fr;gap:12px}
+  .bambu-service,.bambu-service.featured {grid-column:span 1;min-height:290px;padding:23px}
+  .bambu-service.featured {min-height:360px}
+  .bambu-service h3 {font-size:35px}
+  .bambu-community {padding:83px 0}
+  .bambu-visit {padding:80px 0}
+  .bambu-page-intro {padding:65px 0 26px}
+  .bambu-club-detail {padding:20px 0 75px}
+  .bambu-club-visual {min-height:380px}
+  section.content {padding:63px 0!important}
+  .heading h2 {font-size:clamp(38px,10vw,57px)}
+  #membership .plans {grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  #membership .plan {padding:17px;min-height:220px}
+  #membership .price {font-size:24px}
+  #coaching .coach-cards {grid-template-columns:repeat(2,minmax(0,1fr))}
+  #menu .menus {grid-template-columns:1fr;gap:13px}
+  .cards {grid-template-columns:1fr}
+  .group-points {grid-template-columns:1fr}
+  footer .foot {grid-template-columns:1fr;gap:25px}
+  footer .foot p {justify-self:start;text-align:left}
+  footer .meta {flex-wrap:wrap;gap:12px}
+}
+@media(max-width:380px){
+  .lang b{display:none}
+  .lang{min-width:31px}
+  #membership .plans{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){.bambu-service{transition:none}.bambu-service:hover{transform:none}}
+
+/* Compatibility with the original mobile navigation and admin-controlled section photos. */
+.topbar nav {display:flex!important}
+.bambu-page-intro h1 {text-transform:none!important;overflow-wrap:normal}
+.bambu-story-photo,.bambu-club-visual {background-image:var(--shape-hero,url("shape-hero.webp"))}
+.bambu-service.photo {background-image:var(--shape-hero,url("shape-hero.webp"))}
+#membership {--editorial-photo:var(--bg-membership,var(--shape-hero,url("shape-hero.webp")))}
+#coaching {--editorial-photo:var(--bg-coaching,var(--shape-hero,url("shape-hero.webp")))}
+#online-coaching {--editorial-photo:var(--bg-online,var(--shape-hero,url("shape-hero.webp")))}
+#group-classes {--editorial-photo:var(--bg-group,var(--shape-hero,url("shape-hero.webp")))}
+#menu {--editorial-photo:var(--bg-menu,var(--shape-hero,url("shape-hero.webp")))}
+#contact {--editorial-photo:var(--bg-contact,var(--shape-hero,url("shape-hero.webp")))}
+section.content:before {
+  content:"";display:block;position:relative;inset:auto;z-index:0;width:100%;height:clamp(220px,23vw,355px);
+  margin-top:calc(-1 * clamp(65px,7vw,105px));margin-bottom:clamp(44px,6vw,78px);
+  background-image:var(--editorial-photo);background-size:cover;background-position:center;
+  background-repeat:no-repeat;transform:none;will-change:auto
+}
+section.content:after {display:none}
+@media(max-width:680px){
+  .topbar nav {display:flex!important}
+  section.content:before {
+    height:240px;margin-top:-63px;margin-bottom:45px;
+    background-image:var(--editorial-photo,var(--mobile-section-photo));
+    background-position:var(--mobile-crop-x,50%) var(--mobile-crop-y,50%);
+    background-size:cover;transform:scale(var(--mobile-crop-scale,1))
+  }
+  section.content:after{display:none!important}
+}

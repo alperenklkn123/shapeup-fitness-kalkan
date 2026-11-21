@@ -1,3 +1,32 @@
+## Bambu-inspired redesign (draft branch)
+
+This is an original Shape Training Club redesign inspired by the calm, photo-led editorial structure of Bambu Fitness Bali. No Bambu images, text or brand assets are copied.
+
+- New home: large real Shape hero photo, short introduction, six experience cards, community/gallery link and visit summary.
+- Light cream / sage-green palette, simple typography, spacious sections and a horizontal mobile menu.
+- Separate navigable views built on the existing GitHub Pages static site: `/`, `/?page=club`, `/?page=membership`, `/?page=training`, `/?page=bar`, `/?page=visit`.
+- `shape-kids/`, `gallery.html`, `admin/`, currency conversion, Supabase prices, group-training and online-coaching flags remain in place.
+- The original pricing/render engine still runs even when a section is not displayed in the current view; view-only CSS controls visibility.
+- CMS-managed hero and section photos are reused; the admin console's content and mobile crop controls are left unchanged.
+- English, Turkish, German and Russian labels added for the new editorial areas.
+
+### Pre-release QA
+
+1. Open each of the six page views on phone and desktop, verifying menus, layouts and all internal links.
+2. Switch EN/TR/DE/RU on each view; refresh and confirm language persists.
+3. Compare membership, PT, classes and Shape Bar prices with admin/Supabase records, including TRY/EUR/USD/GBP.
+4. Change a harmless hero/crop setting in admin to verify the public rendering, then restore it.
+5. Test WhatsApp, maps, Google Reviews, gallery and Shape Kids links.
+6. Check page speed, contrast, keyboard focus, and responsive behavior at 320, 375, 768, 1024 and 1440px.
+7. Merge only after visual and functional checks; main site remains unchanged until then.
+
+### Files in this redesign
+
+- `bambu-redesign.css`: editorial styling and responsive layout overrides
+- `bambu-redesign.js`: language strings, navigation state, metadata
+- `index.html`: new informational sections and a route view switch; pricing/contact data IDs preserved
+
+---
 ## V25 — Instagram landing page
 - Instagram bio trafiği için `https://shapetrainingclub.net/instagram/` mobil öncelikli hızlı erişim sayfası eklendi.
 - Üyelik, WhatsApp, grup dersleri, personal coaching, Shape Bar, konum ve galeri tek ekranda toplandı.
