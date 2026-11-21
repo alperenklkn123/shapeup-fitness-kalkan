@@ -177,6 +177,10 @@
     firstVisitCta:"Запланировать визит",firstContactCta:"Написать нам"
   });
 
+  Object.assign(localized.en,{daysWeekdays:"Mon–Fri",daysSaturday:"Sat",daysSunday:"Sun"});
+  Object.assign(localized.tr,{daysWeekdays:"Pzt–Cum",daysSaturday:"Cmt",daysSunday:"Paz"});
+  Object.assign(localized.de,{daysWeekdays:"Mo–Fr",daysSaturday:"Sa",daysSunday:"So"});
+  Object.assign(localized.ru,{daysWeekdays:"Пн–Пт",daysSaturday:"Сб",daysSunday:"Вс"});
   const pageKeys={
     club:["clubEyebrow","clubTitle","clubText"],
     membership:["membershipEyebrow","membershipTitle","membershipText"],
@@ -211,6 +215,24 @@
   });
   const canonical=document.querySelector('link[rel="canonical"]');
   if(canonical)canonical.href="https://shapetrainingclub.net/"+(view==="home"?"":"?page="+encodeURIComponent(view));
+  // Keep editorial visit details in sync with Supabase-managed contact data.
+  const syncVisitDetails=()=>{
+    [["weekdayHours","weekdays"],["saturdayHours","saturday"],["sundayHours","sunday"]].forEach(([source,key])=>{
+      const existing=document.getElementById(source);
+      const target=document.querySelector("[data-bambu-open-"+key+"]");
+      if(existing&&target)target.textContent=existing.textContent.trim();
+    });
+    const dynamicWhatsApp=document.getElementById("whatsappLink");
+    const editorialWhatsApp=document.getElementById("bambuFirstWhatsapp");
+    if(dynamicWhatsApp&&editorialWhatsApp)editorialWhatsApp.href=dynamicWhatsApp.href;
+  };
+  ["weekdayHours","saturdayHours","sundayHours"].forEach(id=>{
+    const element=document.getElementById(id);
+    if(element)new MutationObserver(syncVisitDetails).observe(element,{childList:true,characterData:true,subtree:true});
+  });
+  const dynamicWhatsapp=document.getElementById("whatsappLink");
+  if(dynamicWhatsapp)new MutationObserver(syncVisitDetails).observe(dynamicWhatsapp,{attributes:true,attributeFilter:["href"]});
+  syncVisitDetails();
   translate();
   const menuButton=document.querySelector(".bambu-menu-toggle");
   const nav=document.getElementById("shapeMobileMenu");
