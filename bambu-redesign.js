@@ -110,6 +110,73 @@
       visitPageEyebrow:"ЗАХОДИТЕ К НАМ",visitPageTitle:"Приходите в Shape.",visitPageText:"Мы в центре Калкана. Адрес, часы работы и контакты."
     }
   };
+
+  // Shape-specific copy aligned to the content rhythm of the reference homepage.
+  Object.assign(localized.en,{
+    approachEyebrow:"THE SHAPE WAY",approachTitle:"Made for the way you move.",
+    approachDesc:"The right space, supportive people and training that works for you.",
+    approachFirstTitle:"Room to train",approachFirstText:"Strength, cardio and functional training areas for every routine.",
+    approachSecondTitle:"Coaching that cares",approachSecondText:"Focused one-to-one support for consistent, meaningful progress.",
+    approachThirdTitle:"Move together",approachThirdText:"Train among people who share your energy and goals.",
+    coachEyebrow:"YOUR PEOPLE",coachTitle:"Meet the coaches.",coachDesc:"Real guidance, good energy and support in every session.",
+    coachRole:"Personal Trainer",coachCta:"Explore training options",
+    reviewsEyebrow:"SHAPE COMMUNITY",reviewsTitle:"Hear it from our members.",
+    reviewsDesc:"The atmosphere is shaped by everyone who trains here. Read the latest experiences shared by our visitors.",
+    reviewsCta:"Google reviews ↗",
+    firstEyebrow:"YOUR FIRST VISIT",firstTitle:"Everything you need to know.",
+    firstOneTitle:"Drop by the club",firstOneDesc:"Visiting Kalkan? Ask reception about day passes and memberships.",
+    firstTwoTitle:"When we're open",firstThreeTitle:"Where to find us",
+    firstVisitCta:"Plan your visit",firstContactCta:"Message us"
+  });
+  Object.assign(localized.tr,{
+    approachEyebrow:"SHAPE YAKLAŞIMI",approachTitle:"Senin hareketine uyum sağlayan bir alan.",
+    approachDesc:"Doğru alan, destekleyici insanlar ve sana uygun antrenman.",
+    approachFirstTitle:"Rahatça antrenman yap",approachFirstText:"Serbest ağırlık, kardiyo ve fonksiyonel antrenman alanları.",
+    approachSecondTitle:"Gerçek koçluk",approachSecondText:"İstikrarlı ilerleme için birebir destek ve antrenman takibi.",
+    approachThirdTitle:"Birlikte güçlen",approachThirdText:"Enerjini ve hedeflerini paylaşan insanlarla antrenman yap.",
+    coachEyebrow:"EKİBİMİZ",coachTitle:"Antrenörlerle tanış.",coachDesc:"Her antrenmanda destek, doğru yönlendirme ve pozitif enerji.",
+    coachRole:"Kişisel Antrenör",coachCta:"Antrenman seçenekleri",
+    reviewsEyebrow:"SHAPE TOPLULUĞU",reviewsTitle:"Üyelerimizin deneyimlerini keşfet.",
+    reviewsDesc:"Salonumuzun atmosferini burada antrenman yapan insanlar oluşturuyor. Ziyaretçilerimizin güncel yorumlarını incele.",
+    reviewsCta:"Google yorumları ↗",
+    firstEyebrow:"İLK ZİYARETİN",firstTitle:"Bilmen gereken her şey.",
+    firstOneTitle:"Salona uğra",firstOneDesc:"Kalkan'da mısın? Günlük giriş ve üyelik seçeneklerini resepsiyona sor.",
+    firstTwoTitle:"Çalışma saatlerimiz",firstThreeTitle:"Bizi nerede bulabilirsin",
+    firstVisitCta:"Ziyaret planla",firstContactCta:"Mesaj gönder"
+  });
+  Object.assign(localized.de,{
+    approachEyebrow:"DIE SHAPE PHILOSOPHIE",approachTitle:"Raum für deine Bewegung.",
+    approachDesc:"Ein guter Trainingsort, motivierende Menschen und Training, das zu dir passt.",
+    approachFirstTitle:"Platz zum Trainieren",approachFirstText:"Freihanteln, Cardio und Functional Training für deine Routine.",
+    approachSecondTitle:"Coaching mit Herz",approachSecondText:"Persönliche Betreuung für nachhaltigen Fortschritt.",
+    approachThirdTitle:"Gemeinsam stärker",approachThirdText:"Trainiere mit Menschen, die deine Ziele teilen.",
+    coachEyebrow:"UNSER TEAM",coachTitle:"Lerne die Trainer kennen.",coachDesc:"Erfahrung, Motivation und persönliche Betreuung.",
+    coachRole:"Personal Trainer",coachCta:"Training entdecken",
+    reviewsEyebrow:"SHAPE COMMUNITY",reviewsTitle:"Das sagen unsere Mitglieder.",
+    reviewsDesc:"Unsere Atmosphäre entsteht durch die Menschen im Studio. Lies aktuelle Google-Bewertungen.",
+    reviewsCta:"Google-Bewertungen ↗",
+    firstEyebrow:"DEIN ERSTER BESUCH",firstTitle:"Alles auf einen Blick.",
+    firstOneTitle:"Besuch uns im Studio",firstOneDesc:"In Kalkan zu Besuch? Frag an der Rezeption nach Tagespässen und Mitgliedschaften.",
+    firstTwoTitle:"Öffnungszeiten",firstThreeTitle:"So findest du uns",
+    firstVisitCta:"Besuch planen",firstContactCta:"Nachricht senden"
+  });
+  Object.assign(localized.ru,{
+    approachEyebrow:"ПОДХОД SHAPE",approachTitle:"Пространство для вашего движения.",
+    approachDesc:"Удобный зал, поддержка и тренировки для ваших целей.",
+    approachFirstTitle:"Место для тренировок",approachFirstText:"Свободные веса, кардио и функциональные зоны.",
+    approachSecondTitle:"Внимание тренера",approachSecondText:"Индивидуальное сопровождение для стабильного прогресса.",
+    approachThirdTitle:"Сильнее вместе",approachThirdText:"Тренируйтесь вместе с людьми, которые разделяют ваши цели.",
+    coachEyebrow:"НАША КОМАНДА",coachTitle:"Познакомьтесь с тренерами.",coachDesc:"Поддержка, опыт и хорошая атмосфера на каждой тренировке.",
+    coachRole:"Персональный тренер",coachCta:"Варианты тренировок",
+    reviewsEyebrow:"СООБЩЕСТВО SHAPE",reviewsTitle:"Отзывы наших гостей.",
+    reviewsDesc:"Атмосферу зала создают наши посетители. Посмотрите актуальные отзывы в Google.",
+    reviewsCta:"Отзывы Google ↗",
+    firstEyebrow:"ПЕРВЫЙ ВИЗИТ",firstTitle:"Всё, что нужно знать.",
+    firstOneTitle:"Приходите в клуб",firstOneDesc:"В Калкане? Спросите на стойке о разовых посещениях и абонементах.",
+    firstTwoTitle:"Часы работы",firstThreeTitle:"Как нас найти",
+    firstVisitCta:"Запланировать визит",firstContactCta:"Написать нам"
+  });
+
   const pageKeys={
     club:["clubEyebrow","clubTitle","clubText"],
     membership:["membershipEyebrow","membershipTitle","membershipText"],
@@ -145,5 +212,28 @@
   const canonical=document.querySelector('link[rel="canonical"]');
   if(canonical)canonical.href="https://shapetrainingclub.net/"+(view==="home"?"":"?page="+encodeURIComponent(view));
   translate();
+  const menuButton=document.querySelector(".bambu-menu-toggle");
+  const nav=document.getElementById("shapeMobileMenu");
+  if(menuButton&&nav){
+    const closeMenu=()=>{
+      menuButton.setAttribute("aria-expanded","false");
+      menuButton.setAttribute("aria-label","Open menu");
+      document.querySelector(".topbar")?.classList.remove("menu-open");
+    };
+    menuButton.addEventListener("click",()=>{
+      const next=menuButton.getAttribute("aria-expanded")!=="true";
+      menuButton.setAttribute("aria-expanded",String(next));
+      menuButton.setAttribute("aria-label",next?"Close menu":"Open menu");
+      document.querySelector(".topbar")?.classList.toggle("menu-open",next);
+    });
+    nav.addEventListener("click",event=>{
+      if(event.target.closest("a"))closeMenu();
+    });
+    document.addEventListener("keydown",event=>{if(event.key==="Escape")closeMenu()});
+    document.addEventListener("click",event=>{
+      if(!event.target.closest(".topbar"))closeMenu();
+    });
+    window.addEventListener("resize",()=>{if(window.innerWidth>900)closeMenu()},{passive:true});
+  }
   new MutationObserver(translate).observe(document.documentElement,{attributes:true,attributeFilter:["lang"]});
 })();
