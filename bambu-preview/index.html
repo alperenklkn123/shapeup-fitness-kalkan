@@ -527,8 +527,8 @@
       function applyVisualConfig(){
         const heroSource=(siteConfig.hero||{}).imageUrl||"shape-hero.png";
         const localHero=/^(?:\.\/)?shape-hero\.png(?:[?#].*)?$/i.test(heroSource);
-        const hero=localHero?validWebUrl("shape-hero.webp","shape-hero.png"):validWebUrl(heroSource,"shape-hero.webp");
-        const mobileHero=localHero?validWebUrl("shape-hero-mobile.webp",hero):hero;
+        const hero=localHero?validWebUrl("/shape-hero.webp","/shape-hero.png"):validWebUrl(heroSource,"shape-hero.webp");
+        const mobileHero=localHero?validWebUrl("/shape-hero-mobile.webp",hero):hero;
         document.documentElement.style.setProperty("--shape-hero",`url("${String(hero).replace(/["\\\n\r]/g,"")}")`);
         document.documentElement.style.setProperty("--shape-hero-mobile",`url("${String(mobileHero).replace(/["\\\n\r]/g,"")}")`);
         document.documentElement.style.setProperty("--hero-fit-mobile",needsMobileBlackBarCrop(mobileHero)?"auto 300%":"cover");
