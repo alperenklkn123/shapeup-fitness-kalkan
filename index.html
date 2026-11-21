@@ -145,7 +145,7 @@
 <body>
   <header class="topbar">
     <a class="brand header-brand" href="./" aria-label="Shape Training Club Kalkan"><span class="brand-lockup"><strong>SH<i>A</i>PE</strong><em>TRAINING CLUB</em></span><small>KALKAN</small></a>
-    <nav aria-label="Main navigation">
+    <nav id="shapeMobileMenu" aria-label="Main navigation">
       <a data-shape-nav="home" data-bambu="navHome" href="./">Home</a>
       <a data-shape-nav="club" data-bambu="navClub" href="?page=club">The Club</a>
       <a data-shape-nav="membership" data-bambu="navMembership" href="?page=membership">Memberships</a>
@@ -159,6 +159,7 @@
       <button class="lang" type="button" data-lang="de" aria-label="Deutsch"><b>🇩🇪</b><span>DE</span></button>
       <button class="lang" type="button" data-lang="ru" aria-label="Русский"><b>🇷🇺</b><span>RU</span></button>
     </div>
+    <button class="bambu-menu-toggle" type="button" aria-expanded="false" aria-controls="shapeMobileMenu" aria-label="Open menu"><span></span><span></span><span></span></button>
     <div class="brand-switch" role="navigation" aria-label="Shape Club and Shape Kids">
       <a class="brand-switch-link is-current" href="./" aria-current="page"><span>SHAPE CLUB</span></a>
       <a class="brand-switch-link" href="shape-kids/"><span class="brand-switch-star" aria-hidden="true">🌈</span><span>SHAPE KIDS</span></a>
@@ -235,15 +236,61 @@
         </div>
         <div class="bambu-service-grid">
           <a href="?page=club" class="bambu-service photo featured"><span class="bambu-service-top">01 / SHAPE</span><span class="bambu-arrow" aria-hidden="true">↗</span><h3 data-bambu="cardGym">The Club</h3><p data-bambu="cardGymDesc">Get to know our training space and equipment.</p></a>
-          <a href="?page=membership" class="bambu-service sand"><span class="bambu-service-top">02 / SHAPE</span><span class="bambu-arrow" aria-hidden="true">↗</span><h3 data-bambu="cardMembership">Memberships</h3><p data-bambu="cardMembershipDesc">Drop in for a day or make Shape part of your routine.</p></a>
-          <a href="?page=training#coaching" class="bambu-service olive"><span class="bambu-service-top">03 / SHAPE</span><span class="bambu-arrow" aria-hidden="true">↗</span><h3 data-bambu="cardCoaching">Personal Training</h3><p data-bambu="cardCoachingDesc">Focused one-to-one coaching built around you.</p></a>
-          <a href="?page=training#group-classes" class="bambu-service"><span class="bambu-service-top">04 / SHAPE</span><span class="bambu-arrow" aria-hidden="true">↗</span><h3 data-bambu="cardGroup">Group Classes</h3><p data-bambu="cardGroupDesc">Move together with HYROX, conditioning and more.</p></a>
-          <a href="shape-kids/" class="bambu-service sand"><span class="bambu-service-top">05 / SHAPE</span><span class="bambu-arrow" aria-hidden="true">↗</span><h3 data-bambu="cardKids">Shape Kids</h3><p data-bambu="cardKidsDesc">Movement, coordination and confidence for younger athletes.</p></a>
-          <a href="?page=bar" class="bambu-service olive"><span class="bambu-service-top">06 / SHAPE</span><span class="bambu-arrow" aria-hidden="true">↗</span><h3 data-bambu="cardBar">Shape Bar</h3><p data-bambu="cardBarDesc">Coffee, protein shakes and post-workout favourites.</p></a>
+          <a href="?page=membership" class="bambu-service photo bambu-service-member"><span class="bambu-service-top">02 / SHAPE</span><span class="bambu-arrow" aria-hidden="true">↗</span><h3 data-bambu="cardMembership">Memberships</h3><p data-bambu="cardMembershipDesc">Drop in for a day or make Shape part of your routine.</p></a>
+          <a href="?page=training#coaching" class="bambu-service photo bambu-service-training"><span class="bambu-service-top">03 / SHAPE</span><span class="bambu-arrow" aria-hidden="true">↗</span><h3 data-bambu="cardCoaching">Personal Training</h3><p data-bambu="cardCoachingDesc">Focused one-to-one coaching built around you.</p></a>
+          <a href="?page=training#group-classes" class="bambu-service photo bambu-service-group"><span class="bambu-service-top">04 / SHAPE</span><span class="bambu-arrow" aria-hidden="true">↗</span><h3 data-bambu="cardGroup">Group Classes</h3><p data-bambu="cardGroupDesc">Move together with HYROX, conditioning and more.</p></a>
+          <a href="shape-kids/" class="bambu-service photo bambu-service-kids"><span class="bambu-service-top">05 / SHAPE</span><span class="bambu-arrow" aria-hidden="true">↗</span><h3 data-bambu="cardKids">Shape Kids</h3><p data-bambu="cardKidsDesc">Movement, coordination and confidence for younger athletes.</p></a>
+          <a href="?page=bar" class="bambu-service photo bambu-service-bar"><span class="bambu-service-top">06 / SHAPE</span><span class="bambu-arrow" aria-hidden="true">↗</span><h3 data-bambu="cardBar">Shape Bar</h3><p data-bambu="cardBarDesc">Coffee, protein shakes and post-workout favourites.</p></a>
         </div>
       </div>
     </section>
 
+
+    <section class="bambu-approach" aria-labelledby="shape-approach-title">
+      <div class="shell">
+        <div class="bambu-section-head">
+          <div>
+            <p class="bambu-overline" data-bambu="approachEyebrow">THE SHAPE WAY</p>
+            <h2 id="shape-approach-title" data-bambu="approachTitle">Made for the way you move.</h2>
+          </div>
+          <p class="bambu-section-desc" data-bambu="approachDesc">The right space, supportive people and training that works for you.</p>
+        </div>
+        <div class="bambu-approach-grid">
+          <article class="bambu-approach-card">
+            <div class="bambu-approach-photo bambu-approach-photo-space" role="img" aria-label="Shape Training Club training area"></div>
+            <h3 data-bambu="approachFirstTitle">Room to train</h3>
+            <p data-bambu="approachFirstText">Strength, cardio and functional training areas for every routine.</p>
+          </article>
+          <article class="bambu-approach-card">
+            <div class="bambu-approach-photo bambu-approach-photo-coach" role="img" aria-label="Personal coaching at Shape Training Club"></div>
+            <h3 data-bambu="approachSecondTitle">Coaching that cares</h3>
+            <p data-bambu="approachSecondText">Focused one-to-one support for consistent, meaningful progress.</p>
+          </article>
+          <article class="bambu-approach-card">
+            <div class="bambu-approach-photo bambu-approach-photo-group" role="img" aria-label="Shape group training"></div>
+            <h3 data-bambu="approachThirdTitle">Move together</h3>
+            <p data-bambu="approachThirdText">Train among people who share your energy and goals.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="bambu-coaches" aria-labelledby="shape-coaches-title">
+      <div class="shell">
+        <div class="bambu-section-head">
+          <div>
+            <p class="bambu-overline" data-bambu="coachEyebrow">YOUR PEOPLE</p>
+            <h2 id="shape-coaches-title" data-bambu="coachTitle">Meet the coaches.</h2>
+          </div>
+          <p class="bambu-section-desc" data-bambu="coachDesc">Real guidance, good energy and support in every session.</p>
+        </div>
+        <div class="bambu-coach-grid">
+          <a href="?page=training#coaching" class="bambu-coach-item"><div class="bambu-coach-placeholder" aria-hidden="true">A</div><h3>Alperen</h3><p data-bambu="coachRole">Personal Trainer</p></a>
+          <a href="?page=training#coaching" class="bambu-coach-item"><div class="bambu-coach-placeholder" aria-hidden="true">B</div><h3>Burkan</h3><p data-bambu="coachRole">Personal Trainer</p></a>
+        </div>
+        <a href="?page=training" class="bambu-text-link" data-bambu="coachCta">Explore training options</a>
+      </div>
+    </section>
     <section class="bambu-community" aria-labelledby="bambu-community-title">
       <div class="shell">
         <p class="bambu-overline" data-bambu="communityEyebrow">MORE THAN A GYM</p>
@@ -253,6 +300,35 @@
       </div>
     </section>
 
+
+    <section class="bambu-reviews" aria-labelledby="shape-reviews-title">
+      <div class="shell bambu-reviews-grid">
+        <div>
+          <p class="bambu-overline" data-bambu="reviewsEyebrow">SHAPE COMMUNITY</p>
+          <h2 id="shape-reviews-title" data-bambu="reviewsTitle">Hear it from our members.</h2>
+        </div>
+        <div class="bambu-reviews-content">
+          <p data-bambu="reviewsDesc">The atmosphere is shaped by everyone who trains here. Read the latest experiences shared by our visitors.</p>
+          <a href="https://search.google.com/local/writereview?placeid=ChIJw_Y6vGAtwBQROEuRz0soR_8" target="_blank" rel="noopener" class="bambu-text-link" data-bambu="reviewsCta">Google reviews ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="bambu-first-visit" aria-labelledby="shape-first-visit-title">
+      <div class="shell">
+        <p class="bambu-overline" data-bambu="firstEyebrow">YOUR FIRST VISIT</p>
+        <h2 id="shape-first-visit-title" data-bambu="firstTitle">Everything you need to know.</h2>
+        <div class="bambu-first-grid">
+          <article><span class="bambu-first-index">01</span><h3 data-bambu="firstOneTitle">Drop by the club</h3><p data-bambu="firstOneDesc">Visiting Kalkan? Ask reception about day passes and memberships.</p></article>
+          <article><span class="bambu-first-index">02</span><h3 data-bambu="firstTwoTitle">When we're open</h3><p>Mon–Fri 07:30–22:00<br>Sat 08:00–21:00<br>Sun 08:00–17:00</p></article>
+          <article><span class="bambu-first-index">03</span><h3 data-bambu="firstThreeTitle">Where to find us</h3><p>Yasemen Sokak No:17<br>Kalkan, Kaş / Antalya</p></article>
+        </div>
+        <div class="bambu-first-actions">
+          <a href="?page=visit" class="bambu-action-btn" data-bambu="firstVisitCta">Plan your visit</a>
+          <a href="https://wa.me/905303785708" class="bambu-action-btn secondary" data-bambu="firstContactCta">Message us</a>
+        </div>
+      </div>
+    </section>
     <section class="bambu-visit" aria-labelledby="bambu-visit-title">
       <div class="shell bambu-visit-grid">
         <div>
