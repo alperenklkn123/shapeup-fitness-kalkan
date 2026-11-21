@@ -248,3 +248,151 @@ section.content:after {display:none}
   }
   section.content:after{display:none!important}
 }
+
+
+/* V2: closer to Bambu's mobile-first structure: photographic experience,
+   approach, coaches, community, reviews, first visit and an uncluttered CTA. */
+html[data-shape-view]:not([data-shape-view="home"]) .bambu-approach,
+html[data-shape-view]:not([data-shape-view="home"]) .bambu-coaches,
+html[data-shape-view]:not([data-shape-view="home"]) .bambu-reviews,
+html[data-shape-view]:not([data-shape-view="home"]) .bambu-first-visit {display:none!important}
+.bambu-menu-toggle {display:none}
+.bambu-experience {background:#f4f0e9}
+.bambu-service-grid {grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.bambu-service.photo {min-height:365px;color:#f8f8f0;border:0;background-color:#55675a;background-size:cover;background-position:center}
+.bambu-service.photo.featured {grid-column:span 2;min-height:420px}
+.bambu-service.photo:before {background:linear-gradient(0deg,rgba(19,27,20,.84),rgba(18,28,20,.06) 77%)}
+.bambu-service.photo .bambu-service-top {color:#f2f1e7}
+.bambu-service.photo h3,.bambu-service.photo p {color:#fffdf6}
+.bambu-service-member {background-image:var(--bg-membership,var(--shape-hero,url("shape-hero.webp")))!important}
+.bambu-service-training {background-image:var(--bg-coaching,var(--shape-hero,url("shape-hero.webp")))!important}
+.bambu-service-group {background-image:var(--bg-group,var(--shape-hero,url("shape-hero.webp")))!important}
+.bambu-service-kids {background-image:var(--bg-online,var(--shape-hero,url("shape-hero.webp")))!important}
+.bambu-service-bar {background-image:var(--bg-menu,var(--shape-hero,url("shape-hero.webp")))!important}
+.bambu-approach {padding:clamp(80px,9vw,140px) 0;background:#edeae3}
+.bambu-approach h2,.bambu-coaches h2,.bambu-reviews h2,.bambu-first-visit h2 {
+  font-size:clamp(42px,5.4vw,78px);font-weight:650;letter-spacing:-.06em;
+  line-height:1.03;color:#304235;margin:15px 0 0;text-wrap:balance
+}
+.bambu-approach .bambu-section-desc,.bambu-coaches .bambu-section-desc {max-width:330px;font-size:15px;line-height:1.7;color:#667466}
+.bambu-approach-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.bambu-approach-card {min-width:0}
+.bambu-approach-photo {height:clamp(270px,29vw,420px);background:#9aa596 center/cover no-repeat;filter:saturate(.8)}
+.bambu-approach-photo-space {background-image:var(--bg-membership,var(--shape-hero,url("shape-hero.webp")))}
+.bambu-approach-photo-coach {background-image:var(--bg-coaching,var(--shape-hero,url("shape-hero.webp")))}
+.bambu-approach-photo-group {background-image:var(--bg-group,var(--shape-hero,url("shape-hero.webp")))}
+.bambu-approach-card h3 {margin:27px 0 8px;font-size:26px;font-weight:650;color:#304235;letter-spacing:-.035em}
+.bambu-approach-card p {max-width:350px;font-size:14px;line-height:1.65;color:#647365;margin:0}
+.bambu-coaches {padding:clamp(90px,10vw,150px) 0;background:#f7f5f0}
+.bambu-coach-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;max-width:760px}
+.bambu-coach-item {display:block}
+.bambu-coach-placeholder {
+  display:grid;place-items:center;aspect-ratio:1.12;color:rgba(255,255,255,.46);
+  background:#798b78 url("shape-hero.webp") center/cover no-repeat;
+  background-blend-mode:multiply;font-size:clamp(78px,13vw,150px);font-weight:500;letter-spacing:-.08em
+}
+.bambu-coach-item:nth-child(2) .bambu-coach-placeholder {background-color:#879b84}
+.bambu-coach-item h3 {font-size:24px;font-weight:650;color:#354a3a;margin:19px 0 4px}
+.bambu-coach-item p {font-size:13px;color:#718071;margin:0}
+.bambu-coaches>.shell>.bambu-text-link {margin-top:36px}
+.bambu-reviews {padding:clamp(85px,10vw,145px) 0;background:#f1ede5}
+.bambu-reviews-grid {display:grid;grid-template-columns:1.1fr .9fr;gap:75px}
+.bambu-reviews-content {max-width:470px;padding-top:30px}
+.bambu-reviews-content p {font-size:18px;line-height:1.78;color:#637064;margin:0}
+.bambu-first-visit {padding:clamp(90px,9vw,145px) 0;background:#dedfd5}
+.bambu-first-visit h2 {max-width:860px}
+.bambu-first-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:25px;margin-top:55px}
+.bambu-first-grid article {padding:22px 0 25px;border-top:1px solid #8b9988}
+.bambu-first-index {font-size:11px;letter-spacing:.13em;color:#566b55;font-weight:800}
+.bambu-first-grid h3 {font-size:26px;font-weight:650;color:#304335;letter-spacing:-.04em;margin:22px 0 14px}
+.bambu-first-grid p {font-size:14px;line-height:1.8;color:#5d6c5c;max-width:320px;margin:0}
+.bambu-first-actions {margin-top:38px;display:flex;gap:11px;flex-wrap:wrap}
+.bambu-action-btn {display:inline-flex;justify-content:center;align-items:center;background:#344b39;color:#fff;
+  font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:800;min-height:50px;padding:0 27px}
+.bambu-action-btn.secondary {background:transparent;border:1px solid #344b39;color:#344b39}
+.bambu-visit {background:#334b3a;color:#f6f5ef}
+.bambu-visit .bambu-overline {color:#cad7c4}
+.bambu-visit h2 {color:#fbf8ef}
+.bambu-visit p:not(.bambu-overline) {color:#d8e1d6}
+.bambu-visit .bambu-text-link {color:#f7f5ed}
+footer {background-image:none!important}
+@media(max-width:1000px) {
+  .topbar {grid-template-columns:minmax(0,1fr) auto auto;gap:8px 15px;align-items:center}
+  .topbar .langs {grid-column:2;grid-row:1;justify-self:end}
+  .bambu-menu-toggle {
+    grid-column:3;grid-row:1;display:flex;flex-direction:column;gap:5px;justify-content:center;align-items:center;
+    width:42px;height:42px;flex:none;padding:10px;border:1px solid #a9b5a5;background:transparent;cursor:pointer
+  }
+  .bambu-menu-toggle span {display:block;width:20px;height:1.5px;background:#304735;transition:transform .2s ease,opacity .2s ease}
+  .topbar.menu-open .bambu-menu-toggle span:nth-child(1) {transform:translateY(6.5px) rotate(45deg)}
+  .topbar.menu-open .bambu-menu-toggle span:nth-child(2) {opacity:0}
+  .topbar.menu-open .bambu-menu-toggle span:nth-child(3) {transform:translateY(-6.5px) rotate(-45deg)}
+  .topbar nav#shapeMobileMenu {display:none!important;grid-row:2;grid-column:1/-1;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:0;
+    border-top:1px solid rgba(39,57,43,.15);padding:13px 0 24px;overflow:visible}
+  .topbar.menu-open nav#shapeMobileMenu {display:flex!important}
+  .topbar nav#shapeMobileMenu a {padding:14px 2px;border-bottom:1px solid rgba(39,57,43,.12);font-size:23px;letter-spacing:-.03em;font-weight:650}
+  .topbar nav#shapeMobileMenu a:after {display:none}
+  .topbar nav#shapeMobileMenu a[aria-current="page"] {color:#789477}
+  .bambu-service-grid {grid-template-columns:repeat(2,minmax(0,1fr))}
+  .bambu-service.photo.featured {grid-column:span 2}
+}
+@media(max-width:680px) {
+  .topbar {grid-template-columns:minmax(0,1fr) auto auto;min-height:66px;gap:7px;padding:10px 17px!important}
+  .header-brand .brand-lockup strong {font-size:23px}
+  .header-brand small {display:none}
+  .topbar .langs {padding:2px;gap:0}
+  .topbar .lang {min-width:26px!important;height:27px!important;padding:0 2px!important}
+  .topbar .lang b {display:none!important}
+  .topbar .lang span {display:inline!important;font-size:9px;letter-spacing:-.03em}
+  .bambu-menu-toggle {width:38px;height:38px;padding:8px}
+  .topbar nav#shapeMobileMenu a {font-size:25px!important;padding:13px 0}
+  .hero {min-height:calc(100svh - 66px);display:flex;align-items:flex-end}
+  .hero .shell {padding-top:clamp(160px,32svh,290px)!important;padding-bottom:65px!important}
+  .hero h1 {max-width:360px;font-size:clamp(46px,12.5vw,66px)!important;font-weight:750;line-height:.98!important}
+  .hero .hero-copy {margin-top:20px;font-size:16px;max-width:325px;line-height:1.55}
+  .hero .actions {display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;max-width:390px}
+  .hero .actions .btn {width:100%;font-size:9px;min-height:49px;line-height:1.2;padding:0 10px;text-align:center}
+  .hero .eyebrow {font-size:10px}
+  .bambu-story {padding:85px 0}
+  .bambu-story-grid {display:flex;flex-direction:column-reverse;gap:35px}
+  .bambu-story-photo {height:350px;width:100%}
+  .bambu-story h2,.bambu-experience h2,.bambu-community h2,.bambu-visit h2 {font-size:clamp(42px,10.5vw,62px)}
+  .bambu-story p:not(.bambu-overline) {font-size:16px}
+  .bambu-experience {padding:85px 0}
+  .bambu-service-grid {grid-template-columns:1fr;gap:13px}
+  .bambu-service.photo,.bambu-service.photo.featured {grid-column:span 1;min-height:430px}
+  .bambu-service.photo {background-position:center}
+  .bambu-service {padding:27px}
+  .bambu-service h3 {font-size:39px}
+  .bambu-service p {font-size:14px}
+  .bambu-approach,.bambu-coaches,.bambu-reviews,.bambu-first-visit {padding:86px 0}
+  .bambu-approach h2,.bambu-coaches h2,.bambu-reviews h2,.bambu-first-visit h2 {font-size:clamp(42px,10vw,60px)}
+  .bambu-approach-grid {grid-template-columns:1fr;gap:43px}
+  .bambu-approach-photo {height:auto;aspect-ratio:4/4.7}
+  .bambu-approach-card h3 {font-size:29px;margin-top:21px}
+  .bambu-approach-card p {font-size:15px}
+  .bambu-coach-grid {grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .bambu-coach-placeholder {aspect-ratio:.82;font-size:78px}
+  .bambu-coach-item h3 {font-size:19px;margin-top:13px}
+  .bambu-coach-item p {font-size:12px}
+  .bambu-community {padding:95px 0}
+  .bambu-reviews-grid {grid-template-columns:1fr;gap:8px}
+  .bambu-reviews-content {padding-top:20px}
+  .bambu-reviews-content p {font-size:16px}
+  .bambu-first-grid {grid-template-columns:1fr;gap:5px;margin-top:42px}
+  .bambu-first-grid article {padding:23px 0}
+  .bambu-first-grid h3 {font-size:28px;margin:15px 0 10px}
+  .bambu-first-grid p {font-size:15px}
+  .bambu-first-actions {display:grid;grid-template-columns:1fr;gap:9px}
+  .bambu-visit {padding:87px 0}
+  .bambu-visit-actions {gap:28px}
+  .bambu-page-intro {padding-top:75px}
+  .bambu-page-intro h1 {font-size:clamp(42px,10.5vw,60px)}
+  footer {padding-top:70px}
+  footer .brand small {display:inline}
+}
+@media(max-width:360px) {
+  .topbar {padding-left:11px!important;padding-right:11px!important}
+  .topbar .lang {min-width:23px!important}
+  .hero .actions {grid-template-columns:1fr}
+}
