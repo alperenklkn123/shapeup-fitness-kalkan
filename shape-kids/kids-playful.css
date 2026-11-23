@@ -53,3 +53,74 @@ body{background:#071622}
  .floating-decor{font-size:17px}.program-emoji{right:19px;top:20px;font-size:28px}
 }
 @media(prefers-reduced-motion:reduce){.kids-sticker{animation:none!important}.feature,.program{transition:none}}
+
+/* Playground colours and paper-cut shapes for the children's programme. */
+main {
+  --ink: #202d53;
+  color: var(--ink);
+  background: #fff9e9;
+}
+.hero {
+  color: var(--ink);
+  background: radial-gradient(circle, #9dd9da 1.4px, transparent 1.8px) 0 0 / 22px 22px, #d9f5f3;
+  border-bottom: 0;
+}
+.hero::before { display: none; }
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 16px;
+  background: radial-gradient(circle at 50% 100%, #fff9e9 12px, transparent 13px) 0 0 / 24px 100%;
+}
+.hero h1, main .heading, .program h3, .feature h3 {
+  font-family: ui-rounded, "Arial Rounded MT Bold", system-ui, sans-serif;
+  font-weight: 900;
+}
+.hero h1 span {
+  width: fit-content;
+  background: none;
+  color: #c14439;
+  text-shadow: 3px 4px #fff, 5px 6px #202d53;
+  transform: rotate(-3deg);
+}
+.eyebrow, .kicker { color: #3c486a; }
+.kids-hello, .tag, .tag:nth-child(2), .tag:nth-child(3), .program .flag {
+  color: var(--ink);
+  background: #ffdc72;
+  border: 2px solid var(--ink);
+}
+.tag:nth-child(2) { background: #ffcad7; }
+.tag:nth-child(3) { background: #cae8ae; }
+.graphic {
+  background: #fffef9;
+  border: 3px solid var(--ink);
+  box-shadow: 6px 7px 0 #568e96;
+  transform: rotate(1deg);
+}
+.graphic img { margin: 0; }
+main .dark { background: #fff9e9; }
+#programs { background: #e4edf9; }
+.feature, .feature:nth-child(2), .feature:nth-child(3), .program, .program.alt, .faq {
+  background: #fffef9;
+  border: 2px solid var(--ink);
+  box-shadow: 4px 5px var(--ink);
+}
+.feature:nth-child(1), .program { background: #ffe498; }
+.feature:nth-child(2), .program.alt { background: #e6dbff; }
+.feature:nth-child(3) { background: #c8ece0; }
+.program .flag, .feature .symbol { background: #fffaf0; }
+.program .flag { max-width: calc(100% - 48px); }
+.program .info { background: #ffffffa8; border-color: #202d5338; }
+.lead, .intro, .feature p, .program p, .info small, .step p, .faq p { color: #374563; font-size: 1rem; }
+.info small { font-size: .875rem; }
+.step b { color: #674285; }
+.step { border-color: #84759b; }
+main .button { background: var(--ink); color: white; border: 2px solid var(--ink); box-shadow: 3px 4px #76829a; font-size: .95rem; }
+main a:focus-visible { outline: 3px solid #ab3229; outline-offset: 4px; }
+@media (max-width: 720px) {
+  .hero-layout { min-height: auto; padding: 36px 0 48px; }
+  .graphic { transform: none; }
+  .program { padding: 22px 18px; }
+  .flag { letter-spacing: .04em; }
+}
