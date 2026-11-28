@@ -1,0 +1,27 @@
+/* SHAPE KIDS tanıtım videosu (ana sayfa + Kids sayfası) */
+.reel-phone{position:relative;width:min(340px,78vw);aspect-ratio:9/16;margin:0 auto;border-radius:46px;padding:10px;background:linear-gradient(160deg,#1c3550,#0a1522);box-shadow:0 0 0 2px rgba(120,190,255,.25),0 40px 90px rgba(0,0,0,.45),0 0 80px rgba(36,137,255,.25);isolation:isolate}
+.reel-phone:before{content:"";position:absolute;top:18px;left:50%;width:92px;height:22px;margin-left:-46px;border-radius:20px;background:#05090f;z-index:3}
+.reel-phone video,.reel-phone .reel-poster{position:absolute;inset:10px;width:calc(100% - 20px);height:calc(100% - 20px);border-radius:37px;object-fit:cover;background:#cdf1ff}
+.reel-toggle{position:absolute;right:22px;top:52px;z-index:4;width:46px;height:46px;border:0;border-radius:50%;display:grid;place-items:center;background:rgba(5,12,22,.62);color:#fff;font-size:16px;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:transform .2s,background .2s}
+.reel-toggle:hover{transform:scale(1.08);background:rgba(36,137,255,.85)}
+.reel-toggle:focus-visible{outline:3px solid #ffd25e;outline-offset:3px}
+.reel-phone.is-paused .reel-toggle{width:84px;height:84px;right:50%;top:50%;transform:translate(50%,-50%);font-size:30px;background:rgba(36,137,255,.9);box-shadow:0 14px 36px rgba(36,137,255,.45)}
+.reel-phone.is-paused .reel-toggle:hover{transform:translate(50%,-50%) scale(1.06)}
+.reel-badge{position:absolute;left:-18px;top:64px;z-index:4;padding:10px 16px;border-radius:14px;background:#ffd25e;color:#202d53;font:800 12px/1 Inter,system-ui,sans-serif;letter-spacing:.12em;box-shadow:0 12px 26px rgba(0,0,0,.25);transform:rotate(-6deg)}
+
+/* Ana sayfa bölümü */
+#kids-promo{background:radial-gradient(circle at 80% 40%,rgba(255,210,94,.12),transparent 40%),radial-gradient(circle at 15% 70%,rgba(36,137,255,.16),transparent 45%),linear-gradient(180deg,#07111b,#0a1726)}
+.kids-promo-layout{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(40px,7vw,90px);align-items:center}
+.kids-promo-chips{display:flex;flex-wrap:wrap;gap:10px;margin:30px 0 0;padding:0;list-style:none}
+.kids-promo-chips li{padding:11px 16px;border:1px solid rgba(255,210,94,.35);border-radius:999px;background:rgba(255,210,94,.08);color:#ffe7a6;font-size:12px;font-weight:800;letter-spacing:.04em}
+#kids-promo .kicker{color:#ffd25e}
+#kids-promo .actions{margin-top:30px}
+#kids-promo .btn.kids-btn{background:linear-gradient(135deg,#ffc93c,#ffdf7e);color:#1b2440;box-shadow:0 14px 32px rgba(255,201,60,.25)}
+@media(max-width:900px){.kids-promo-layout{grid-template-columns:1fr}.kids-promo-layout .reel-phone{order:-1}}
+@media(max-width:680px){#kids-promo .actions .btn{width:100%}}
+
+/* Kids sayfası hero */
+.kids-reel-wrap{position:relative;padding:10px 0}
+.kids-reel-wrap .reel-phone{background:linear-gradient(160deg,#ffffff,#e3f6ff);box-shadow:0 0 0 3px #e1f7ff,0 34px 80px rgba(0,0,0,.28),0 0 0 14px rgba(115,191,235,.08)}
+.kids-reel-wrap .reel-phone:before{background:#202d53}
+@media(max-width:1000px){.kids-reel-wrap .reel-phone{width:min(320px,74vw)}}

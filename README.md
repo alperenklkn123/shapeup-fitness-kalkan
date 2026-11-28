@@ -1,3 +1,10 @@
+## V30 — SHAPE KIDS tanıtım videosu
+- Ana sayfaya, Grup dersleri ile Shape Bar arasına "SHAPE KIDS" tanıtım bölümü eklendi (4 dilde metin, Kids WhatsApp numarası).
+- SHAPE KIDS sayfasının üst bölümünde illüstrasyon yerine telefon çerçevesinde tanıtım videosu oynar.
+- Video sayfa diline göre Türkçe veya İngilizce sürümü seçer; sessiz, döngülü, yalnızca ekrandayken oynar; duraklat/oynat düğmesi vardır.
+- "Hareketi azalt" tercihinde otomatik oynatılmaz. Video ilk görünüşte yüklenir (sayfa açılış hızı etkilenmez).
+- Dosyalar: `kids-reel.css`, `kids-reel.js`, `shape-kids/media/` (720×1280 MP4 ~0,8 MB + WebP poster).
+
 ## V29 — Motion & görsel yenileme
 - Yeni `shape-motion.css` + `shape-motion.js` katmanı (mevcut kod ve yönetim paneli değişmeden çalışır).
 - Açılışta sinematik başlık girişi, kapak fotoğrafında yavaş yakınlaşma, imleci takip eden ışık ve hareketli mavi ışık bulutları.
