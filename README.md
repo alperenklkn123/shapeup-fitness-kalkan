@@ -1,3 +1,14 @@
+## V29 — Motion & görsel yenileme
+- Yeni `shape-motion.css` + `shape-motion.js` katmanı (mevcut kod ve yönetim paneli değişmeden çalışır).
+- Açılışta sinematik başlık girişi, kapak fotoğrafında yavaş yakınlaşma, imleci takip eden ışık ve hareketli mavi ışık bulutları.
+- Bölümler ve fiyat kartları kaydırdıkça sırayla belirir; fiyatlar ilk görünüşte sayarak yükselir.
+- Kartlarda imleci takip eden ışık ve hafif 3B eğim (yalnızca masaüstü), öne çıkan paketlerde dönen ışık kenarı.
+- WhatsApp butonlarında parıltı ve nabız efekti, üstte sayfa ilerleme çubuğu.
+- Mobilde kapak geçildikten sonra beliren sabit WhatsApp / Ara çubuğu (iletişim bölümünde gizlenir).
+- "Hareketi azalt" ayarını açan ziyaretçilerde tüm animasyonlar kapanır. Animasyonlar yalnızca opacity/transform kullanır (CLS üretmez).
+- Pazar günü "kapalı" yazıldığında ziyaretçinin diline çevrilir (Closed / Geschlossen / Закрыто).
+- Google için yapılandırılmış veri (JSON-LD) çalışma saatleri, yönetim panelindeki güncel saatlerle otomatik eşitlenir.
+
 ## V25 — Instagram landing page
 - Instagram bio trafiği için `https://shapetrainingclub.net/instagram/` mobil öncelikli hızlı erişim sayfası eklendi.
 - Üyelik, WhatsApp, grup dersleri, personal coaching, Shape Bar, konum ve galeri tek ekranda toplandı.

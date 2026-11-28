@@ -133,6 +133,8 @@
     @media(prefers-reduced-motion:reduce){.brand-switch-link{transition:none}}
   </style>
   <link rel="stylesheet" href="site-pricing.css?v=28">
+  <link rel="stylesheet" href="shape-motion.css?v=29">
+  <script>document.documentElement.classList.add("fx","fx-intro")</script>
 </head>
 <body>
   <header class="topbar">
@@ -432,9 +434,14 @@
         if(address)document.getElementById("addressText").textContent=address;
         if(contact.phoneDisplay)document.getElementById("phoneLink").textContent=contact.phoneDisplay;
         if(contact.email)document.getElementById("emailLink").textContent=contact.email;
-        if((contact.hours||{}).weekdays)document.getElementById("weekdayHours").textContent=contact.hours.weekdays;
-        if((contact.hours||{}).saturday)document.getElementById("saturdayHours").textContent=contact.hours.saturday;
-        if((contact.hours||{}).sunday)document.getElementById("sundayHours").textContent=contact.hours.sunday;
+        const closedWord={en:"Closed",tr:"Kapalı",de:"Geschlossen",ru:"Закрыто"};
+        const hourText=value=>/^\s*(kapal[ıi]|closed|geschlossen|закрыто|[-–—])\s*$/i.test(String(value))?(closedWord[lang]||closedWord.en):value;
+        if((contact.hours||{}).weekdays)document.getElementById("weekdayHours").textContent=hourText(contact.hours.weekdays);
+        if((contact.hours||{}).saturday)document.getElementById("saturdayHours").textContent=hourText(contact.hours.saturday);
+        if((contact.hours||{}).sunday)document.getElementById("sundayHours").textContent=hourText(contact.hours.sunday);
+        try{const ld=document.querySelector('script[type="application/ld+json"]');const data=JSON.parse(ld.textContent);const h=contact.hours||{};const spec=[];
+          [[["Monday","Tuesday","Wednesday","Thursday","Friday"],h.weekdays],[["Saturday"],h.saturday],[["Sunday"],h.sunday]].forEach(([days,value])=>{const m=String(value||"").match(/(\d{1,2}:\d{2})\s*[–—-]\s*(\d{1,2}:\d{2})/);if(m)spec.push({"@type":"OpeningHoursSpecification",dayOfWeek:days.length===1?days[0]:days,opens:m[1].padStart(5,"0"),closes:m[2].padStart(5,"0")})});
+          if(spec.length){data.openingHoursSpecification=spec;const next=JSON.stringify(data);if(next!==ld.textContent)ld.textContent=next}}catch(error){}
         if(phone){setHref("phoneLink",`tel:${phone}`);setHref("callButton",`tel:${phone}`)}
         if(whatsapp){const groupMessage=String(t.groupWhatsappMessage||"Hello, I would like information about group classes.");const onlineMessage=String(t.onlineWhatsappMessage||"Hello, I would like information about online coaching.");setHref("whatsappLink",`https://wa.me/${whatsapp}`);setHref("heroWhatsappLink",`https://wa.me/${whatsapp}`);setHref("groupWhatsappLink",`https://wa.me/${whatsapp}?text=${encodeURIComponent(groupMessage)}`);setHref("onlineWhatsappLink",`https://wa.me/${whatsapp}?text=${encodeURIComponent(onlineMessage)}`)}
         if(contact.email)setHref("emailLink",`mailto:${contact.email}`);
@@ -557,6 +564,7 @@
     })();
   </script>
   <!-- Cloudflare Web Analytics -->
+  <script src="shape-motion.js?v=29" defer></script>
   <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4e67bf4c2b094c4487f6d765bd0b663e"}'></script>
   <!-- End Cloudflare Web Analytics -->
 </body>
